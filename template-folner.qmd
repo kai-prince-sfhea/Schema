@@ -1,0 +1,39 @@
+---
+title: Følner sequence
+term-aliases:
+  - alias: Følner
+    id: Folner
+    translate: false
+  - alias: right-Følner
+    id: rightFolner
+  - alias: left-Følner
+    id: leftFolner
+macros:
+  - command: Folner
+    macro: '{\\href{/papers/maths_notes/folner.html}{\\Phi}}_{#1}'
+    variables: 1
+    variablesDefault: ''
+class: definition
+dependencies:
+  - group
+author: Kai Prince SFHEA
+date: last-modified
+---
+
+## Introduction
+::: {.definition}
+::: {#def-rightFolner}
+We define a *right-Følner sequence* in $\Group$ as a sequence $\Folner=(\Folner_N)_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|(\Folner_N\cdot \GroupElement^{-1})\cap\Folner_N|}{|\Folner_N|}=1$$for all $\GroupElement\in\Group$.
+:::
+::: {#def-leftFolner}
+Similarly, we define a *left-Følner sequence* in $\Group$ as a sequence $\Folner=(\Folner_N)_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|(\GroupElement^{-1}\cdot\Folner_N)\cap\Folner_N|}{|\Folner_N|}=1 $$for all $\GroupElement\in\Group$.
+:::
+::: {#def-Folner}
+We call a sequence a *Følner sequence* if it is both a left and right Følner sequence.
+:::
+:::
+
+## More Information
+
+You can learn more about controlling the appearance of HTML output here: <https://quarto.org/docs/output-formats/html-basics.html>
+

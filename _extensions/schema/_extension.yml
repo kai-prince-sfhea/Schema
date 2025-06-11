@@ -1,0 +1,35 @@
+title: Schema Extension
+description: |
+  An extension for Quarto that provides a custom HTML format with specific features.
+  It includes pre-rendering and rendering capabilities, along with a custom template and theme.
+author: Kai Prince SFHEA
+version: 0.0.1
+quarto-required: ">=1.6.0"
+contributes:
+  project:
+    project:
+      type: website
+      pre-render:
+        - MathsPre.lua
+      render:
+        - "**/*.qmd"
+    website:
+      resources:
+      - CNAME
+      - "*.json"
+    format: kaisformat-html
+  formats:
+    common:
+      filters:
+        - math-macros.lua
+      lang: en-GB
+    html:
+      comments:
+        hypothesis: true
+      respect-user-color-scheme: true
+      template: schema.html
+      email-obfuscation: javascript
+      theme:
+        - cosmo
+        - brand
+      toc: true
