@@ -1,5 +1,5 @@
 ---
-title: axioms
+title: Axioms
 term-aliases:
   - alias: associativity
     id: associativity
@@ -18,11 +18,12 @@ macros:
   - command: Operation
     macro: '{#1}\\cdot{#2}'
     variables: 2
-    variablesDefault:
-    - ''
-    - ''
   - command: Identity
     macro: '{e}'
+macro-mapping:
+  - Set
+  - Operation
+  - Identity
 class: definition
 embed-map: {\Set,\Operation,\Identity}
 author: Kai Prince SFHEA
@@ -30,19 +31,17 @@ date: last-modified
 ---
 
 ## Introduction
-::: {.definition}
-::: {#def-associativity include-alias="true"}
+::: {#def-associativity}
 For all ${#1},{#2},{#3}$ in $\Set$, one has $\Operation{(\Operation{#1}{#2})}{#3}=\Operation{#1}{(\Operation{#2}{#3})}$.
 :::
-::: {#def-identity include-alias="true"}
+::: {#def-identity}
 There exists an element $\Identity$ in $\Set$ such that, for every ${#1}$ in $\Set$, one has $\Operation{\Identity}{#1}={#1}$ and $\Operation{#1}{\Identity}={#1}$. Such an element is unique and is called the **identity element**.
 :::
-::: {#def-unique-inverse include-alias="true"}
-::: {#def-inverse include-alias="true"}
+::: {#def-unique-inverse}
+::: {#def-inverse}
 For each ${#1}$ in $\Set$, there exists an element ${#2}$ in $\Set$ such that $\Operation{#1}{#2}=\Identity$ and $\Operation{#2}{#1}=\Identity$, where $\Identity$ is the identity element.
 :::
 For each ${#1}$, the element ${#2}$ is unique and is called the **inverse** of ${#2}$ and is denoted $\Inverse{#1}$.
-:::
 :::
 
 ## More Information

@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kai Prince SFHEA">
-<meta name="dcterms.date" content="2025-06-09">
+<meta name="dcterms.date" content="2025-06-16">
 
-<title>axioms – KaisFormatting Template</title>
+<title>Axioms – KaisFormatting Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,8 +74,7 @@ ul.task-list li input[type="checkbox"] {
   });
 </script>
 
-  <script defer="" src="mathjax-config.js"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.7/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="./mathjax-config.js" async=""></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,7 +127,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">axioms</h1>
+<h1 class="title">Axioms</h1>
 </div>
 
 
@@ -145,7 +144,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">9 June 2025</p>
+      <p class="date">16 June 2025</p>
     </div>
   </div>
   
@@ -159,20 +158,18 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<div class="definition">
-<div id="def-associativity" class="theorem definition" data-include-alias="true">
-<p><span class="theorem-title"><strong>Definition 1</strong></span> For all <span class="math inline">\({#1},{#2},{#3}\)</span> in <span class="math inline">\(\Set\)</span>, one has <span class="math inline">\(\Operation{(\Operation{#1}{#2})}{#3}=\Operation{#1}{(\Operation{#2}{#3})}\)</span>.</p>
+<div id="def-associativity" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1</strong></span> For all <span class="math inline">\({a},{b},{c}\)</span> in <span class="math inline">\(\Set\)</span>, one has <span class="math inline">\(\Operation{(\Operation{a}{b})}{c}=\Operation{a}{(\Operation{b}{c})}\)</span>.</p>
 </div>
-<div id="def-identity" class="theorem definition" data-include-alias="true">
-<p><span class="theorem-title"><strong>Definition 2</strong></span> There exists an element <span class="math inline">\(\Identity\)</span> in <span class="math inline">\(\Set\)</span> such that, for every <span class="math inline">\({#1}\)</span> in <span class="math inline">\(\Set\)</span>, one has <span class="math inline">\(\Operation{\Identity}{#1}={#1}\)</span> and <span class="math inline">\(\Operation{#1}{\Identity}={#1}\)</span>. Such an element is unique and is called the <strong>identity element</strong>.</p>
+<div id="def-identity" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2</strong></span> There exists an element <span class="math inline">\(\Identity\)</span> in <span class="math inline">\(\Set\)</span> such that, for every <span class="math inline">\({a}\)</span> in <span class="math inline">\(\Set\)</span>, one has <span class="math inline">\(\Operation{\Identity}{a}={a}\)</span> and <span class="math inline">\(\Operation{a}{\Identity}={a}\)</span>. Such an element is unique and is called the <strong>identity element</strong>.</p>
 </div>
-<div id="def-unique-inverse" class="theorem definition" data-include-alias="true">
+<div id="def-unique-inverse" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 4</strong></span> &nbsp;</p>
-<div id="def-inverse" class="theorem definition" data-include-alias="true">
-<p><span class="theorem-title"><strong>Definition 3</strong></span> For each <span class="math inline">\({#1}\)</span> in <span class="math inline">\(\Set\)</span>, there exists an element <span class="math inline">\({#2}\)</span> in <span class="math inline">\(\Set\)</span> such that <span class="math inline">\(\Operation{#1}{#2}=\Identity\)</span> and <span class="math inline">\(\Operation{#2}{#1}=\Identity\)</span>, where <span class="math inline">\(\Identity\)</span> is the identity element.</p>
+<div id="def-inverse" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3</strong></span> For each <span class="math inline">\({a}\)</span> in <span class="math inline">\(\Set\)</span>, there exists an element <span class="math inline">\({b}\)</span> in <span class="math inline">\(\Set\)</span> such that <span class="math inline">\(\Operation{a}{b}=\Identity\)</span> and <span class="math inline">\(\Operation{b}{a}=\Identity\)</span>, where <span class="math inline">\(\Identity\)</span> is the identity element.</p>
 </div>
-<p>For each <span class="math inline">\({#1}\)</span>, the element <span class="math inline">\({#2}\)</span> is unique and is called the <strong>inverse</strong> of <span class="math inline">\({#2}\)</span> and is denoted <span class="math inline">\(\Inverse{#1}\)</span>.</p>
-</div>
+<p>For each <span class="math inline">\({a}\)</span>, the element <span class="math inline">\({b}\)</span> is unique and is called the <strong>inverse</strong> of <span class="math inline">\({b}\)</span> and is denoted <span class="math inline">\(\Inverse{a}\)</span>.</p>
 </div>
 </section>
 <section id="more-information" class="level2">

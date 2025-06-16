@@ -10,7 +10,7 @@ term-aliases:
     id: leftFolner
 macros:
   - command: Folner
-    macro: '{\\href{/papers/maths_notes/folner.html}{\\Phi}}_{#1}'
+    macro: '{\\Phi}_{#1}'
     variables: 1
     variablesDefault: ''
 class: definition
@@ -21,12 +21,12 @@ date: last-modified
 ---
 
 ## Introduction
-::: {.definition}
+::: {#def-FolnerSequence}
 ::: {#def-rightFolner}
-We define a *right-Følner sequence* in $\Group$ as a sequence $\Folner=(\Folner_N)_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|(\Folner_N\cdot \GroupElement^{-1})\cap\Folner_N|}{|\Folner_N|}=1$$for all $\GroupElement\in\Group$.
+We define a *right-Følner sequence* in $\Group$ as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1$$for all $\GroupElement\in\Group$.
 :::
 ::: {#def-leftFolner}
-Similarly, we define a *left-Følner sequence* in $\Group$ as a sequence $\Folner=(\Folner_N)_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|(\GroupElement^{-1}\cdot\Folner_N)\cap\Folner_N|}{|\Folner_N|}=1 $$for all $\GroupElement\in\Group$.
+Similarly, we define a *left-Følner sequence* in $\Group$ as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 $$for all $\GroupElement\in\Group$.
 :::
 ::: {#def-Folner}
 We call a sequence a *Følner sequence* if it is both a left and right Følner sequence.

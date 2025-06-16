@@ -17,17 +17,21 @@ contributes:
       resources:
       - CNAME
       - "*.json"
-    format: kaisformat-html
+    format: schema-html
   formats:
     common:
+      lang: en-GB
       filters:
         - math-macros.lua
-      lang: en-GB
+      crossref:
+        ref-hyperlink: true
     html:
       comments:
         hypothesis: true
       respect-user-color-scheme: true
       template: schema.html
+      format-resources:
+        - mathjax-config.js
       email-obfuscation: javascript
       theme:
         - cosmo

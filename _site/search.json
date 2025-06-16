@@ -2,35 +2,42 @@
   {
     "objectID": "template-group.html",
     "href": "template-group.html",
-    "title": "group",
+    "title": "Group",
     "section": "",
-    "text": "Definition 1 (A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement,\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:)"
+    "text": "Definition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:"
   },
   {
     "objectID": "template-group.html#introduction",
     "href": "template-group.html#introduction",
-    "title": "group",
+    "title": "Group",
     "section": "",
-    "text": "Definition 1 (A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement,\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:)"
+    "text": "Definition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:"
+  },
+  {
+    "objectID": "template-group.html#more-information",
+    "href": "template-group.html#more-information",
+    "title": "Group",
+    "section": "More Information",
+    "text": "More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   },
   {
     "objectID": "template-axioms.html",
     "href": "template-axioms.html",
-    "title": "axioms",
+    "title": "Axioms",
     "section": "",
-    "text": "Definition 1 For all \\({#1},{#2},{#3}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{#1}{#2})}{#3}=\\Operation{#1}{(\\Operation{#2}{#3})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({#1}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{#1}={#1}\\) and \\(\\Operation{#1}{\\Identity}={#1}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({#1}\\) in \\(\\Set\\), there exists an element \\({#2}\\) in \\(\\Set\\) such that \\(\\Operation{#1}{#2}=\\Identity\\) and \\(\\Operation{#2}{#1}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({#1}\\), the element \\({#2}\\) is unique and is called the inverse of \\({#2}\\) and is denoted \\(\\Inverse{#1}\\)."
+    "text": "Definition 1 For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\)."
   },
   {
     "objectID": "template-axioms.html#introduction",
     "href": "template-axioms.html#introduction",
-    "title": "axioms",
+    "title": "Axioms",
     "section": "",
-    "text": "Definition 1 For all \\({#1},{#2},{#3}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{#1}{#2})}{#3}=\\Operation{#1}{(\\Operation{#2}{#3})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({#1}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{#1}={#1}\\) and \\(\\Operation{#1}{\\Identity}={#1}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({#1}\\) in \\(\\Set\\), there exists an element \\({#2}\\) in \\(\\Set\\) such that \\(\\Operation{#1}{#2}=\\Identity\\) and \\(\\Operation{#2}{#1}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({#1}\\), the element \\({#2}\\) is unique and is called the inverse of \\({#2}\\) and is denoted \\(\\Inverse{#1}\\)."
+    "text": "Definition 1 For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\)."
   },
   {
     "objectID": "template-axioms.html#more-information",
     "href": "template-axioms.html#more-information",
-    "title": "axioms",
+    "title": "Axioms",
     "section": "More Information",
     "text": "More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   },
@@ -39,14 +46,14 @@
     "href": "template-folner.html",
     "title": "Følner sequence",
     "section": "",
-    "text": "Definition 1 We define a right-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner=(\\Folner_N)_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Folner_N\\cdot \\GroupElement^{-1})\\cap\\Folner_N|}{|\\Folner_N|}=1\\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 2 Similarly, we define a left-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner=(\\Folner_N)_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\GroupElement^{-1}\\cdot\\Folner_N)\\cap\\Folner_N|}{|\\Folner_N|}=1 \\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 3 We call a sequence a Følner sequence if it is both a left and right Følner sequence."
+    "text": "Definition 4  \n\nDefinition 1 We define a right-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1\\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 2 Similarly, we define a left-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 \\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 3 We call a sequence a Følner sequence if it is both a left and right Følner sequence."
   },
   {
     "objectID": "template-folner.html#introduction",
     "href": "template-folner.html#introduction",
     "title": "Følner sequence",
     "section": "",
-    "text": "Definition 1 We define a right-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner=(\\Folner_N)_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Folner_N\\cdot \\GroupElement^{-1})\\cap\\Folner_N|}{|\\Folner_N|}=1\\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 2 Similarly, we define a left-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner=(\\Folner_N)_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\GroupElement^{-1}\\cdot\\Folner_N)\\cap\\Folner_N|}{|\\Folner_N|}=1 \\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 3 We call a sequence a Følner sequence if it is both a left and right Følner sequence."
+    "text": "Definition 4  \n\nDefinition 1 We define a right-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1\\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 2 Similarly, we define a left-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 \\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 3 We call a sequence a Følner sequence if it is both a left and right Følner sequence."
   },
   {
     "objectID": "template-folner.html#more-information",
