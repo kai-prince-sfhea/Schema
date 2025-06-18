@@ -1,10 +1,11 @@
 print("=== MathsPre.lua filter loaded ===")
 
 local OutputDir = os.getenv("QUARTO_PROJECT_OUTPUT_DIR") or error("QUARTO_PROJECT_OUTPUT_DIR not set")
+local InputDir = pandoc.system.get_working_directory() or error("Working directory not set")
 pandoc.system.make_directory(OutputDir)
 local OutputFile = pandoc.path.join({OutputDir, "schema.json"})
 local OutputMathJaxFile = pandoc.path.join({OutputDir, "mathjax-macros.json"})
-local OutputLaTexFile = pandoc.path.join({OutputDir, "Tex-macros.tex"})
+local OutputLaTexFile = pandoc.path.join({InputDir, "Tex-macros.tex"})
 local OutputNotationFile = pandoc.path.join({OutputDir, "notation.json"})
 
 local InputFiles = os.getenv("QUARTO_PROJECT_INPUT_FILES") or error("QUARTO_PROJECT_INPUT_FILES not set")
@@ -115,7 +116,7 @@ outputJSONEncoding = pandoc.json.encode(outputJSON):gsub("},{","\n  },\n  {"):gs
 outputJSONEncoding2 = "[\n  {" .. string.sub(outputJSONEncoding, 3,-3) .. "\n  }\n]"
 io.open(OutputFile, "w"):write(outputJSONEncoding2, "\n")
 
-MathJaxJSONEncoding = pandoc.json.encode(MathJaxJSON):gsub(",",", "):gsub("\"\"","\"\\\\vphantom{}\""):gsub(":",": ")
+MathJaxJSONEncoding = pandoc.json.encode(MathJaxJSON):gsub(",",", "):gsub(":",": ")
 MathJaxJSONEncoding2 = string.gsub(string.gsub(MathJaxJSONEncoding,"\", \"","\",\n  \""),"], \"","],\n  \"")
 MathJaxJSONEncoding3 = "{\n  " .. MathJaxJSONEncoding2:match "^{(.*)}$" .. "\n}"
 io.open(OutputMathJaxFile, "w"):write(MathJaxJSONEncoding3)

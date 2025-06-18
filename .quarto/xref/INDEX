@@ -1,14 +1,17 @@
 {
   "template-group.qmd": {
-    "template-group.html": "ba26c767"
+    "template-group.html": "ba26c767",
+    "template-group.tex": "4d6d2f0d"
   },
   "template-axioms.qmd": {
     "template-axioms.html": "5fcd512c"
   },
   "template-folner.qmd": {
-    "template-folner.html": "595df2aa"
+    "template-folner.html": "595df2aa",
+    "template-folner.tex": "8502b3ee"
   },
   "template.qmd": {
-    "template.html": "b29f86ea"
+    "template.html": "b29f86ea",
+    "template.tex": "fd113c8c"
   }
 }

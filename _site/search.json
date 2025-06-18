@@ -4,62 +4,20 @@
     "href": "template.html",
     "title": "Axioms",
     "section": "",
-    "text": "Definition 1 For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\)."
-  },
-  {
-    "objectID": "template.html#introduction",
-    "href": "template.html#introduction",
-    "title": "Axioms",
-    "section": "",
-    "text": "Definition 1 For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\)."
-  },
-  {
-    "objectID": "template.html#more-information",
-    "href": "template.html#more-information",
-    "title": "Axioms",
-    "section": "0.2 More Information",
-    "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "text": "1 Introduction\n\nDefinition 1 For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\).\n\n\n\n2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   },
   {
     "objectID": "template-folner.html",
     "href": "template-folner.html",
     "title": "Følner sequence",
     "section": "",
-    "text": "Definition 4  \n\nDefinition 1 We define a right-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1\\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 2 Similarly, we define a left-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 \\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 3 We call a sequence a Følner sequence if it is both a left and right Følner sequence."
-  },
-  {
-    "objectID": "template-folner.html#introduction",
-    "href": "template-folner.html#introduction",
-    "title": "Følner sequence",
-    "section": "",
-    "text": "Definition 4  \n\nDefinition 1 We define a right-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1\\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 2 Similarly, we define a left-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 \\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 3 We call a sequence a Følner sequence if it is both a left and right Følner sequence."
-  },
-  {
-    "objectID": "template-folner.html#more-information",
-    "href": "template-folner.html#more-information",
-    "title": "Følner sequence",
-    "section": "0.2 More Information",
-    "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "text": "1 Introduction\n\nDefinition 4  \n\nDefinition 1 We define a right-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1\\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 2 Similarly, we define a left-Følner sequence in \\(\\Group\\) as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 \\]for all \\(\\GroupElement\\in\\Group\\).\n\n\nDefinition 3 We call a sequence a Følner sequence if it is both a left and right Følner sequence.\n\n\n\n\n2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   },
   {
     "objectID": "template-group.html",
     "href": "template-group.html",
     "title": "Group",
     "section": "",
-    "text": "Definition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:"
-  },
-  {
-    "objectID": "template-group.html#introduction",
-    "href": "template-group.html#introduction",
-    "title": "Group",
-    "section": "",
-    "text": "Definition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:"
-  },
-  {
-    "objectID": "template-group.html#more-information",
-    "href": "template-group.html#more-information",
-    "title": "Group",
-    "section": "0.2 More Information",
-    "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "text": "1 Introduction\n\nDefinition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   }
 ]

@@ -12,7 +12,7 @@ macros:
   - command: Folner
     macro: '{\\Phi}_{#1}'
     variables: 1
-    variablesDefault: ''
+    variablesDefault: '\\vphantom{}'
 class: definition
 dependencies:
   - group
@@ -20,7 +20,7 @@ author: Kai Prince SFHEA
 date: last-modified
 ---
 
-## Introduction
+# Introduction
 ::: {#def-FolnerSequence}
 ::: {#def-rightFolner}
 We define a *right-Følner sequence* in $\Group$ as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1$$for all $\GroupElement\in\Group$.
@@ -33,7 +33,7 @@ We call a sequence a *Følner sequence* if it is both a left and right Følner s
 :::
 :::
 
-## More Information
+# More Information
 
 You can learn more about controlling the appearance of HTML output here: <https://quarto.org/docs/output-formats/html-basics.html>
 

@@ -3,7 +3,7 @@ description: |
   An extension for Quarto that provides a custom HTML format with specific features.
   It includes pre-rendering and rendering capabilities, along with a custom template and theme.
 author: Kai Prince SFHEA
-version: 0.0.1
+version: 0.0.2
 quarto-required: ">=1.6.0"
 contributes:
   project:
@@ -11,13 +11,12 @@ contributes:
       type: website
       pre-render:
         - MathsPre.lua
-      render:
-        - "**/*.qmd"
     website:
       resources:
-      - CNAME
       - "*.json"
-    format: schema-html
+    format: 
+      schema-html: default
+      schema-pdf: default
   formats:
     common:
       lang: en-GB
@@ -26,7 +25,6 @@ contributes:
       number-sections: true
       crossref:
         ref-hyperlink: true
-        chapters: true
     html:
       comments:
         hypothesis: true
@@ -41,6 +39,11 @@ contributes:
         - cosmo
         - brand
       toc: true
+    pdf:
+      documentclass: article
+      pdf-engine: pdflatex
+      keep-tex: true
+      include-in-header: Tex-macros.tex
   metadata:
     project:
       callouty-theorem:

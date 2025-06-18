@@ -10,7 +10,7 @@
     "source": "template-folner.qmd",
     "string": "\\Folner",
     "variables": 1,
-    "variablesDefault": ""
+    "variablesDefault": "\\vphantom{}"
   },
   {
     "source": "template-group.qmd",

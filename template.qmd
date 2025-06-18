@@ -30,7 +30,7 @@ author: Kai Prince SFHEA
 date: last-modified
 ---
 
-## Introduction
+# Introduction
 ::: {#def-associativity}
 For all ${#1},{#2},{#3}$ in $\Set$, one has $\Operation{(\Operation{#1}{#2})}{#3}=\Operation{#1}{(\Operation{#2}{#3})}$.
 :::
@@ -44,7 +44,7 @@ For each ${#1}$ in $\Set$, there exists an element ${#2}$ in $\Set$ such that $\
 For each ${#1}$, the element ${#2}$ is unique and is called the **inverse** of ${#2}$ and is denoted $\Inverse{#1}$.
 :::
 
-## More Information
+# More Information
 
 You can learn more about controlling the appearance of HTML output here: <https://quarto.org/docs/output-formats/html-basics.html>
 
