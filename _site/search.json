@@ -17,8 +17,8 @@
     "objectID": "template-group.html#more-information",
     "href": "template-group.html#more-information",
     "title": "Group",
-    "section": "More Information",
-    "text": "More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "section": "0.2 More Information",
+    "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   },
   {
     "objectID": "template-axioms.html",
@@ -38,8 +38,8 @@
     "objectID": "template-axioms.html#more-information",
     "href": "template-axioms.html#more-information",
     "title": "Axioms",
-    "section": "More Information",
-    "text": "More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "section": "0.2 More Information",
+    "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   },
   {
     "objectID": "template-folner.html",
@@ -59,7 +59,7 @@
     "objectID": "template-folner.html#more-information",
     "href": "template-folner.html#more-information",
     "title": "Følner sequence",
-    "section": "More Information",
-    "text": "More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "section": "0.2 More Information",
+    "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   }
 ]

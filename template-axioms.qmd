@@ -8,7 +8,7 @@ term-aliases:
   - alias: inverse
     id: inverse
   - alias: unique inverse
-    id: unique-inverse
+    id: uniqueInverse
 macros:
   - command: Inverse
     macro: '{#1}^{-1}'
@@ -37,7 +37,7 @@ For all ${#1},{#2},{#3}$ in $\Set$, one has $\Operation{(\Operation{#1}{#2})}{#3
 ::: {#def-identity}
 There exists an element $\Identity$ in $\Set$ such that, for every ${#1}$ in $\Set$, one has $\Operation{\Identity}{#1}={#1}$ and $\Operation{#1}{\Identity}={#1}$. Such an element is unique and is called the **identity element**.
 :::
-::: {#def-unique-inverse}
+::: {#def-uniqueInverse}
 ::: {#def-inverse}
 For each ${#1}$ in $\Set$, there exists an element ${#2}$ in $\Set$ such that $\Operation{#1}{#2}=\Identity$ and $\Operation{#2}{#1}=\Identity$, where $\Identity$ is the identity element.
 :::
