@@ -1,42 +1,21 @@
 [
   {
-    "objectID": "template-group.html",
-    "href": "template-group.html",
-    "title": "Group",
-    "section": "",
-    "text": "Definition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:"
-  },
-  {
-    "objectID": "template-group.html#introduction",
-    "href": "template-group.html#introduction",
-    "title": "Group",
-    "section": "",
-    "text": "Definition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:"
-  },
-  {
-    "objectID": "template-group.html#more-information",
-    "href": "template-group.html#more-information",
-    "title": "Group",
-    "section": "0.2 More Information",
-    "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
-  },
-  {
-    "objectID": "template-axioms.html",
-    "href": "template-axioms.html",
+    "objectID": "template.html",
+    "href": "template.html",
     "title": "Axioms",
     "section": "",
     "text": "Definition 1 For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\)."
   },
   {
-    "objectID": "template-axioms.html#introduction",
-    "href": "template-axioms.html#introduction",
+    "objectID": "template.html#introduction",
+    "href": "template.html#introduction",
     "title": "Axioms",
     "section": "",
     "text": "Definition 1 For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\nDefinition 2 There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 4  \n\nDefinition 3 For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\n\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\)."
   },
   {
-    "objectID": "template-axioms.html#more-information",
-    "href": "template-axioms.html#more-information",
+    "objectID": "template.html#more-information",
+    "href": "template.html#more-information",
     "title": "Axioms",
     "section": "0.2 More Information",
     "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
@@ -59,6 +38,27 @@
     "objectID": "template-folner.html#more-information",
     "href": "template-folner.html#more-information",
     "title": "Følner sequence",
+    "section": "0.2 More Information",
+    "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+  },
+  {
+    "objectID": "template-group.html",
+    "href": "template-group.html",
+    "title": "Group",
+    "section": "",
+    "text": "Definition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:"
+  },
+  {
+    "objectID": "template-group.html#introduction",
+    "href": "template-group.html#introduction",
+    "title": "Group",
+    "section": "",
+    "text": "Definition 1 A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:"
+  },
+  {
+    "objectID": "template-group.html#more-information",
+    "href": "template-group.html#more-information",
+    "title": "Group",
     "section": "0.2 More Information",
     "text": "0.2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   }

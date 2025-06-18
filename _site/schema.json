@@ -1,39 +1,5 @@
 [
   {
-    "source": "template-axioms.qmd",
-    "string": "Axioms"
-  },
-  {
-    "Type": "MathJaxMacro",
-    "command": "Inverse",
-    "macro": "{#1}^{-1}",
-    "source": "template-axioms.qmd",
-    "string": "\\Inverse",
-    "variables": 1
-  },
-  {
-    "Type": "MathJaxMacro",
-    "command": "Set",
-    "macro": "{S}",
-    "source": "template-axioms.qmd",
-    "string": "\\Set"
-  },
-  {
-    "Type": "MathJaxMacro",
-    "command": "Operation",
-    "macro": "{#1}\\cdot{#2}",
-    "source": "template-axioms.qmd",
-    "string": "\\Operation",
-    "variables": 2
-  },
-  {
-    "Type": "MathJaxMacro",
-    "command": "Identity",
-    "macro": "{e}",
-    "source": "template-axioms.qmd",
-    "string": "\\Identity"
-  },
-  {
     "source": "template-folner.qmd",
     "string": "F\\248lner\",Space,Str \"sequence"
   },
@@ -78,5 +44,39 @@
     "macro": "{\\gamma}",
     "source": "template-group.qmd",
     "string": "\\GroupElement"
+  },
+  {
+    "source": "template.qmd",
+    "string": "Axioms"
+  },
+  {
+    "Type": "MathJaxMacro",
+    "command": "Inverse",
+    "macro": "{#1}^{-1}",
+    "source": "template.qmd",
+    "string": "\\Inverse",
+    "variables": 1
+  },
+  {
+    "Type": "MathJaxMacro",
+    "command": "Set",
+    "macro": "{S}",
+    "source": "template.qmd",
+    "string": "\\Set"
+  },
+  {
+    "Type": "MathJaxMacro",
+    "command": "Operation",
+    "macro": "{#1}\\cdot{#2}",
+    "source": "template.qmd",
+    "string": "\\Operation",
+    "variables": 2
+  },
+  {
+    "Type": "MathJaxMacro",
+    "command": "Identity",
+    "macro": "{e}",
+    "source": "template.qmd",
+    "string": "\\Identity"
   }
 ]

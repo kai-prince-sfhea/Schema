@@ -3,7 +3,7 @@
 ## Installing
 
 ```bash
-quarto add template kai-prince-sfhea/Schema
+quarto add kai-prince-sfhea/Schema
 ```
 
 This will install the extension and create an example qmd file that you can use as a starting place for your article.
