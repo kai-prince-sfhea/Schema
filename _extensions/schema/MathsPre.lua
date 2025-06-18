@@ -5,6 +5,7 @@ pandoc.system.make_directory(OutputDir)
 local OutputFile = pandoc.path.join({OutputDir, "schema.json"})
 local OutputMathJaxFile = pandoc.path.join({OutputDir, "mathjax-macros.json"})
 local OutputLaTexFile = pandoc.path.join({OutputDir, "Tex-macros.tex"})
+local OutputNotationFile = pandoc.path.join({OutputDir, "notation.json"})
 
 local InputFiles = os.getenv("QUARTO_PROJECT_INPUT_FILES") or error("QUARTO_PROJECT_INPUT_FILES not set")
 local Files = {}
@@ -15,6 +16,7 @@ end
 local outputJSON = {}
 local MathJaxJSON = {}
 local LaTeXJSON = ""
+local notationJSON = {}
 
 for _, file in ipairs(Files) do
     local fileContent = pandoc.read(io.open(file, "r"):read("*a"), "Org")
@@ -101,6 +103,9 @@ for _, file in ipairs(Files) do
                 MathJaxJSON[cmd] = macro
                 LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}{" .. macro .. "}\n"
             end
+            if value.description ~= nil then
+                notationJSON["\\" .. cmd] = pandoc.utils.stringify(value.description)
+            end
             table.insert(outputJSON, outputMacros)
         end
     end
@@ -117,5 +122,9 @@ io.open(OutputMathJaxFile, "w"):write(MathJaxJSONEncoding3)
 print(MathJaxJSONEncoding3)
 
 io.open(OutputLaTexFile, "w"):write(LaTeXJSON)
+
+notationJSONEncoding = pandoc.json.encode(notationJSON):gsub("\",","\",\n  "):gsub(":",": ")
+notationJSONEncoding2 = "{\n  " .. notationJSONEncoding:match "^{(.*)}$" .. "\n}"
+io.open(OutputNotationFile, "w"):write(notationJSONEncoding2)
 
 print("Macros updated from metadata.")
