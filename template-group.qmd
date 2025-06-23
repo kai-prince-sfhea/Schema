@@ -10,7 +10,6 @@ macros:
     macro: '{e}'
   - command: GroupElement
     macro: '{\\gamma}'
-class: definition
 dependencies:
   - axioms
 author: Kai Prince SFHEA

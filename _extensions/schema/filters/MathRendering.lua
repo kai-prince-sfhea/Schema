@@ -1,8 +1,4 @@
--- Create new JSON file with math-macros from metadata
-quarto.log.info("=== math-macros.lua filter loaded ===")
-local mathMacrosDir = pandoc.path.join({quarto.project.output_directory, "mathjax-macros.json"})
-quarto.log.info(mathMacrosDir)
-
+-- Replace dummy variables
 function Math(math)
     local matchRegex = math.text:match '(.?#[0-9]+)'
     if matchRegex ~= nil then

@@ -1,43 +1,42 @@
-print("=== MathsPre.lua filter loaded ===")
-
+-- Load Project Directories
 local OutputDir = os.getenv("QUARTO_PROJECT_OUTPUT_DIR") or error("QUARTO_PROJECT_OUTPUT_DIR not set")
 local InputDir = pandoc.system.get_working_directory() or error("Working directory not set")
+
+-- Initialise Output Directory
 pandoc.system.make_directory(OutputDir)
-local OutputFile = pandoc.path.join({OutputDir, "schema.json"})
+
+-- Set Output File Directories
 local OutputMathJaxFile = pandoc.path.join({OutputDir, "mathjax-macros.json"})
 local OutputLaTexFile = pandoc.path.join({InputDir, "Tex-macros.tex"})
 local OutputNotationFile = pandoc.path.join({OutputDir, "notation.json"})
 
+-- Load Input Files as List
 local InputFiles = os.getenv("QUARTO_PROJECT_INPUT_FILES") or error("QUARTO_PROJECT_INPUT_FILES not set")
 local Files = {}
 for file in InputFiles:gmatch("[^\r\n]+") do
     table.insert(Files, file)
 end
 
-local outputJSON = {}
+-- Initialise Output Variables
 local MathJaxJSON = {}
 local LaTeXJSON = ""
 local notationJSON = {}
 
+-- Load each Input File
 for _, file in ipairs(Files) do
-    local fileContent = pandoc.read(io.open(file, "r"):read("*a"), "Org")
-    local definitions = pandoc.utils.stringify(fileContent):gsub("\n",""):gsub("{}",""):gsub("{#?[^#def][^{}]*}",""):gsub("^.-{#def","#def"):gsub("}[^{}]*$",""):gsub("}[^#]*{#","\n#"):gsub("#","")
-    print(definitions)
     local metadata = pandoc.read(io.open(file, "r"):read("*a"), "markdown").meta
-    local outputRow = {
-        string = tostring(metadata.title):match('\"(.*)\"'),
-        source = file
-    }
-    table.insert(outputJSON, outputRow)
 
+    -- Pass each Math Macro
     if type(metadata.macros) == "table" then
         for _, value in ipairs(metadata.macros) do
+            -- Load variables
             local cmd = pandoc.utils.stringify(value.command)
             local macro = pandoc.utils.stringify(value.macro)
-            local variables = 0
+            local variables
             local variablesDefaultString = ""
             local variablesDefaultArray = {}
-            local outputMacros = {}
+
+            -- Map Math Macro to variables
             if value.variables ~= nil then
                 variables = pandoc.utils.stringify(value.variables)
                 if value.variablesDefault ~= nil then
@@ -45,15 +44,6 @@ for _, file in ipairs(Files) do
                         for _, string in ipairs(value.variablesDefault) do
                             table.insert(variablesDefaultArray, pandoc.utils.stringify(string))
                         end
-                        outputMacros = {
-                            string = "\\" .. cmd,
-                            command = cmd,
-                            macro = macro,
-                            variables = tonumber(variables),
-                            variablesDefault = variablesDefaultArray,
-                            source = file,
-                            Type = "MathJaxMacro"
-                        }
                         MathJaxJSON[cmd] = {
                             macro,
                             tonumber(variables),
@@ -62,15 +52,6 @@ for _, file in ipairs(Files) do
                         LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}[" .. variables .. "]" .. pandoc.utils.stringify(variablesDefaultArray) .. "{" .. macro .. "}\n"
                     else
                         variablesDefaultString = pandoc.utils.stringify(value.variablesDefault)
-                        outputMacros = {
-                            string = "\\" .. cmd,
-                            command = cmd,
-                            macro = macro,
-                            variables = tonumber(variables),
-                            variablesDefault = variablesDefaultString,
-                            source = file,
-                            Type = "MathJaxMacro"
-                        }
                         MathJaxJSON[cmd] = {
                             macro,
                             tonumber(variables),
@@ -79,14 +60,6 @@ for _, file in ipairs(Files) do
                         LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}[" .. variables .. "][" .. variablesDefaultString .. "]{" .. macro .. "}\n"
                     end
                 else
-                    outputMacros = {
-                        string = "\\" .. cmd,
-                        command = cmd,
-                        macro = macro,
-                        variables = tonumber(variables),
-                        source = file,
-                        Type = "MathJaxMacro"
-                    }
                     MathJaxJSON[cmd] = {
                         macro,
                         tonumber(variables)
@@ -94,38 +67,28 @@ for _, file in ipairs(Files) do
                     LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}[" .. variables .. "]{" .. macro .. "}\n"
                 end
             else
-                outputMacros = {
-                    string = "\\" .. cmd,
-                    command = cmd,
-                    macro = macro,
-                    source = file,
-                    Type = "MathJaxMacro"
-                }
                 MathJaxJSON[cmd] = macro
                 LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}{" .. macro .. "}\n"
             end
             if value.description ~= nil then
                 notationJSON["\\" .. cmd] = pandoc.utils.stringify(value.description)
             end
-            table.insert(outputJSON, outputMacros)
         end
     end
 end
 
-outputJSONEncoding = pandoc.json.encode(outputJSON):gsub("},{","\n  },\n  {"):gsub(",\"",",\n    \""):gsub("{\"","{\n    \""):gsub(":",": ")
-outputJSONEncoding2 = "[\n  {" .. string.sub(outputJSONEncoding, 3,-3) .. "\n  }\n]"
-io.open(OutputFile, "w"):write(outputJSONEncoding2, "\n")
-
+-- Convert MathJax Output to indented JSON + Save to File
 MathJaxJSONEncoding = pandoc.json.encode(MathJaxJSON):gsub(",",", "):gsub(":",": ")
 MathJaxJSONEncoding2 = string.gsub(string.gsub(MathJaxJSONEncoding,"\", \"","\",\n  \""),"], \"","],\n  \"")
 MathJaxJSONEncoding3 = "{\n  " .. MathJaxJSONEncoding2:match "^{(.*)}$" .. "\n}"
 io.open(OutputMathJaxFile, "w"):write(MathJaxJSONEncoding3)
 print(MathJaxJSONEncoding3)
 
+-- Save Tex commands to File
 io.open(OutputLaTexFile, "w"):write(LaTeXJSON)
+print(LaTeXJSON)
 
+-- Save Notation Descriptions to File
 notationJSONEncoding = pandoc.json.encode(notationJSON):gsub("\",","\",\n  "):gsub(":",": ")
 notationJSONEncoding2 = "{\n  " .. notationJSONEncoding:match "^{(.*)}$" .. "\n}"
 io.open(OutputNotationFile, "w"):write(notationJSONEncoding2)
-
-print("Macros updated from metadata.")

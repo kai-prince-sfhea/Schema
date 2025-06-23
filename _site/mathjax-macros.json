@@ -6,6 +6,7 @@
   "GroupOperation": ["{#1}\\cdot{#2}", 2],
   "Identity": "{e}",
   "Inverse": ["{#1}^{-1}", 1],
+  "N": "\\mathbb{N}",
   "Operation": ["{#1}\\cdot{#2}", 2],
   "Set": "{S}"
 }

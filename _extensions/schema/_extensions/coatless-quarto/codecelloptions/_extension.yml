@@ -1,0 +1,8 @@
+title: Code Cell Options
+author: James Balamuta
+version: 0.0.1-dev.0
+quarto-required: ">=1.4.549"
+contributes:
+  filters:
+    - codecelloptions.lua
+

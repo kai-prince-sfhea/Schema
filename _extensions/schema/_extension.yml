@@ -3,14 +3,14 @@ description: |
   An extension for Quarto that provides a custom HTML format with specific features.
   It includes pre-rendering and rendering capabilities, along with a custom template and theme.
 author: Kai Prince SFHEA
-version: 0.0.3
+version: 0.0.4
 quarto-required: ">=1.6.0"
 contributes:
   project:
     project:
       type: website
       pre-render:
-        - MathsPre.lua
+        - quarto-pre/MathMacrosConfig.lua
     website:
       resources:
       - "*.json"
@@ -23,7 +23,7 @@ contributes:
     common:
       lang: en-GB
       filters:
-        - math-macros.lua
+        - filters/MathRendering.lua
       number-sections: true
       crossref:
         ref-hyperlink: true
@@ -31,11 +31,11 @@ contributes:
       comments:
         hypothesis: true
       respect-user-color-scheme: true
-      template: schema.html
+      template: templates/schema.html
       format-resources:
-        - mathjax-config.js
+        - resources/mathjax-config.js
       filters:
-        - callouty-theorem
+        - sun123zxy/callouty-theorem
       email-obfuscation: javascript
       theme:
         - cosmo
@@ -49,50 +49,3 @@ contributes:
       pdf-engine: pdflatex
       keep-tex: true
       include-in-header: Tex-macros.tex
-  metadata:
-    project:
-      callouty-theorem:
-        thm:
-          override-title: false # do not override the title of the callout (title won't show when `appearance` set to `simple` or `minimal`)
-          callout: # parameters of the wrapping callout. see Quarto documentation of callouts for more details
-            type: note
-            appearance: minimal
-        prp:
-          override-title: false
-          callout:
-            type: note
-            appearance: minimal
-        exr:
-          override-title: false
-          callout:
-            type: tip
-            appearance: minimal
-        proof: # also support wrapping proof-like environments
-          override-title: true # override the title of the callout by the name of the theorem
-          callout:
-            type: note
-            appearance: default
-            collapse: true
-            icon: true
-        solution:
-          override-title: true
-          callout:
-            type: note
-            appearance: default
-            collapse: true
-            icon: true
-        remark:
-          override-title: true
-          callout:
-            type: tip
-            appearance: default
-            collapse: false
-            icon: true
-
-        # theorems types not specified in the metadata will be rendered as is
-        cor: default # calloutify corollaries with default style
-        def:
-          override-title: true
-          callout: 
-            type: note
-            appearance: default

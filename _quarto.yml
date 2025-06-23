@@ -1,3 +1,54 @@
 project:
   title: "KaisFormatting Template"
   type: schema
+
+callouty-theorem:
+  thm:
+    override-title: false
+    callout:
+      type: important
+      appearance: minimal
+  lem:
+    override-title: false
+    callout:
+      type: warning
+      appearance: minimal
+  prp:
+    override-title: false
+    callout:
+      type: note
+      appearance: minimal
+  exr:
+    override-title: false
+    callout:
+      type: caution
+      appearance: minimal
+  proof:
+    override-title: true
+    callout:
+      type: tip
+      appearance: default
+      collapse: true
+      icon: false
+  solution:
+    override-title: true
+    callout:
+      type: tip
+      appearance: default
+      collapse: true
+      icon: true
+  remark:
+    override-title: true
+    callout:
+      type: tip
+      appearance: default
+      collapse: false
+      icon: true
+
+  # theorems types not specified in the metadata will be rendered as is
+  cor: default # calloutify corollaries with default style
+  def:
+    override-title: false
+    callout: 
+      type: note
+      appearance: minimal # also support default style here

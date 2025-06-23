@@ -13,7 +13,6 @@ macros:
     macro: '{\\Phi}_{#1}'
     variables: 1
     variablesDefault: '\\vphantom{}'
-class: definition
 dependencies:
   - group
 author: Kai Prince SFHEA
@@ -24,11 +23,25 @@ date: last-modified
 ::: {#def-rightFolner}
 We define a *right-Følner sequence* in $\Group$ as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1$$for all $\GroupElement\in\Group$.
 :::
+
 ::: {#def-leftFolner}
 Similarly, we define a *left-Følner sequence* in $\Group$ as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 $$for all $\GroupElement\in\Group$.
 :::
+
 ::: {#def-Folner}
 We call a sequence a *Følner sequence* if it is both a left and right Følner sequence.
+:::
+
+# Results
+
+::: {#thm-Test}
+## The Test Theorem
+
+This is a Theorem.
+:::
+
+::: {.callout-tip}
+This is a test tip.
 :::
 
 # More Information

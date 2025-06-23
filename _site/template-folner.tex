@@ -97,10 +97,27 @@
 \newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
 \newcommand{\GroupIdentity}{{e}}
 \newcommand{\GroupElement}{{\gamma}}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\Inverse}[1]{{#1}^{-1}}
 \newcommand{\Set}{{S}}
 \newcommand{\Operation}[2]{{#1}\cdot{#2}}
 \newcommand{\Identity}{{e}}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -136,6 +153,8 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \theoremstyle{remark}
@@ -182,7 +201,7 @@
 
 \title{Følner sequence}
 \author{Kai Prince SFHEA}
-\date{2025-06-19}
+\date{2025-06-23}
 
 \begin{document}
 \maketitle
@@ -216,6 +235,21 @@ We call a sequence a \emph{Følner sequence} if it is both a left and
 right Følner sequence.
 
 \end{definition}
+
+\section{Results}\label{results}
+
+\begin{theorem}[The Test
+Theorem]\protect\hypertarget{thm-Test}{}\label{thm-Test}
+
+This is a Theorem.
+
+\end{theorem}
+
+\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, toprule=.15mm, coltitle=black, left=2mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, breakable, bottomtitle=1mm, colback=white, bottomrule=.15mm, leftrule=.75mm, toptitle=1mm, arc=.35mm, colbacktitle=quarto-callout-tip-color!10!white, opacitybacktitle=0.6, titlerule=0mm, opacityback=0]
+
+This is a test tip.
+
+\end{tcolorbox}
 
 \section{More Information}\label{more-information}
 
