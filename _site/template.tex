@@ -92,16 +92,6 @@
 \def\fps@figure{htbp}
 \makeatother
 
-\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
-\newcommand{\Group}{{\Gamma}}
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\GroupIdentity}{{e}}
-\newcommand{\GroupElement}{{\gamma}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Inverse}[1]{{#1}^{-1}}
-\newcommand{\Set}{{S}}
-\newcommand{\Operation}[2]{{#1}\cdot{#2}}
-\newcommand{\Identity}{{e}}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -152,6 +142,16 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
+\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
+\newcommand{\Group}{{\Gamma}}
+\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
+\newcommand{\GroupIdentity}{{e}}
+\newcommand{\GroupElement}{{\gamma}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Inverse}[1]{{#1}^{-1}}
+\newcommand{\Set}{{S}}
+\newcommand{\Operation}[2]{{#1}\cdot{#2}}
+\newcommand{\Identity}{{e}}
 
 \ifLuaTeX
 \usepackage[bidi=basic]{babel}

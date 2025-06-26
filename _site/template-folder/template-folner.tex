@@ -92,16 +92,22 @@
 \def\fps@figure{htbp}
 \makeatother
 
-\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
-\newcommand{\Group}{{\Gamma}}
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\GroupIdentity}{{e}}
-\newcommand{\GroupElement}{{\gamma}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Inverse}[1]{{#1}^{-1}}
-\newcommand{\Set}{{S}}
-\newcommand{\Operation}[2]{{#1}\cdot{#2}}
-\newcommand{\Identity}{{e}}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -137,6 +143,8 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \theoremstyle{remark}
@@ -152,6 +160,16 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
+\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
+\newcommand{\Group}{{\Gamma}}
+\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
+\newcommand{\GroupIdentity}{{e}}
+\newcommand{\GroupElement}{{\gamma}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Inverse}[1]{{#1}^{-1}}
+\newcommand{\Set}{{S}}
+\newcommand{\Operation}[2]{{#1}\cdot{#2}}
+\newcommand{\Identity}{{e}}
 
 \ifLuaTeX
 \usepackage[bidi=basic]{babel}
@@ -170,7 +188,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Group},
+  pdftitle={Følner sequence},
   pdfauthor={Kai Prince SFHEA},
   pdflang={en-GB},
   colorlinks=true,
@@ -181,7 +199,7 @@
   pdfcreator={LaTeX via pandoc}}
 
 
-\title{Group}
+\title{Følner sequence}
 \author{Kai Prince SFHEA}
 \date{2025-06-23}
 
@@ -191,41 +209,47 @@
 
 \section{Introduction}\label{introduction}
 
-\begin{definition}[]\protect\hypertarget{def-group}{}\label{def-group}
+\begin{definition}[]\protect\hypertarget{def-rightFolner}{}\label{def-rightFolner}
 
-A group is a non-empty set \(\Group\) together with a binary operation
-on \(\Group\), denoted ``\(\GroupOperation{}{}\)'', that combines any
-two elements \(\GroupElement\) and \(\GroupElement'\) of \(\Group\) to
-form an element of \(\Group\), denoted
-\(\GroupOperation{\GroupElement}{\GroupElement'}\), such that the
-following three requirements, known as \textbf{group axioms}, are
-satisfied:
-
-\begin{itemize}
-\tightlist
-\item
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \tightlist
-  \item
-  \end{enumerate}
-\item
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \setcounter{enumi}{1}
-  \tightlist
-  \item
-  \end{enumerate}
-\item
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \setcounter{enumi}{2}
-  \tightlist
-  \item
-  \end{enumerate}
-\end{itemize}
+We define a \emph{right-Følner sequence} in \(\Group\) as a sequence
+\(\Folner =(\Folner[N])_{N\in\mathbb{N}}\) of finite subsets of
+\(\Gamma\) satisfying
+\[\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1\]for
+all \(\GroupElement\in\Group\).
 
 \end{definition}
+
+\begin{definition}[]\protect\hypertarget{def-leftFolner}{}\label{def-leftFolner}
+
+Similarly, we define a \emph{left-Følner sequence} in \(\Group\) as a
+sequence \(\Folner =(\Folner[N])_{N\in\mathbb{N}}\) of finite subsets of
+\(\Gamma\) satisfying
+\[\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 \]for
+all \(\GroupElement\in\Group\).
+
+\end{definition}
+
+\begin{definition}[]\protect\hypertarget{def-Folner}{}\label{def-Folner}
+
+We call a sequence a \emph{Følner sequence} if it is both a left and
+right Følner sequence.
+
+\end{definition}
+
+\section{Results}\label{results}
+
+\begin{theorem}[The Test
+Theorem]\protect\hypertarget{thm-Test}{}\label{thm-Test}
+
+This is a Theorem.
+
+\end{theorem}
+
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, rightrule=.15mm, opacitybacktitle=0.6, breakable, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, toptitle=1mm, bottomrule=.15mm, colback=white, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, left=2mm, arc=.35mm, toprule=.15mm, leftrule=.75mm, titlerule=0mm, opacityback=0]
+
+This is a test tip.
+
+\end{tcolorbox}
 
 \section{More Information}\label{more-information}
 

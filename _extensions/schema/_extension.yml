@@ -33,9 +33,7 @@ contributes:
         - sun123zxy/callouty-theorem
     latex:
       documentclass: article
-      include-in-header: ./Tex-macros.tex
     pdf:
       documentclass: article
       pdf-engine: pdflatex
       keep-tex: true
-      include-in-header: ./Tex-macros.tex

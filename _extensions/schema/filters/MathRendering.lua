@@ -1,3 +1,14 @@
+-- Load LaTeX File Directory
+local InputDir = os.getenv("QUARTO_PROJECT_ROOT") or error("QUARTO_PROJECT_ROOT not set")
+
+
+-- Include LaTeX File in Header
+if quarto.doc.is_format("latex") then
+    LaTeXFileDir = pandoc.path.join({InputDir, "Tex-macros.tex"})
+    LaTeXFile = io.open(LaTeXFileDir,"r"):read("a")
+    quarto.doc.include_text("in-header", LaTeXFile)
+end
+
 -- Replace dummy variables
 function Math(math)
     local matchRegex = math.text:match '(.?#[0-9]+)'
