@@ -24,6 +24,9 @@ local notationJSON = {}
 
 -- Load each Input File
 for _, file in ipairs(Files) do
+    ---@type pandoc.List
+    ---@class metadata
+    ---@field macros table|nil
     local metadata = pandoc.read(io.open(file, "r"):read("*a"), "markdown").meta
 
     -- Pass each Math Macro

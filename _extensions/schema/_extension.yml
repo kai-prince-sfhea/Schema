@@ -3,7 +3,7 @@ description: |
   An extension for Quarto that provides a custom HTML format with specific features.
   It includes pre-rendering and rendering capabilities, along with a custom template and theme.
 author: Kai Prince SFHEA
-version: 0.0.4
+version: 0.0.5
 quarto-required: ">=1.6.0"
 contributes:
   project:
@@ -17,8 +17,6 @@ contributes:
       - "*.tex"
     format: 
       schema-html: default
-      schema-latex: default
-      schema-pdf: default
   formats:
     common:
       lang: en-GB
@@ -28,24 +26,16 @@ contributes:
       crossref:
         ref-hyperlink: true
     html:
-      comments:
-        hypothesis: true
-      respect-user-color-scheme: true
       template: templates/schema.html
       format-resources:
         - resources/mathjax-config.js
       filters:
         - sun123zxy/callouty-theorem
-      email-obfuscation: javascript
-      theme:
-        - cosmo
-        - brand
-      toc: true
     latex:
       documentclass: article
-      include-in-header: Tex-macros.tex
+      include-in-header: ./Tex-macros.tex
     pdf:
       documentclass: article
       pdf-engine: pdflatex
       keep-tex: true
-      include-in-header: Tex-macros.tex
+      include-in-header: ./Tex-macros.tex

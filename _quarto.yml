@@ -2,6 +2,10 @@ project:
   title: "KaisFormatting Template"
   type: schema
 
+format:
+  schema-latex: default
+  schema-pdf: default
+
 callouty-theorem:
   thm:
     override-title: false
