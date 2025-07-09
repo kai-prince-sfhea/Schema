@@ -1,14 +1,10 @@
 -- Load Project Directories
-local OutputDir = os.getenv("QUARTO_PROJECT_OUTPUT_DIR") or error("QUARTO_PROJECT_OUTPUT_DIR not set")
 local InputDir = pandoc.system.get_working_directory() or error("Working directory not set")
 
--- Initialise Output Directory
-pandoc.system.make_directory(OutputDir)
-
 -- Set Output File Directories
-local OutputMathJaxFile = pandoc.path.join({OutputDir, "mathjax-macros.json"})
+local OutputMathJaxFile = pandoc.path.join({InputDir, "mathjax-macros.json"})
 local OutputLaTexFile = pandoc.path.join({InputDir, "Tex-macros.tex"})
-local OutputNotationFile = pandoc.path.join({OutputDir, "notation.json"})
+local OutputNotationFile = pandoc.path.join({InputDir, "notation.json"})
 
 -- Load Input Files as List
 local InputFiles = os.getenv("QUARTO_PROJECT_INPUT_FILES") or error("QUARTO_PROJECT_INPUT_FILES not set")
