@@ -14,9 +14,20 @@ for file in InputFiles:gmatch("[^\r\n]+") do
 end
 
 -- Initialise Output Variables
-local MathJaxJSON = {}
-local LaTeXJSON = ""
-local notationJSON = {}
+local MathJaxJSON = pandoc.json.decode(io.open(OutputMathJaxFile, "r"):read("a"))
+local notationJSON = pandoc.json.decode(io.open(OutputNotationFile, "r"):read("a"))
+
+
+local LaTeXFile = io.open(OutputLaTexFile, "r"):read("a")
+local LaTeXJSON = {}
+local LaTeXKeys = {}
+if LaTeXFile ~= nil then
+    for k, v in string.gmatch(LaTeXFile,"(\\newcommand{\\[^}]*})([^\n]*)") do
+        LaTeXJSON[k] = v
+        LaTeXKeys[k] = k
+    end
+end
+local LaTeX = ""
 
 -- Load each Input File
 for _, file in ipairs(Files) do
@@ -31,6 +42,8 @@ for _, file in ipairs(Files) do
             -- Load variables
             local cmd = pandoc.utils.stringify(value.command)
             local macro = pandoc.utils.stringify(value.macro)
+            local TexCmd = "\\newcommand{\\" .. cmd .. "}"
+            LaTeXKeys[TexCmd] = TexCmd
             local variables
             local variablesDefaultString = ""
             local variablesDefaultArray = {}
@@ -48,7 +61,7 @@ for _, file in ipairs(Files) do
                             tonumber(variables),
                             variablesDefaultArray
                         }
-                        LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}[" .. variables .. "]" .. pandoc.utils.stringify(variablesDefaultArray) .. "{" .. macro .. "}\n"
+                        LaTeXJSON[TexCmd] = "[" .. variables .. "]" .. pandoc.utils.stringify(variablesDefaultArray) .. "{" .. macro .. "}"
                     else
                         variablesDefaultString = pandoc.utils.stringify(value.variablesDefault)
                         MathJaxJSON[cmd] = {
@@ -56,24 +69,38 @@ for _, file in ipairs(Files) do
                             tonumber(variables),
                             variablesDefaultString
                         }
-                        LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}[" .. variables .. "][" .. variablesDefaultString .. "]{" .. macro .. "}\n"
+                        LaTeXJSON[TexCmd] = "[" .. variables .. "][" .. variablesDefaultString .. "]{" .. macro .. "}"
                     end
                 else
                     MathJaxJSON[cmd] = {
                         macro,
                         tonumber(variables)
                     }
-                    LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}[" .. variables .. "]{" .. macro .. "}\n"
+                    LaTeXJSON[TexCmd] = "[" .. variables .. "]{" .. macro .. "}"
                 end
             else
                 MathJaxJSON[cmd] = macro
-                LaTeXJSON = LaTeXJSON .. "\\newcommand{\\" .. cmd .. "}{" .. macro .. "}\n"
+                LaTeXJSON[TexCmd] = "{" .. macro .. "}"
             end
             if value.description ~= nil then
                 notationJSON["\\" .. cmd] = pandoc.utils.stringify(value.description)
             end
         end
     end
+end
+
+-- Unique Sort
+local LaTeXKeys2 = {}
+for _, key in pairs(LaTeXKeys) do
+    table.insert(LaTeXKeys2,key)
+end
+table.sort(LaTeXKeys2)
+
+-- Sorted Arrays to LaTeX string
+for _, key in ipairs(LaTeXKeys2) do
+    line = key..LaTeXJSON[key]
+    print(line)
+    LaTeX = LaTeX .. line .. "\n"
 end
 
 -- Convert MathJax Output to indented JSON + Save to File
@@ -84,8 +111,8 @@ io.open(OutputMathJaxFile, "w"):write(MathJaxJSONEncoding3)
 print(MathJaxJSONEncoding3)
 
 -- Save Tex commands to File
-io.open(OutputLaTexFile, "w"):write(LaTeXJSON)
-print(LaTeXJSON)
+io.open(OutputLaTexFile, "w"):write(LaTeX)
+print(LaTeX)
 
 -- Save Notation Descriptions to File
 notationJSONEncoding = pandoc.json.encode(notationJSON):gsub("\",","\",\n  "):gsub(":",": ")
