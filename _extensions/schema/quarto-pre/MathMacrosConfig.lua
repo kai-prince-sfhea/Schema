@@ -1,10 +1,21 @@
 -- Load Project Directories
 local InputDir = pandoc.system.get_working_directory() or error("Working directory not set")
 
+local MathDir = pandoc.path.join({InputDir, "_maths"})
+ok, err, code = os.rename(MathDir.."/", MathDir.."/")
+if not ok then
+    pandoc.system.make_directory(MathDir, true)
+end
+
+-- Create Math Directory file
+Directories = {}
+Directories[os.getenv("QUARTO_PROJECT_OUTPUT_DIR")] = false
+io.open(pandoc.path.join({MathDir,"Render-Directories.json"}),"w"):write(pandoc.json.encode(Directories))
+
 -- Set Output File Directories
-local OutputMathJaxFile = pandoc.path.join({InputDir, "mathjax-macros.json"})
-local OutputLaTexFile = pandoc.path.join({InputDir, "Tex-macros.tex"})
-local OutputNotationFile = pandoc.path.join({InputDir, "notation.json"})
+local OutputMathJaxFile = pandoc.path.join({MathDir, "Mathjax-macros.json"})
+local OutputLaTexFile = pandoc.path.join({MathDir, "Tex-macros.tex"})
+local OutputNotationFile = pandoc.path.join({MathDir, "Notation.json"})
 
 -- Load Input Files as List
 local InputFiles = os.getenv("QUARTO_PROJECT_INPUT_FILES") or error("QUARTO_PROJECT_INPUT_FILES not set")
@@ -14,15 +25,23 @@ for file in InputFiles:gmatch("[^\r\n]+") do
 end
 
 -- Initialise Output Variables
-local MathJaxJSON = pandoc.json.decode(io.open(OutputMathJaxFile, "r"):read("a"))
-local notationJSON = pandoc.json.decode(io.open(OutputNotationFile, "r"):read("a"))
+local MathJaxJSON = {}
+MathJaxFile = io.open(OutputMathJaxFile, "r")
+if MathJaxFile ~= nil then
+    MathJaxJSON = pandoc.json.decode(MathJaxFile:read("a"))
+end
+local notationJSON = {}
+NotationFile = io.open(OutputNotationFile, "r")
+if NotationFile ~= nil then
+    notationJSON = pandoc.json.decode(NotationFile:read("a"))
+end
 
 
-local LaTeXFile = io.open(OutputLaTexFile, "r"):read("a")
+local LaTeXFile = io.open(OutputLaTexFile, "r")
 local LaTeXJSON = {}
 local LaTeXKeys = {}
 if LaTeXFile ~= nil then
-    for k, v in string.gmatch(LaTeXFile,"(\\newcommand{\\[^}]*})([^\n]*)") do
+    for k, v in string.gmatch(LaTeXFile:read("a"),"(\\newcommand{\\[^}]*})([^\n]*)") do
         LaTeXJSON[k] = v
         LaTeXKeys[k] = k
     end
@@ -99,7 +118,6 @@ table.sort(LaTeXKeys2)
 -- Sorted Arrays to LaTeX string
 for _, key in ipairs(LaTeXKeys2) do
     line = key..LaTeXJSON[key]
-    print(line)
     LaTeX = LaTeX .. line .. "\n"
 end
 
