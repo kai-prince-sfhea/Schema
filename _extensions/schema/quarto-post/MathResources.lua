@@ -2,7 +2,7 @@
 local InputDir = os.getenv("QUARTO_PROJECT_ROOT") or error("QUARTO_PROJECT_ROOT not set")
 local MathDir = pandoc.path.join({InputDir, "_maths"})
 
-RenderDirFile = io.open(pandoc.path.join({MathDir,"Render-Directories.json"}),"r"):read()
+RenderDirFile = io.open(pandoc.path.join({MathDir,"Render-Directories.json"}),"r"):read("a")
 RenderDir = pandoc.json.decode(RenderDirFile)
 
 for key, value in pairs(RenderDir) do

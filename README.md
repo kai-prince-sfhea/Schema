@@ -23,6 +23,8 @@ py -m pip install graphiti-core
 
 *TODO*: Describe how to use your format.
 
+The first render will take a while whilst LuaLaTeX installs the relevant packages.
+
 ## Format Options
 
 *TODO*: If your format has options that can be set via document metadata, describe them.

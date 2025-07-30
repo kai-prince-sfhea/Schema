@@ -1,12 +1,35 @@
 {
-  "Folner": ["{\\Phi}_{#1}", 1, "\\vphantom{}"],
+  "Density": 
+    [
+      "{d}_{#1}",
+      1,
+      "\\Folner"
+    ],
+  "Folner": 
+    [
+      "{\\Phi}_{#1}",
+      1,
+      "\\vphantom{}"
+    ],
   "Group": "{\\Gamma}",
   "GroupElement": "{\\gamma}",
   "GroupIdentity": "{e}",
-  "GroupOperation": ["{#1}\\cdot{#2}", 2],
+  "GroupOperation": 
+    [
+      "{#1}\\cdot{#2}",
+      2
+    ],
   "Identity": "{e}",
-  "Inverse": ["{#1}^{-1}", 1],
+  "Inverse": 
+    [
+      "{#1}^{-1}",
+      1
+    ],
   "N": "\\mathbb{N}",
-  "Operation": ["{#1}\\cdot{#2}", 2],
+  "Operation": 
+    [
+      "{#1}\\cdot{#2}",
+      2
+    ],
   "Set": "{S}"
 }

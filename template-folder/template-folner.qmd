@@ -9,6 +9,10 @@ term-aliases:
   - alias: left-Følner
     id: leftFolner
 macros:
+  - command: Density
+    macro: '{d}_{#1}'
+    variables: 1
+    variablesDefault: '\\Folner'
   - command: Folner
     macro: '{\\Phi}_{#1}'
     variables: 1
@@ -30,6 +34,14 @@ Similarly, we define a *left-Følner sequence* in $\Group$ as a sequence $\Folne
 
 ::: {#def-Folner}
 We call a sequence a *Følner sequence* if it is both a left and right Følner sequence.
+:::
+
+A related definition is the following:
+
+::: {#def-Density}
+We call define *density of a subset $A\subseteq\Group$ with respect to a Følner sequence, $\Folner$,* as
+$$\Density(A)=\lim_{N\rightarrow\infty}\frac{|\Folner[N]\cap A|}{|\Folner[N]|},$$
+if it exists.
 :::
 
 # Results

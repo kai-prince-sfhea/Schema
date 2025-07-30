@@ -1,3 +1,10 @@
-{
-  "\\N": "The Natural Numbers:  1, 2, 3, ..."
-}
+[
+  {
+    "LaTeXcmd": "\\GroupIdentity",
+    "Notation": "The identity of the group \\Group."
+  },
+  {
+    "LaTeXcmd": "\\N",
+    "Notation": "The Natural Numbers: 1, 2, 3, ..."
+  }
+]

@@ -1,3 +1,6 @@
+-- Load required libraries
+local schema = require("../schema")
+
 -- Load LaTeX and MathJax File Directory
 local InputDir = os.getenv("QUARTO_PROJECT_ROOT") or error("QUARTO_PROJECT_ROOT not set")
 local MathDir = pandoc.path.join({InputDir, "_maths"})
@@ -5,17 +8,20 @@ local OutputDir = pandoc.path.directory(quarto.doc.output_file)
 
 -- Include LaTeX File in Header
 if quarto.doc.is_format("latex") then
+    print("- LaTeX File detected")
     LaTeXFileDir = pandoc.path.join({MathDir, "Tex-macros.tex"})
     LaTeXFile = io.open(LaTeXFileDir,"r"):read("a")
     quarto.doc.include_text("in-header", LaTeXFile)
 end
 
--- Include MathJax Macros File in Header
+-- Specify inclusion of required files for HTML in Output Location
 if quarto.doc.is_format("html") then
-    RenderDirFile = io.open(pandoc.path.join({MathDir,"Render-Directories.json"}),"r"):read()
+    print("- HTML File detected")
+    RenderDirFile = io.open(pandoc.path.join({MathDir,"Render-Directories.json"}),"r"):read("a")
     RenderDir = quarto.json.decode(RenderDirFile)
     RenderDir[OutputDir] = true
-    io.open(pandoc.path.join({MathDir,"Render-Directories.json"}),"w"):write(quarto.json.encode(RenderDir))
+    io.open(pandoc.path.join({MathDir,"Render-Directories.json"}),"w"):write(schema.pretty_json(quarto.json.encode(RenderDir)))
+    quarto.doc.add_format_resource("../resources/mathjax-config.js")
 end
 
 -- Replace dummy variables

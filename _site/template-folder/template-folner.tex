@@ -175,10 +175,10 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
 \theoremstyle{remark}
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
@@ -192,16 +192,19 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
+
+\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
 \newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
 \newcommand{\GroupElement}{{\gamma}}
-\newcommand{\GroupIdentity}{{e}}
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\Group}{{\Gamma}}
 \newcommand{\Identity}{{e}}
 \newcommand{\Inverse}[1]{{#1}^{-1}}
+\newcommand{\GroupIdentity}{{e}}
+\newcommand{\Set}{{S}}
+\newcommand{\Density}[1][\Folner]{{d}_{#1}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Operation}[2]{{#1}\cdot{#2}}
-\newcommand{\Set}{{S}}
+\newcommand{\Group}{{\Gamma}}
+
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -219,7 +222,7 @@
 
 \title{Følner sequence}
 \author{Kai Prince SFHEA}
-\date{2025-07-23}
+\date{2025-07-30}
 \begin{document}
 \maketitle
 
@@ -253,6 +256,17 @@ right Følner sequence.
 
 \end{definition}
 
+A related definition is the following:
+
+\begin{definition}[]\protect\hypertarget{def-Density}{}\label{def-Density}
+
+We call define \emph{density of a subset \(A\subseteq\Group\) with
+respect to a Følner sequence, \(\Folner\),} as
+\[\Density(A)=\lim_{N\rightarrow\infty}\frac{|\Folner[N]\cap A|}{|\Folner[N]|},\]
+if it exists.
+
+\end{definition}
+
 \section{Results}\label{results}
 
 \begin{theorem}[The Test
@@ -262,7 +276,7 @@ This is a Theorem.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, breakable, bottomrule=.15mm, coltitle=black, rightrule=.15mm, opacityback=0, colframe=quarto-callout-tip-color-frame, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomtitle=1mm, colback=white, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, toptitle=1mm, left=2mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, arc=.35mm, toprule=.15mm, titlerule=0mm, coltitle=black, colback=white, rightrule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, toptitle=1mm, bottomrule=.15mm, breakable, opacityback=0, leftrule=.75mm, left=2mm, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame]
 
 This is a test tip.
 

@@ -8,8 +8,12 @@ macros:
     variables: 2
   - command: GroupIdentity
     macro: '{e}'
+    description: "The identity of the group $\\Group$."
   - command: GroupElement
     macro: '{\\gamma}'
+environments:
+  - name: GroupOperation
+    before: 
 dependencies:
   - axioms
 author: Kai Prince SFHEA
