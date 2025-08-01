@@ -17,24 +17,12 @@ M.pretty_json = function(json_str)
         end
         if not in_string then
             if char == '{' or char == '[' then
-                if i == 1 or prev_char == '{' or prev_char == '[' then
-                    formatted = formatted .. char
-                elseif prev_char == ',' then
-                    level = level + 1
-                    formatted = formatted .. indent .. char
-                else
-                    level = level + 1
-                    formatted = formatted .. "\n" .. string.rep(indent, level) .. char
-                end
                 level = level + 1
-                formatted = formatted .. "\n" .. string.rep(indent, level)
+                formatted = formatted .. char .. "\n" .. string.rep(indent, level)
             elseif char == '}' or char == ']' then
                 level = level - 1
                 formatted = formatted .. "\n" .. string.rep(indent, level) .. char
             elseif char == ',' then
-                if prev_char == '}' or prev_char == ']' then
-                    level = level - 1
-                end
                 formatted = formatted .. char .. "\n" .. string.rep(indent, level)
             elseif char == ':' then
                 formatted = formatted .. ": "
@@ -46,20 +34,23 @@ M.pretty_json = function(json_str)
         end
         prev_char = char
     end
-    print("Formatted JSON:\n" .. formatted)
     return formatted
 end
 
 -- Build dependencies
-M.extract_dependencies = function(body, key_table)
+M.extract_dependencies = function(body, key_table, regex)
     local deps = {}
-    for dep in body:gmatch("\\([a-zA-Z]+)") do
+    for dep in body:gmatch(regex) do
         if key_table[dep] then
             -- If the command is in the key table, add the dependency
-            table.insert(deps, dep)
+            deps[dep] = true
         end
     end
-    return deps
+    local output = {}
+    for k, v in pairs(deps) do
+        table.insert(output, k)
+    end
+    return output
 end
 
 -- Topological sort

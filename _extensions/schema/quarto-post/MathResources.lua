@@ -10,10 +10,8 @@ for key, value in pairs(RenderDir) do
     print("Looking at: "..OutputDir)
     if value == true then
         print("Copying resource files")
-        MathJaxFile = io.open(pandoc.path.join({MathDir, "Mathjax-macros.json"}),"r"):read("a")
-        io.open(pandoc.path.join({OutputDir, "Mathjax-macros.json"}),"w"):write(MathJaxFile):close()
-        NotationFile = io.open(pandoc.path.join({MathDir, "Notation.json"}),"r"):read("a")
-        io.open(pandoc.path.join({OutputDir, "Notation.json"}),"w"):write(NotationFile):close()
+        MathJaxFile = io.open(pandoc.path.join({MathDir, "Mathjax.json"}),"r"):read("a")
+        io.open(pandoc.path.join({OutputDir, "Mathjax.json"}),"w"):write(MathJaxFile):close()
     end
 end
 

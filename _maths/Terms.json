@@ -1,0 +1,94 @@
+{
+  "Følner": {
+    "math": false,
+    "source": "template-folder\\template-folner.qmd#Folner",
+    "translation": false
+  },
+  "\\Density": {
+    "math": true,
+    "source": "template-folder\\template-folner.qmd",
+    "translation": false
+  },
+  "\\Folner": {
+    "math": true,
+    "source": "template-folder\\template-folner.qmd",
+    "translation": false
+  },
+  "\\Group": {
+    "math": true,
+    "source": "template-folder\\template-group.qmd",
+    "translation": false
+  },
+  "\\GroupElement": {
+    "math": true,
+    "source": "template-folder\\template-group.qmd",
+    "translation": false
+  },
+  "\\GroupIdentity": {
+    "description": "The identity of the group \\Group.",
+    "math": true,
+    "source": "template-folder\\template-group.qmd",
+    "translation": false
+  },
+  "\\GroupOperation": {
+    "math": true,
+    "source": "template-folder\\template-group.qmd",
+    "translation": false
+  },
+  "\\Identity": {
+    "math": true,
+    "source": "template.qmd",
+    "translation": false
+  },
+  "\\Inverse": {
+    "math": true,
+    "source": "template.qmd",
+    "translation": false
+  },
+  "\\N": {
+    "description": "The Natural Numbers: 1, 2, 3, ...",
+    "math": true,
+    "source": "template.qmd",
+    "translation": false
+  },
+  "\\Operation": {
+    "math": true,
+    "source": "template.qmd",
+    "translation": false
+  },
+  "\\Set": {
+    "math": true,
+    "source": "template.qmd",
+    "translation": false
+  },
+  "associativity": {
+    "math": false,
+    "source": "template.qmd#associativity",
+    "translation": true
+  },
+  "identity": {
+    "math": false,
+    "source": "template.qmd#identity",
+    "translation": true
+  },
+  "inverse": {
+    "math": false,
+    "source": "template.qmd#inverse",
+    "translation": true
+  },
+  "left-Følner": {
+    "math": false,
+    "source": "template-folder\\template-folner.qmd#leftFolner",
+    "translation": false
+  },
+  "right-Følner": {
+    "math": false,
+    "source": "template-folder\\template-folner.qmd#rightFolner",
+    "translation": false
+  },
+  "unique inverse": {
+    "math": false,
+    "source": "template.qmd#uniqueInverse",
+    "translation": true
+  }
+}

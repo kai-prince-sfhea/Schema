@@ -1,0 +1,71 @@
+{
+  "template-folder\\template-folner.qmd": {
+    "FileLinks": {
+      "template-folder\\template-group.qmd": true,
+      "template.qmd": true
+    },
+    "FileNotation": [
+      {
+        "LaTeX": "\\N",
+        "Source": "template.qmd",
+        "description": "The Natural Numbers: 1, 2, 3, ..."
+      }
+    ],
+    "RefLinks": {
+      
+    },
+    "RefTerms": [
+      "\\N",
+      "\\Group",
+      "\\GroupElement"
+    ],
+    "Terms": [
+      "\\N",
+      "\\Group",
+      "right-Følner",
+      "Følner",
+      "left-Følner",
+      "\\GroupElement",
+      "\\Folner"
+    ]
+  },
+  "template-folder\\template-group.qmd": {
+    "FileLinks": {
+      
+    },
+    "FileNotation": {
+      
+    },
+    "RefLinks": {
+      
+    },
+    "RefTerms": {
+      
+    },
+    "Terms": [
+      "\\GroupElement",
+      "\\Group"
+    ]
+  },
+  "template.qmd": {
+    "FileLinks": {
+      
+    },
+    "FileNotation": {
+      
+    },
+    "RefLinks": {
+      
+    },
+    "RefTerms": {
+      
+    },
+    "Terms": [
+      "\\Identity",
+      "inverse",
+      "\\Set",
+      "identity",
+      "associativity"
+    ]
+  }
+}

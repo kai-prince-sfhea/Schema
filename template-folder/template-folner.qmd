@@ -1,13 +1,15 @@
 ---
 title: Følner sequence
-term-aliases:
+terms:
   - alias: Følner
     id: Folner
     translate: false
   - alias: right-Følner
     id: rightFolner
+    translate: false
   - alias: left-Følner
     id: leftFolner
+    translate: false
 macros:
   - command: Density
     macro: '{d}_{#1}'
@@ -43,6 +45,8 @@ We call define *density of a subset $A\subseteq\Group$ with respect to a Følner
 $$\Density(A)=\lim_{N\rightarrow\infty}\frac{|\Folner[N]\cap A|}{|\Folner[N]|},$$
 if it exists.
 :::
+
+For $\N$, the *natural density*, $\Density[]$, is defined when the Følner sequence is constructed with $\Folner[N]=[1,...,N]$.
 
 # Results
 

@@ -1,6 +1,6 @@
 ---
 title: Axioms
-term-aliases:
+terms:
   - alias: associativity
     id: associativity
   - alias: identity

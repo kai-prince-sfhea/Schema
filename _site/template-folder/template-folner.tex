@@ -175,10 +175,10 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
 \theoremstyle{remark}
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
@@ -193,16 +193,16 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
-\newcommand{\GroupElement}{{\gamma}}
 \newcommand{\Identity}{{e}}
-\newcommand{\Inverse}[1]{{#1}^{-1}}
-\newcommand{\GroupIdentity}{{e}}
-\newcommand{\Set}{{S}}
+\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
 \newcommand{\Density}[1][\Folner]{{d}_{#1}}
+\newcommand{\Inverse}[1]{{#1}^{-1}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
+\newcommand{\Set}{{S}}
 \newcommand{\Operation}[2]{{#1}\cdot{#2}}
+\newcommand{\GroupIdentity}{{e}}
+\newcommand{\GroupElement}{{\gamma}}
 \newcommand{\Group}{{\Gamma}}
 
 \usepackage{bookmark}
@@ -222,7 +222,7 @@
 
 \title{Følner sequence}
 \author{Kai Prince SFHEA}
-\date{2025-07-30}
+\date{2025-08-01}
 \begin{document}
 \maketitle
 
@@ -267,6 +267,9 @@ if it exists.
 
 \end{definition}
 
+For \(\N\), the \emph{natural density}, \(\Density[]\), is defined when
+the Følner sequence is constructed with \(\Folner[N]=[1,...,N]\).
+
 \section{Results}\label{results}
 
 \begin{theorem}[The Test
@@ -276,7 +279,7 @@ This is a Theorem.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, arc=.35mm, toprule=.15mm, titlerule=0mm, coltitle=black, colback=white, rightrule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, toptitle=1mm, bottomrule=.15mm, breakable, opacityback=0, leftrule=.75mm, left=2mm, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, coltitle=black, opacitybacktitle=0.6, toptitle=1mm, bottomtitle=1mm, left=2mm, colback=white, bottomrule=.15mm, breakable, arc=.35mm, colframe=quarto-callout-tip-color-frame, titlerule=0mm, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}]
 
 This is a test tip.
 

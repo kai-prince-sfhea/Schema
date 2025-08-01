@@ -1,7 +1,7 @@
 // MathJax configuration for the math notes
 // This configuration is used to load MathJax and set up the necessary macros and options
 
-fetch('./mathjax-macros.json')
+fetch('./Mathjax.json')
     .then(response => response.json())
     .then(jsonArray =>
         {
