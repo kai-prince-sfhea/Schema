@@ -5,7 +5,7 @@ local MathDir = pandoc.path.join({InputDir, "_maths"})
 
 -- Find Filter Directory
 local ExtDir = pandoc.path.join({InputDir, "_extensions","kai-prince-sfhea","schema"})
-ok, err, code = os.rename(InputDir.."/", InputDir.."/")
+ok, err, code = os.rename(ExtDir.."/", ExtDir.."/")
 if not ok then
     ExtDir = pandoc.path.join({InputDir, "_extensions","schema"})
 end

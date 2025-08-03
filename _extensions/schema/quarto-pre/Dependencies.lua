@@ -5,7 +5,7 @@ local MathDir = pandoc.path.join({InputDir, "_maths"})
 
 -- Find Filter Directory
 local ExtDir = pandoc.path.join({InputDir, "_extensions","kai-prince-sfhea","schema"})
-ok, err, code = os.rename(InputDir.."/", InputDir.."/")
+ok, err, code = os.rename(ExtDir.."/", ExtDir.."/")
 if not ok then
     ExtDir = pandoc.path.join({InputDir, "_extensions","schema"})
 end
@@ -97,6 +97,9 @@ for k, v in pairs(DocJSON) do
             if termData.type == "math" then
                 cmd = term:match("^\\(.+)$")
                 DirJSON[pandoc.path.directory(k)].MathJax[cmd] = MathJSON[cmd].MathJax
+                for _, dep in ipairs(MathDepJSON.graph[cmd]) do
+                    Terms["\\" .. dep] = true
+                end
             end
 
             -- Check if term source file is different from current file
