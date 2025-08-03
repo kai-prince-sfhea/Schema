@@ -9,14 +9,28 @@
   },
   "template.qmd": {
     "template.html": "b29f86ea",
-    "template.tex": "fd113c8c"
+    "template.tex": "fd113c8c",
+    "template.txt": "a9c3784c",
+    "template.md": "12fb7e25",
+    "template.native": "017c8135"
   },
   "template-folder/template-folner.qmd": {
     "template-folner.html": "68e3b749",
-    "template-folner.tex": "41ce2882"
+    "template-folner.tex": "41ce2882",
+    "template-folner.txt": "4e3f5708",
+    "template-folner.md": "4aa9d71e",
+    "template-folner.native": "c0aba123"
   },
   "template-folder/template-group.qmd": {
     "template-group.html": "b8383700",
-    "template-group.tex": "58c37f21"
+    "template-group.tex": "58c37f21",
+    "template-group.txt": "0eeba07c",
+    "template-group.md": "6e7e970a",
+    "template-group.native": "0dd7500e"
+  },
+  "template-folder/template-folner.md": {
+    "template-folner.html": "9c7f25e7",
+    "template-folner.tex": "ff58e0e6",
+    "template-folner-commonmark.md": "3070761d"
   }
 }

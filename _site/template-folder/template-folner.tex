@@ -193,17 +193,13 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
-\newcommand{\Identity}{{e}}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
 \newcommand{\Density}[1][\Folner]{{d}_{#1}}
-\newcommand{\Inverse}[1]{{#1}^{-1}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\Set}{{S}}
-\newcommand{\Operation}[2]{{#1}\cdot{#2}}
-\newcommand{\GroupIdentity}{{e}}
-\newcommand{\GroupElement}{{\gamma}}
 \newcommand{\Group}{{\Gamma}}
+\newcommand{\Inverse}[1]{{#1}^{-1}}
+\newcommand{\GroupElement}{{\gamma}}
+\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -222,7 +218,7 @@
 
 \title{Følner sequence}
 \author{Kai Prince SFHEA}
-\date{2025-08-01}
+\date{2025-08-03}
 \begin{document}
 \maketitle
 
@@ -231,8 +227,8 @@
 
 \begin{definition}[]\protect\hypertarget{def-rightFolner}{}\label{def-rightFolner}
 
-We define a \emph{right-Følner sequence} in \(\Group\) as a sequence
-\(\Folner =(\Folner[N])_{N\in\mathbb{N}}\) of finite subsets of
+We define a \emph{right-Følner sequence} in a group, \(\Group\), as a
+sequence \(\Folner =(\Folner[N])_{N\in\mathbb{N}}\) of finite subsets of
 \(\Gamma\) satisfying
 \[\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1\]for
 all \(\GroupElement\in\Group\).
@@ -241,9 +237,9 @@ all \(\GroupElement\in\Group\).
 
 \begin{definition}[]\protect\hypertarget{def-leftFolner}{}\label{def-leftFolner}
 
-Similarly, we define a \emph{left-Følner sequence} in \(\Group\) as a
-sequence \(\Folner =(\Folner[N])_{N\in\mathbb{N}}\) of finite subsets of
-\(\Gamma\) satisfying
+Similarly, we define a \emph{left-Følner sequence} in a group,
+\(\Group\), as a sequence \(\Folner =(\Folner[N])_{N\in\mathbb{N}}\) of
+finite subsets of \(\Gamma\) satisfying
 \[\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 \]for
 all \(\GroupElement\in\Group\).
 
@@ -279,7 +275,7 @@ This is a Theorem.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, coltitle=black, opacitybacktitle=0.6, toptitle=1mm, bottomtitle=1mm, left=2mm, colback=white, bottomrule=.15mm, breakable, arc=.35mm, colframe=quarto-callout-tip-color-frame, titlerule=0mm, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}]
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, colframe=quarto-callout-tip-color-frame, titlerule=0mm, breakable, leftrule=.75mm, toptitle=1mm, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, colback=white, arc=.35mm, bottomtitle=1mm, bottomrule=.15mm, toprule=.15mm, opacitybacktitle=0.6, opacityback=0]
 
 This is a test tip.
 

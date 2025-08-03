@@ -1,0 +1,593 @@
+Pandoc
+  Meta
+    { unMeta =
+        fromList
+          [ ( "author"
+            , MetaList
+                [ MetaInlines
+                    [ Str "Kai"
+                    , Space
+                    , Str "Prince"
+                    , Space
+                    , Str "SFHEA"
+                    ]
+                ]
+            )
+          , ( "authors"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "id" , MetaString "1" )
+                       , ( "letter" , MetaString "a" )
+                       , ( "metadata" , MetaMap (fromList []) )
+                       , ( "name"
+                         , MetaMap
+                             (fromList
+                                [ ( "family"
+                                  , MetaInlines [ Str "SFHEA" ]
+                                  )
+                                , ( "given"
+                                  , MetaInlines [ Str "Kai Prince" ]
+                                  )
+                                , ( "literal"
+                                  , MetaInlines
+                                      [ Str "Kai"
+                                      , Space
+                                      , Str "Prince"
+                                      , Space
+                                      , Str "SFHEA"
+                                      ]
+                                  )
+                                ])
+                         )
+                       , ( "number" , MetaString "1" )
+                       ])
+                ]
+            )
+          , ( "by-author"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "id" , MetaString "1" )
+                       , ( "letter" , MetaString "a" )
+                       , ( "metadata" , MetaMap (fromList []) )
+                       , ( "name"
+                         , MetaMap
+                             (fromList
+                                [ ( "family"
+                                  , MetaInlines [ Str "SFHEA" ]
+                                  )
+                                , ( "given"
+                                  , MetaInlines [ Str "Kai Prince" ]
+                                  )
+                                , ( "literal"
+                                  , MetaInlines
+                                      [ Str "Kai"
+                                      , Space
+                                      , Str "Prince"
+                                      , Space
+                                      , Str "SFHEA"
+                                      ]
+                                  )
+                                ])
+                         )
+                       , ( "number" , MetaString "1" )
+                       ])
+                ]
+            )
+          , ( "callouty-theorem"
+            , MetaMap
+                (fromList
+                   [ ( "cor" , MetaInlines [ Str "default" ] )
+                   , ( "def"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "note" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "exr"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "caution" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "lem"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "warning" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "proof"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool True )
+                                     , ( "icon" , MetaBool False )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "prp"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "note" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "remark"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool False )
+                                     , ( "icon" , MetaBool True )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "solution"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool True )
+                                     , ( "icon" , MetaBool True )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "thm"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "important" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   ])
+            )
+          , ( "date" , MetaInlines [ Str "2025-08-03" ] )
+          , ( "embedMap"
+            , MetaList
+                [ MetaInlines [ RawInline (Format "tex") "\\Set" ]
+                , MetaInlines [ RawInline (Format "tex") "\\Operation" ]
+                , MetaInlines [ RawInline (Format "tex") "\\Identity" ]
+                ]
+            )
+          , ( "macros"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "command" , MetaInlines [ Str "N" ] )
+                       , ( "description"
+                         , MetaInlines
+                             [ Str "The"
+                             , Space
+                             , Str "Natural"
+                             , Space
+                             , Str "Numbers:"
+                             , Space
+                             , Math InlineMath "1, 2, 3, ..."
+                             ]
+                         )
+                       , ( "macro" , MetaInlines [ Str "\\mathbb{N}" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "command" , MetaInlines [ Str "Inverse" ] )
+                       , ( "macro" , MetaInlines [ Str "{#1}^{-1}" ] )
+                       , ( "variables" , MetaInlines [ Str "1" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "command" , MetaInlines [ Str "Set" ] )
+                       , ( "macro" , MetaInlines [ Str "{S}" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "command" , MetaInlines [ Str "Operation" ] )
+                       , ( "macro"
+                         , MetaInlines [ Str "{#1}\\cdot{#2}" ]
+                         )
+                       , ( "variables" , MetaInlines [ Str "2" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "command" , MetaInlines [ Str "Identity" ] )
+                       , ( "macro" , MetaInlines [ Str "{e}" ] )
+                       ])
+                ]
+            )
+          , ( "terms"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "alias"
+                         , MetaInlines [ Str "associativity" ]
+                         )
+                       , ( "id"
+                         , MetaInlines [ Str "def-associativity" ]
+                         )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "alias" , MetaInlines [ Str "identity" ] )
+                       , ( "id" , MetaInlines [ Str "def-identity" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "alias" , MetaInlines [ Str "inverse" ] )
+                       , ( "id" , MetaInlines [ Str "def-inverse" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "alias"
+                         , MetaInlines
+                             [ Str "unique" , Space , Str "inverse" ]
+                         )
+                       , ( "id"
+                         , MetaInlines [ Str "def-uniqueInverse" ]
+                         )
+                       ])
+                ]
+            )
+          , ( "title" , MetaInlines [ Str "Axioms" ] )
+          ]
+    }
+  [ Header
+      1 ( "introduction" , [] , [] ) [ Str "Introduction" ]
+  , Div
+      ( "def-associativity" , [ "theorem" , "definition" ] , [] )
+      [ Para
+          [ Span
+              ( "" , [ "theorem-title" ] , [] )
+              [ Strong
+                  [ Str "Definition"
+                  , Space
+                  , Str "1"
+                  , Space
+                  , Str "("
+                  , Str "associativity"
+                  , Str ")"
+                  ]
+              ]
+          , Space
+          , Str "For"
+          , Space
+          , Str "all"
+          , Space
+          , Math InlineMath "{#1},{#2},{#3}"
+          , Space
+          , Str "in"
+          , Space
+          , Math InlineMath "\\Set"
+          , Str ","
+          , Space
+          , Str "one"
+          , Space
+          , Str "has"
+          , Space
+          , Math
+              InlineMath
+              "\\Operation{(\\Operation{#1}{#2})}{#3}=\\Operation{#1}{(\\Operation{#2}{#3})}"
+          , Str "."
+          ]
+      ]
+  , Div
+      ( "def-identity" , [ "theorem" , "definition" ] , [] )
+      [ Para
+          [ Span
+              ( "" , [ "theorem-title" ] , [] )
+              [ Strong
+                  [ Str "Definition"
+                  , Space
+                  , Str "2"
+                  , Space
+                  , Str "("
+                  , Str "identity"
+                  , Str ")"
+                  ]
+              ]
+          , Space
+          , Str "There"
+          , Space
+          , Str "exists"
+          , Space
+          , Str "an"
+          , Space
+          , Str "element"
+          , Space
+          , Math InlineMath "\\Identity"
+          , Space
+          , Str "in"
+          , Space
+          , Math InlineMath "\\Set"
+          , Space
+          , Str "such"
+          , Space
+          , Str "that,"
+          , Space
+          , Str "for"
+          , Space
+          , Str "every"
+          , Space
+          , Math InlineMath "{#1}"
+          , Space
+          , Str "in"
+          , Space
+          , Math InlineMath "\\Set"
+          , Str ","
+          , Space
+          , Str "one"
+          , Space
+          , Str "has"
+          , Space
+          , Math InlineMath "\\Operation{\\Identity}{#1}={#1}"
+          , Space
+          , Str "and"
+          , Space
+          , Math InlineMath "\\Operation{#1}{\\Identity}={#1}"
+          , Str "."
+          , Space
+          , Str "Such"
+          , Space
+          , Str "an"
+          , Space
+          , Str "element"
+          , Space
+          , Str "is"
+          , Space
+          , Str "unique"
+          , Space
+          , Str "and"
+          , Space
+          , Str "is"
+          , Space
+          , Str "called"
+          , Space
+          , Str "the"
+          , Space
+          , Strong [ Str "identity" , Space , Str "element" ]
+          , Str "."
+          ]
+      ]
+  , Div
+      ( "def-uniqueInverse" , [ "theorem" , "definition" ] , [] )
+      [ Para
+          [ Span
+              ( "" , [ "theorem-title" ] , [] )
+              [ Strong [ Str "Definition" , Space , Str "4" ] ]
+          , Space
+          , Str "\160"
+          ]
+      , Div
+          ( "def-inverse" , [ "theorem" , "definition" ] , [] )
+          [ Para
+              [ Span
+                  ( "" , [ "theorem-title" ] , [] )
+                  [ Strong
+                      [ Str "Definition"
+                      , Space
+                      , Str "3"
+                      , Space
+                      , Str "("
+                      , Str "inverse"
+                      , Str ")"
+                      ]
+                  ]
+              , Space
+              , Str "For"
+              , Space
+              , Str "each"
+              , Space
+              , Math InlineMath "{#1}"
+              , Space
+              , Str "in"
+              , Space
+              , Math InlineMath "\\Set"
+              , Str ","
+              , Space
+              , Str "there"
+              , Space
+              , Str "exists"
+              , Space
+              , Str "an"
+              , Space
+              , Str "element"
+              , Space
+              , Math InlineMath "{#2}"
+              , Space
+              , Str "in"
+              , Space
+              , Math InlineMath "\\Set"
+              , Space
+              , Str "such"
+              , Space
+              , Str "that"
+              , Space
+              , Math InlineMath "\\Operation{#1}{#2}=\\Identity"
+              , Space
+              , Str "and"
+              , Space
+              , Math InlineMath "\\Operation{#2}{#1}=\\Identity"
+              , Str ","
+              , Space
+              , Str "where"
+              , Space
+              , Math InlineMath "\\Identity"
+              , Space
+              , Str "is"
+              , Space
+              , Str "the"
+              , Space
+              , Str "identity"
+              , Space
+              , Str "element."
+              ]
+          ]
+      , Para
+          [ Str "For"
+          , Space
+          , Str "each"
+          , Space
+          , Math InlineMath "{#1}"
+          , Str ","
+          , Space
+          , Str "the"
+          , Space
+          , Str "element"
+          , Space
+          , Math InlineMath "{#2}"
+          , Space
+          , Str "is"
+          , Space
+          , Str "unique"
+          , Space
+          , Str "and"
+          , Space
+          , Str "is"
+          , Space
+          , Str "called"
+          , Space
+          , Str "the"
+          , Space
+          , Strong [ Str "inverse" ]
+          , Space
+          , Str "of"
+          , Space
+          , Math InlineMath "{#2}"
+          , Space
+          , Str "and"
+          , Space
+          , Str "is"
+          , Space
+          , Str "denoted"
+          , Space
+          , Math InlineMath "\\Inverse{#1}"
+          , Str "."
+          ]
+      ]
+  , Para
+      [ Str "Test"
+      , Space
+      , Link
+          ( "" , [ "quarto-xref" ] , [] )
+          [ Str "Definition" , Str "\160" , Str "1" ]
+          ( "#def-associativity" , "" )
+      ]
+  , Header
+      1
+      ( "more-information" , [] , [] )
+      [ Str "More" , Space , Str "Information" ]
+  , Para
+      [ Str "You"
+      , Space
+      , Str "can"
+      , Space
+      , Str "learn"
+      , Space
+      , Str "more"
+      , Space
+      , Str "about"
+      , Space
+      , Str "controlling"
+      , Space
+      , Str "the"
+      , Space
+      , Str "appearance"
+      , Space
+      , Str "of"
+      , Space
+      , Str "HTML"
+      , Space
+      , Str "output"
+      , Space
+      , Str "here:"
+      , Space
+      , Link
+          ( "" , [ "uri" ] , [] )
+          [ Str
+              "https://quarto.org/docs/output-formats/html-basics.html"
+          ]
+          ( "https://quarto.org/docs/output-formats/html-basics.html"
+          , ""
+          )
+      ]
+  ]

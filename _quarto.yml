@@ -5,6 +5,7 @@ project:
 format:
   schema-latex: default
   schema-pdf: default
+  native: default
 
 callouty-theorem:
   thm:

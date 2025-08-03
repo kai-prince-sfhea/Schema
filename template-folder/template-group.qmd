@@ -1,5 +1,8 @@
 ---
 title: Group
+terms:
+  - alias: group
+    id: def-group
 macros:
   - command: Group
     macro: '{\\Gamma}'
@@ -22,11 +25,12 @@ date: last-modified
 
 # Introduction
 ::: {#def-group}
+## Group
 A group is a non-empty set $\Group$ together with a binary operation on $\Group$, denoted "$\GroupOperation{}{}$", that combines any two elements $\GroupElement$ and $\GroupElement'$ of $\Group$ to form an element of $\Group$, denoted $\GroupOperation{\GroupElement}{\GroupElement'}$, such that the following three requirements, known as **group axioms**, are satisfied:
 
 * @def-associativity.
 * @def-identity.
-* @def-unique-inverse.
+* @def-uniqueInverse.
 :::
 
 # More Information

@@ -1,0 +1,462 @@
+Pandoc
+  Meta
+    { unMeta =
+        fromList
+          [ ( "author"
+            , MetaList
+                [ MetaInlines
+                    [ Str "Kai"
+                    , Space
+                    , Str "Prince"
+                    , Space
+                    , Str "SFHEA"
+                    ]
+                ]
+            )
+          , ( "authors"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "id" , MetaString "1" )
+                       , ( "letter" , MetaString "a" )
+                       , ( "metadata" , MetaMap (fromList []) )
+                       , ( "name"
+                         , MetaMap
+                             (fromList
+                                [ ( "family"
+                                  , MetaInlines [ Str "SFHEA" ]
+                                  )
+                                , ( "given"
+                                  , MetaInlines [ Str "Kai Prince" ]
+                                  )
+                                , ( "literal"
+                                  , MetaInlines
+                                      [ Str "Kai"
+                                      , Space
+                                      , Str "Prince"
+                                      , Space
+                                      , Str "SFHEA"
+                                      ]
+                                  )
+                                ])
+                         )
+                       , ( "number" , MetaString "1" )
+                       ])
+                ]
+            )
+          , ( "by-author"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "id" , MetaString "1" )
+                       , ( "letter" , MetaString "a" )
+                       , ( "metadata" , MetaMap (fromList []) )
+                       , ( "name"
+                         , MetaMap
+                             (fromList
+                                [ ( "family"
+                                  , MetaInlines [ Str "SFHEA" ]
+                                  )
+                                , ( "given"
+                                  , MetaInlines [ Str "Kai Prince" ]
+                                  )
+                                , ( "literal"
+                                  , MetaInlines
+                                      [ Str "Kai"
+                                      , Space
+                                      , Str "Prince"
+                                      , Space
+                                      , Str "SFHEA"
+                                      ]
+                                  )
+                                ])
+                         )
+                       , ( "number" , MetaString "1" )
+                       ])
+                ]
+            )
+          , ( "callouty-theorem"
+            , MetaMap
+                (fromList
+                   [ ( "cor" , MetaInlines [ Str "default" ] )
+                   , ( "def"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "note" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "exr"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "caution" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "lem"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "warning" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "proof"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool True )
+                                     , ( "icon" , MetaBool False )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "prp"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "note" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "remark"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool False )
+                                     , ( "icon" , MetaBool True )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "solution"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool True )
+                                     , ( "icon" , MetaBool True )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "thm"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "important" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   ])
+            )
+          , ( "date" , MetaInlines [ Str "2025-08-03" ] )
+          , ( "dependencies"
+            , MetaList [ MetaInlines [ Str "axioms" ] ]
+            )
+          , ( "environments"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "before" , MetaString "" )
+                       , ( "name"
+                         , MetaInlines [ Str "GroupOperation" ]
+                         )
+                       ])
+                ]
+            )
+          , ( "macros"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "command" , MetaInlines [ Str "Group" ] )
+                       , ( "macro" , MetaInlines [ Str "{\\Gamma}" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "command"
+                         , MetaInlines [ Str "GroupOperation" ]
+                         )
+                       , ( "macro"
+                         , MetaInlines [ Str "{#1}\\cdot{#2}" ]
+                         )
+                       , ( "variables" , MetaInlines [ Str "2" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "command"
+                         , MetaInlines [ Str "GroupIdentity" ]
+                         )
+                       , ( "description"
+                         , MetaInlines
+                             [ Str "The"
+                             , Space
+                             , Str "identity"
+                             , Space
+                             , Str "of"
+                             , Space
+                             , Str "the"
+                             , Space
+                             , Str "group"
+                             , Space
+                             , Math InlineMath "\\Group"
+                             , Str "."
+                             ]
+                         )
+                       , ( "macro" , MetaInlines [ Str "{e}" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "command"
+                         , MetaInlines [ Str "GroupElement" ]
+                         )
+                       , ( "macro" , MetaInlines [ Str "{\\gamma}" ] )
+                       ])
+                ]
+            )
+          , ( "terms"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "alias" , MetaInlines [ Str "group" ] )
+                       , ( "id" , MetaInlines [ Str "def-group" ] )
+                       ])
+                ]
+            )
+          , ( "title" , MetaInlines [ Str "Group" ] )
+          ]
+    }
+  [ Header
+      1 ( "introduction" , [] , [] ) [ Str "Introduction" ]
+  , Div
+      ( "def-group" , [ "theorem" , "definition" ] , [] )
+      [ Para
+          [ Span
+              ( "" , [ "theorem-title" ] , [] )
+              [ Strong
+                  [ Str "Definition"
+                  , Space
+                  , Str "1"
+                  , Space
+                  , Str "("
+                  , Str "Group"
+                  , Str ")"
+                  ]
+              ]
+          , Space
+          , Str "A"
+          , Space
+          , Str "group"
+          , Space
+          , Str "is"
+          , Space
+          , Str "a"
+          , Space
+          , Str "non-empty"
+          , Space
+          , Str "set"
+          , Space
+          , Math InlineMath "\\Group"
+          , Space
+          , Str "together"
+          , Space
+          , Str "with"
+          , Space
+          , Str "a"
+          , Space
+          , Str "binary"
+          , Space
+          , Str "operation"
+          , Space
+          , Str "on"
+          , Space
+          , Math InlineMath "\\Group"
+          , Str ","
+          , Space
+          , Str "denoted"
+          , Space
+          , Quoted
+              DoubleQuote [ Math InlineMath "\\GroupOperation{}{}" ]
+          , Str ","
+          , Space
+          , Str "that"
+          , Space
+          , Str "combines"
+          , Space
+          , Str "any"
+          , Space
+          , Str "two"
+          , Space
+          , Str "elements"
+          , Space
+          , Math InlineMath "\\GroupElement"
+          , Space
+          , Str "and"
+          , Space
+          , Math InlineMath "\\GroupElement'"
+          , Space
+          , Str "of"
+          , Space
+          , Math InlineMath "\\Group"
+          , Space
+          , Str "to"
+          , Space
+          , Str "form"
+          , Space
+          , Str "an"
+          , Space
+          , Str "element"
+          , Space
+          , Str "of"
+          , Space
+          , Math InlineMath "\\Group"
+          , Str ","
+          , Space
+          , Str "denoted"
+          , Space
+          , Math
+              InlineMath
+              "\\GroupOperation{\\GroupElement}{\\GroupElement'}"
+          , Str ","
+          , Space
+          , Str "such"
+          , Space
+          , Str "that"
+          , Space
+          , Str "the"
+          , Space
+          , Str "following"
+          , Space
+          , Str "three"
+          , Space
+          , Str "requirements,"
+          , Space
+          , Str "known"
+          , Space
+          , Str "as"
+          , Space
+          , Strong [ Str "group" , Space , Str "axioms" ]
+          , Str ","
+          , Space
+          , Str "are"
+          , Space
+          , Str "satisfied:"
+          ]
+      , BulletList
+          [ [ OrderedList ( 1 , Example , Period ) [ [ Plain [] ] ] ]
+          , [ OrderedList ( 2 , Example , Period ) [ [ Plain [] ] ] ]
+          , [ OrderedList ( 3 , Example , Period ) [ [ Plain [] ] ] ]
+          ]
+      ]
+  , Header
+      1
+      ( "more-information" , [] , [] )
+      [ Str "More" , Space , Str "Information" ]
+  , Para
+      [ Str "You"
+      , Space
+      , Str "can"
+      , Space
+      , Str "learn"
+      , Space
+      , Str "more"
+      , Space
+      , Str "about"
+      , Space
+      , Str "controlling"
+      , Space
+      , Str "the"
+      , Space
+      , Str "appearance"
+      , Space
+      , Str "of"
+      , Space
+      , Str "HTML"
+      , Space
+      , Str "output"
+      , Space
+      , Str "here:"
+      , Space
+      , Link
+          ( "" , [ "uri" ] , [] )
+          [ Str
+              "https://quarto.org/docs/output-formats/html-basics.html"
+          ]
+          ( "https://quarto.org/docs/output-formats/html-basics.html"
+          , ""
+          )
+      ]
+  ]

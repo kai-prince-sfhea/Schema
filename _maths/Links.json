@@ -1,8 +1,12 @@
 {
   "template-folder\\template-folner.qmd": {
     "FileLinks": {
-      "template-folder\\template-group.qmd": true,
-      "template.qmd": true
+      "template-folder\\template-group.qmd": {
+        
+      },
+      "template.qmd": {
+        
+      }
     },
     "FileNotation": [
       {
@@ -11,41 +15,47 @@
         "description": "The Natural Numbers: 1, 2, 3, ..."
       }
     ],
-    "RefLinks": {
-      
+    "LaTeX": "\n\\newcommand{\\N}{\\mathbb{N}}\n\\newcommand{\\Folner}[1][\\vphantom{}]{{\\Phi}_{#1}}\n\\newcommand{\\Density}[1][\\Folner]{{d}_{#1}}\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}\n\n",
+    "RefMath": {
+      "\\Group": true,
+      "\\GroupElement": true,
+      "\\GroupOperation": true,
+      "\\Inverse": true,
+      "\\N": true
     },
-    "RefTerms": [
-      "\\N",
-      "\\Group",
-      "\\GroupElement"
-    ],
-    "Terms": [
-      "\\N",
-      "\\Group",
-      "right-Følner",
-      "Følner",
-      "left-Følner",
-      "\\GroupElement",
-      "\\Folner"
-    ]
+    "RefTerms": {
+      "group": true,
+      "inverse": true
+    },
+    "RelLinks": {
+      "template-folder\\template-group.qmd": "template-group.qmd",
+      "template.qmd": "..\\template.qmd"
+    }
   },
   "template-folder\\template-group.qmd": {
     "FileLinks": {
-      
+      "template.qmd": [
+        "def-identity"
+      ]
     },
     "FileNotation": {
       
     },
-    "RefLinks": {
+    "LaTeX": "\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}\n\n",
+    "RefMath": {
       
     },
     "RefTerms": {
-      
+      "@def-associativity": true,
+      "@def-identity": true,
+      "@def-uniqueInverse": true,
+      "associativity": true,
+      "identity": true,
+      "inverse": true
     },
-    "Terms": [
-      "\\GroupElement",
-      "\\Group"
-    ]
+    "RelLinks": {
+      "template.qmd": "..\\template.qmd"
+    }
   },
   "template.qmd": {
     "FileLinks": {
@@ -54,18 +64,15 @@
     "FileNotation": {
       
     },
-    "RefLinks": {
+    "LaTeX": "\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\Set}{{S}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\Operation}[2]{{#1}\\cdot{#2}}\n\n",
+    "RefMath": {
       
     },
     "RefTerms": {
       
     },
-    "Terms": [
-      "\\Identity",
-      "inverse",
-      "\\Set",
-      "identity",
-      "associativity"
-    ]
+    "RelLinks": {
+      
+    }
   }
 }

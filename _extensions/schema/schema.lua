@@ -1,21 +1,23 @@
 print("Schema Functions Loaded")
 local M = {}
 
+local pandoc = require("pandoc")
+
 -- Pretty Print JSON
 M.pretty_json = function(json_str)
     indent = "  "
     local level = 0
     local formatted = ""
-    local in_string = false
+    local in_str = false
     local char = ""
     local prev_char = ""
 
     for i = 1, #json_str do
         char = json_str:sub(i, i)
         if char == '"' and prev_char ~= '\\' then
-            in_string = not in_string
+            in_str = not in_str
         end
-        if not in_string then
+        if not in_str then
             if char == '{' or char == '[' then
                 level = level + 1
                 formatted = formatted .. char .. "\n" .. string.rep(indent, level)
@@ -76,6 +78,41 @@ M.topo_sort = function(graph)
         visit(node)
     end
     return result
+end
+
+M.RelativePath = function(CurrentPath, TargetPath)
+    local CurrentVector = pandoc.path.split(pandoc.path.directory(CurrentPath))
+    local TargetVector = pandoc.path.split(TargetPath)
+    local RelativeVector = {}
+    CurrentRootIndex = 0
+    TargetRootIndex = 0
+    RootVector = {}
+    for i = 1, #CurrentVector do
+        for j = 1, #TargetVector do
+            if CurrentVector[i] == TargetVector[j] then
+                if i > CurrentRootIndex then
+                    CurrentRootIndex = i
+                end
+                if j > TargetRootIndex then
+                    TargetRootIndex = j
+                end
+            else
+                break
+            end
+        end
+    end
+    UpIndex = #CurrentVector - CurrentRootIndex
+    for i = 1, UpIndex do
+        table.insert(RelativeVector, "..")
+    end
+    for i = TargetRootIndex + 1, #TargetVector do
+        table.insert(RelativeVector, TargetVector[i])
+    end
+    RelativePath = pandoc.path.join(RelativeVector)
+    if RelativePath == "" then
+        RelativePath = "."
+    end
+    return RelativePath
 end
 
 return M

@@ -2,13 +2,13 @@
 title: Axioms
 terms:
   - alias: associativity
-    id: associativity
+    id: def-associativity
   - alias: identity
-    id: identity
+    id: def-identity
   - alias: inverse
-    id: inverse
+    id: def-inverse
   - alias: unique inverse
-    id: uniqueInverse
+    id: def-uniqueInverse
 macros:
   - command: "N"
     description: "The Natural Numbers: $1, 2, 3, ...$"

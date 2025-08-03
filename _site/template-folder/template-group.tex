@@ -175,17 +175,9 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
-\newcommand{\Identity}{{e}}
-\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
-\newcommand{\Density}[1][\Folner]{{d}_{#1}}
-\newcommand{\Inverse}[1]{{#1}^{-1}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\Set}{{S}}
-\newcommand{\Operation}[2]{{#1}\cdot{#2}}
-\newcommand{\GroupIdentity}{{e}}
-\newcommand{\GroupElement}{{\gamma}}
 \newcommand{\Group}{{\Gamma}}
+\newcommand{\GroupElement}{{\gamma}}
+\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -204,14 +196,14 @@
 
 \title{Group}
 \author{Kai Prince SFHEA}
-\date{2025-08-01}
+\date{2025-08-03}
 \begin{document}
 \maketitle
 
 
 \section{Introduction}\label{introduction}
 
-\begin{definition}[]\protect\hypertarget{def-group}{}\label{def-group}
+\begin{definition}[Group]\protect\hypertarget{def-group}{}\label{def-group}
 
 A group is a non-empty set \(\Group\) together with a binary operation
 on \(\Group\), denoted ``\(\GroupOperation{}{}\)'', that combines any

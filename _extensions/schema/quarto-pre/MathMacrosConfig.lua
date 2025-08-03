@@ -1,3 +1,4 @@
+print("Creating Schema Files")
 -- Load Project Directories
 local InputDir = pandoc.system.get_working_directory() or error("Working directory not set")
 local MathDir = pandoc.path.join({InputDir, "_maths"})
@@ -18,15 +19,8 @@ if not ok then
     pandoc.system.make_directory(MathDir, true)
 end
 
--- Create Math Directory file
-Directories = {}
-Directories[os.getenv("QUARTO_PROJECT_OUTPUT_DIR")] = false
-io.open(pandoc.path.join({MathDir,"Render-Directories.json"}),"w"):write(schema.pretty_json(pandoc.json.encode(Directories)))
-
 -- Set Output File Directories
-local OutputMathJSONFile = pandoc.path.join({MathDir, "MathJSON.json"})
-local OutputMathJaxFile = pandoc.path.join({MathDir, "Mathjax.json"})
-local OutputLaTexFile = pandoc.path.join({MathDir, "Tex-macros.tex"})
+local OutputMathJSONFile = pandoc.path.join({MathDir, "Math.json"})
 local OutputDependenciesFile = pandoc.path.join({MathDir, "MathDependencies.json"})
 local OutputTermsFile = pandoc.path.join({MathDir, "Terms.json"})
 local OutputDocumentContentsFile = pandoc.path.join({MathDir, "Document-contents.json"})
@@ -69,7 +63,9 @@ end
 
 -- MathJSON Warning function
 local MathJSONWarning = {}
+local MathJSONWarningBoolean = false
 local function mathjson_warning(cmd, file)
+    MathJSONWarningBoolean = true
     if MathJSONWarning[cmd] == nil then
         MathJSONWarning[cmd] = {}
         MathJSONWarning[cmd][MathJSON[cmd].Source] = 1
@@ -103,9 +99,9 @@ local function extract_math_macro(value, file)
     end
 
     TermsJSON["\\"..cmd] = {
-        source = file,
+        sourceFile = file,
         translation = false,
-        math = true
+        type = "math"
     }
 
     -- Map Math Macro to variables
@@ -162,11 +158,18 @@ end
 
 -- Load and process the metadata of each Input File
 for _, file in ipairs(Files) do
-    local contents = pandoc.read(io.open(file, "r"):read("*a"), "markdown")
-    local body = contents.blocks
+    print("-Processing file: " .. file)
+    local fileContents = io.open(file, "r"):read("*a")
+    local contents = pandoc.read(fileContents, "markdown")
+    local body = ""
 
+    if fileContents:match("^%-%-%-") then
+        body = fileContents:match("^%-%-%-.+%-%-%-%s*(.*)%s*$")  -- Extract body after YAML metadata
+    else
+        body = fileContents
+    end
     DocJSON[file] = {
-        contents = pandoc.utils.stringify(pandoc.utils.blocks_to_inlines(body,pandoc.Inlines(' ')))
+        contents = body
     }
 
     ---@type pandoc.List
@@ -186,22 +189,40 @@ for _, file in ipairs(Files) do
     if type(metadata.terms) == "table" then
         for _, term in ipairs(metadata.terms) do
             local termName = pandoc.utils.stringify(term.alias)
-            local termTranslation = true
+
+            TermsJSON[termName] = {
+                sourceFile = file,
+                type = "term"
+            }
 
             if term.translate == false then
-                termTranslation = false
+                TermsJSON[termName].translation = false
             end
-
-            local url = file
             if term.id then
                 termRef = pandoc.utils.stringify(term.id)
-                url = url .. "#" .. termRef
+                TermsJSON[termName].sourceRef = termRef
             end
-            TermsJSON[termName] = {
-                source = url,
-                translation = termTranslation,
-                math = false
-            }
+        end
+    end
+
+    for ref in body:gmatch("{#([a-zA-Z%-]+)}") do
+        TermsJSON["@"..ref] = {
+            sourceFile = file,
+            sourceRef = ref,
+            translation = false,
+            type = ref:match("^[a-zA-Z]+")
+        }
+        -- Find the Div block with the matching identifier
+        local found_block = nil
+        for _, block in ipairs(contents.blocks) do
+            if block.identifier == ref then
+                found_block = block
+                break
+            end
+        end
+        if found_block then
+            TermsJSON["@"..ref].block = pandoc.write(pandoc.Pandoc({found_block}, contents.meta), "markdown")
+            TermsJSON["@"..ref].blockType = found_block.t
         end
     end
 
@@ -213,7 +234,7 @@ for _, file in ipairs(Files) do
     end
 end
 
-if MathJSONWarning ~= {} then
+if MathJSONWarningBoolean then
     print("MathJSON Potential Conflicting Definitions: " .. schema.pretty_json(pandoc.json.encode(MathJSONWarning)))
 end
 
@@ -225,21 +246,10 @@ end
 
 local sorted_keys = schema.topo_sort(dependencyGraph)
 
--- Build dependency-sorted output variables
-local MathJaxJSON = {}
-local LaTeX = "\n"
-for _, key in ipairs(sorted_keys) do
-    MathJaxJSON[key] = MathJSON[key].MathJax
-
-    local LaTeXcmd = "\\" .. key
-    local LaTeXdef = "\\newcommand{" .. LaTeXcmd .. "}" .. MathJSON[key].LaTeX
-    LaTeX = LaTeX .. LaTeXdef .. "\n"
-
-    local url = MathJSON[key].Source
-    if MathJSON[key].Ref then
-        url = url .. "#" .. MathJSON[key].Ref
-    end
-end
+local dependencyData = {
+    graph = dependencyGraph,
+    sorted_keys = sorted_keys
+}
 
 -- Save MathJSON Output to File
 MathJSONEncoding = schema.pretty_json(pandoc.json.encode(MathJSON))
@@ -253,13 +263,6 @@ io.open(OutputTermsFile, "w"):write(TermsJSONEncoding)
 DocJSONEncoding = schema.pretty_json(pandoc.json.encode(DocJSON))
 io.open(OutputDocumentContentsFile, "w"):write(DocJSONEncoding)
 
--- Convert MathJax Output to indented JSON + Save to File
-MathJaxJSONEncoding = schema.pretty_json(pandoc.json.encode(MathJaxJSON))
-io.open(OutputMathJaxFile, "w"):write(MathJaxJSONEncoding)
-
--- Save Tex commands to File
-io.open(OutputLaTexFile, "w"):write(LaTeX .. "\n")
-
 -- Save Dependencies to File
-dependencyJSONEncoding = schema.pretty_json(pandoc.json.encode(dependencyGraph))
+dependencyJSONEncoding = schema.pretty_json(pandoc.json.encode(dependencyData))
 io.open(OutputDependenciesFile, "w"):write(dependencyJSONEncoding)

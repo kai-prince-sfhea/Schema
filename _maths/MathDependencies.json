@@ -1,35 +1,50 @@
 {
-  "Density": [
-    "Folner"
-  ],
-  "Folner": {
-    
+  "graph": {
+    "Density": [
+      "Folner"
+    ],
+    "Folner": {
+      
+    },
+    "Group": {
+      
+    },
+    "GroupElement": {
+      
+    },
+    "GroupIdentity": {
+      
+    },
+    "GroupOperation": {
+      
+    },
+    "Identity": {
+      
+    },
+    "Inverse": {
+      
+    },
+    "N": {
+      
+    },
+    "Operation": {
+      
+    },
+    "Set": {
+      
+    }
   },
-  "Group": {
-    
-  },
-  "GroupElement": {
-    
-  },
-  "GroupIdentity": {
-    
-  },
-  "GroupOperation": {
-    
-  },
-  "Identity": {
-    
-  },
-  "Inverse": {
-    
-  },
-  "N": {
-    
-  },
-  "Operation": {
-    
-  },
-  "Set": {
-    
-  }
+  "sorted_keys": [
+    "N",
+    "Identity",
+    "Folner",
+    "Density",
+    "Group",
+    "Set",
+    "Inverse",
+    "GroupElement",
+    "GroupOperation",
+    "GroupIdentity",
+    "Operation"
+  ]
 }
