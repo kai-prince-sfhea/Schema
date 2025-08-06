@@ -1,10 +1,22 @@
 project:
   title: "KaisFormatting Template"
-  type: schema
+  type: website
 
 format:
-  schema-latex: default
-  schema-pdf: default
+  schema-html: default
+  latex: default
+  pdf: 
+    documentclass: article
+    pdf-engine: lualatex
+    include-in-header:
+      - _extensions/schema/resources/TexHeader.tex
+    keep-tex: true
+    lang: en-GB
+    filters:
+      - schema
+    number-sections: true
+    crossref:
+      ref-hyperlink: true
   native: default
 
 callouty-theorem:

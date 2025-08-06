@@ -28,9 +28,9 @@ date: last-modified
 ## Group
 A group is a non-empty set $\Group$ together with a binary operation on $\Group$, denoted "$\GroupOperation{}{}$", that combines any two elements $\GroupElement$ and $\GroupElement'$ of $\Group$ to form an element of $\Group$, denoted $\GroupOperation{\GroupElement}{\GroupElement'}$, such that the following three requirements, known as **group axioms**, are satisfied:
 
-* @def-associativity.
-* @def-identity.
-* @def-uniqueInverse.
+* {{< term ref="def-associativity" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" >}}
+* {{< term ref="def-identity" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" >}}
+* {{< term ref="def-uniqueInverse" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" >}}
 :::
 
 # More Information

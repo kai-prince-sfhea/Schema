@@ -175,9 +175,13 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
+\newcommand{\Operation}[2]{{#1}\cdot{#2}}
+\newcommand{\Set}{{S}}
 \newcommand{\Group}{{\Gamma}}
-\newcommand{\GroupElement}{{\gamma}}
 \newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
+\newcommand{\Identity}{{e}}
+\newcommand{\Inverse}[1]{{#1}^{-1}}
+\newcommand{\GroupElement}{{\gamma}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -196,7 +200,7 @@
 
 \title{Group}
 \author{Kai Prince SFHEA}
-\date{2025-08-03}
+\date{2025-08-06}
 \begin{document}
 \maketitle
 
@@ -214,27 +218,23 @@ following three requirements, known as \textbf{group axioms}, are
 satisfied:
 
 \begin{itemize}
-\tightlist
 \item
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \tightlist
-  \item
-  \end{enumerate}
+  For all \({g},{h},{j}\) in \(\Group\), one has
+  \(\GroupOperation{(\GroupOperation{g}{h})}{j}=\GroupOperation{g}{(\GroupOperation{h}{j})}\).
 \item
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \setcounter{enumi}{1}
-  \tightlist
-  \item
-  \end{enumerate}
+  There exists an element \(\Identity\) in \(\Group\) such that, for
+  every \({g}\) in \(\Group\), one has
+  \(\GroupOperation{\Identity}{g}={g}\) and
+  \(\GroupOperation{g}{\Identity}={g}\). Such an element is unique and
+  is called the \textbf{identity element}.
 \item
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \setcounter{enumi}{2}
-  \tightlist
-  \item
-  \end{enumerate}
+  For each \({g}\) in \(\Group\), there exists an element \({h}\) in
+  \(\Group\) such that \(\GroupOperation{g}{h}=\Identity\) and
+  \(\GroupOperation{h}{g}=\Identity\), where \(\Identity\) is the
+  identity element.
+
+  For each \({g}\), the element \({h}\) is unique and is called the
+  \textbf{inverse} of \({h}\) and is denoted \(\Inverse{g}\).
 \end{itemize}
 
 \end{definition}

@@ -61,6 +61,36 @@ if DirFile ~= nil then
     end
 end
 
+-- Include Shortcodes
+local function append_shortcodes(body)
+    local contents = body .. "\n\n Shortcodes:\n\n"
+    local visited = {}
+
+    local function visit_shortcode(visited_body)
+        for shortcodeArg in visited_body:gmatch("{{< term ref=\"([^>%s\"]+)\"[^>]* >}}") do
+            shortcodeTerm = "@" .. shortcodeArg
+            if not visited[shortcodeTerm] then
+                visited[shortcodeTerm] = true
+                contents = contents .. shortcodeTerm .. "\n"
+
+                if TermsJSON[shortcodeTerm] then
+                    if TermsJSON[shortcodeTerm].blockTitle then
+                        contents = contents .. TermsJSON[shortcodeTerm].blockTitle .. "\n"
+                    end
+                    if TermsJSON[shortcodeTerm].blockBody then
+                        shortcodeBody = TermsJSON[shortcodeTerm].blockBody
+                        contents = contents .. shortcodeBody .. "\n\n"
+                        visit_shortcode(shortcodeBody)
+                    end
+                end
+            end
+        end
+    end
+    
+    visit_shortcode(contents)
+    return contents
+end
+
 FileDep = {}
 for k, v in pairs(DocJSON) do
     Terms = {}
@@ -71,6 +101,8 @@ for k, v in pairs(DocJSON) do
     RefTerms = {}
     RefMath = {}
 
+    FileContents = append_shortcodes(v.contents)
+
     if not DirJSON[pandoc.path.directory(k)] then
         DirJSON[pandoc.path.directory(k)] = {
             RenderMathJax = false,
@@ -79,10 +111,10 @@ for k, v in pairs(DocJSON) do
     end
 
     for term, termData in pairs(TermsJSON) do
-        standardMatch = string.lower(v.contents):find(string.lower(term))
+        standardMatch = string.lower(FileContents):find(string.lower(term))
         referenceMatch = false
         if not standardMatch and term:match("@") then
-            for match in v.contents:gmatch("(@[-a-zA-Z]+)") do
+            for match in FileContents:gmatch("(@[-a-zA-Z]+)") do
                 if match == term then
                     referenceMatch = true
                     break
@@ -144,8 +176,7 @@ for k, v in pairs(DocJSON) do
     for _, term in ipairs(MathDepJSON.sorted_keys) do
         local LaTeXcmd = "\\" .. term
         if Terms[LaTeXcmd] then
-            local LaTeXdef = "\\newcommand{" .. LaTeXcmd .. "}" .. MathJSON[term].LaTeX
-            FileLaTeX = FileLaTeX .. LaTeXdef .. "\n"
+            FileLaTeX = FileLaTeX .. MathJSON[term].LaTeX .. "\n"
         end
     end
 

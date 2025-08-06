@@ -110,7 +110,12 @@ local function extract_math_macro(value, file)
         if value.variablesDefault ~= nil then
             if type(value.variablesDefault) == "table" and value.variablesDefault[2] ~= nil then
                 for _, string in ipairs(value.variablesDefault) do
-                    table.insert(variablesDefaultArray, pandoc.utils.stringify(string))
+                    table.insert(variablesDefaultArray, "O{"..pandoc.utils.stringify(string).."} ")
+                end
+                if #variablesDefaultArray < variables + 0 then
+                    for i = #variablesDefaultArray + 1, variables + 0 do
+                        table.insert(variablesDefaultArray, "m ")
+                    end
                 end
                 MathJSON[cmd] = {
                     MathJax = {
@@ -118,7 +123,7 @@ local function extract_math_macro(value, file)
                         tonumber(variables),
                         variablesDefaultArray
                     },
-                    LaTeX = "[" .. variables .. "]" .. pandoc.utils.stringify(variablesDefaultArray) .. "{" .. macro .. "}"
+                    LaTeX = "\\NewDocumentCommand{\\".. cmd .."}[" .. variables .. "]" .. pandoc.utils.stringify(variablesDefaultArray) .. "{" .. macro .. "}"
                 }
             else
                 variablesDefaultString = pandoc.utils.stringify(value.variablesDefault)
@@ -128,7 +133,7 @@ local function extract_math_macro(value, file)
                         tonumber(variables),
                         variablesDefaultString
                     },
-                    LaTeX = "[" .. variables .. "][" .. variablesDefaultString .. "]{" .. macro .. "}"
+                    LaTeX = "\\newcommand{\\".. cmd .."}[" .. variables .. "][" .. variablesDefaultString .. "]{" .. macro .. "}"
                 }
             end
         else
@@ -137,13 +142,13 @@ local function extract_math_macro(value, file)
                     macro,
                     tonumber(variables)
                 },
-                LaTeX = "[" .. variables .. "]{" .. macro .. "}"
+                LaTeX = "\\newcommand{\\".. cmd .."}[" .. variables .. "]{" .. macro .. "}"
             }
         end
     else
         MathJSON[cmd] = {
             MathJax = macro,
-            LaTeX = "{" .. macro .. "}"
+            LaTeX = "\\newcommand{\\".. cmd .."}{" .. macro .. "}"
         }
     end
     if value.description ~= nil then
@@ -205,8 +210,9 @@ for _, file in ipairs(Files) do
         end
     end
 
-    for ref in body:gmatch("{#([a-zA-Z%-]+)}") do
+    for ref, args in body:gmatch("{#([a-zA-Z%-]+)%s?([^}]*)}") do
         TermsJSON["@"..ref] = {
+            sourceArgs = args,
             sourceFile = file,
             sourceRef = ref,
             translation = false,
@@ -221,8 +227,15 @@ for _, file in ipairs(Files) do
             end
         end
         if found_block then
-            TermsJSON["@"..ref].block = pandoc.write(pandoc.Pandoc({found_block}, contents.meta), "markdown")
+            blockContent = pandoc.write(pandoc.Pandoc({found_block}, contents.meta), "markdown")
             TermsJSON["@"..ref].blockType = found_block.t
+            blockTitle, blockBody = blockContent:match("## ([^\n]+)\n\n(.+)\n:::")
+            if blockTitle then
+                TermsJSON["@"..ref].blockTitle = blockTitle
+                TermsJSON["@"..ref].blockBody = blockBody
+            else
+                TermsJSON["@"..ref].blockBody = blockContent:match("\n(.+)\n:::")
+            end
         end
     end
 

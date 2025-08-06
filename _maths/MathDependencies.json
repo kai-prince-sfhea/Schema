@@ -1,50 +1,51 @@
 {
   "graph": {
     "Density": [
+      "Folner",
+      "Density"
+    ],
+    "Folner": [
       "Folner"
     ],
-    "Folner": {
-      
-    },
-    "Group": {
-      
-    },
-    "GroupElement": {
-      
-    },
-    "GroupIdentity": {
-      
-    },
-    "GroupOperation": {
-      
-    },
-    "Identity": {
-      
-    },
-    "Inverse": {
-      
-    },
-    "N": {
-      
-    },
-    "Operation": {
-      
-    },
-    "Set": {
-      
-    }
+    "Group": [
+      "Group"
+    ],
+    "GroupElement": [
+      "GroupElement"
+    ],
+    "GroupIdentity": [
+      "GroupIdentity"
+    ],
+    "GroupOperation": [
+      "GroupOperation"
+    ],
+    "Identity": [
+      "Identity"
+    ],
+    "Inverse": [
+      "Inverse"
+    ],
+    "N": [
+      "N"
+    ],
+    "Operation": [
+      "Operation"
+    ],
+    "Set": [
+      "Set"
+    ]
   },
   "sorted_keys": [
+    "Operation",
     "N",
-    "Identity",
     "Folner",
-    "Density",
-    "Group",
     "Set",
+    "Group",
+    "GroupOperation",
+    "Identity",
+    "GroupIdentity",
     "Inverse",
     "GroupElement",
-    "GroupOperation",
-    "GroupIdentity",
-    "Operation"
+    "Density"
   ]
 }

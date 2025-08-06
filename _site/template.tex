@@ -175,10 +175,10 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
-\newcommand{\Identity}{{e}}
-\newcommand{\Set}{{S}}
-\newcommand{\Inverse}[1]{{#1}^{-1}}
 \newcommand{\Operation}[2]{{#1}\cdot{#2}}
+\newcommand{\Set}{{S}}
+\newcommand{\Identity}{{e}}
+\newcommand{\Inverse}[1]{{#1}^{-1}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -197,7 +197,7 @@
 
 \title{Axioms}
 \author{Kai Prince SFHEA}
-\date{2025-08-03}
+\date{2025-08-06}
 \begin{document}
 \maketitle
 
@@ -220,18 +220,13 @@ called the \textbf{identity element}.
 
 \end{definition}
 
-\begin{definition}[]\protect\hypertarget{def-uniqueInverse}{}\label{def-uniqueInverse}
-
-~
-
-\begin{definition}[inverse]\protect\hypertarget{def-inverse}{}\label{def-inverse}
+\begin{definition}[unique
+inverse]\protect\hypertarget{def-uniqueInverse}{}\label{def-uniqueInverse}
 
 For each \({a}\) in \(\Set\), there exists an element \({b}\) in
 \(\Set\) such that \(\Operation{a}{b}=\Identity\) and
 \(\Operation{b}{a}=\Identity\), where \(\Identity\) is the identity
 element.
-
-\end{definition}
 
 For each \({a}\), the element \({b}\) is unique and is called the
 \textbf{inverse} of \({b}\) and is denoted \(\Inverse{a}\).

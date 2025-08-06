@@ -223,7 +223,7 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-03" ] )
+          , ( "date" , MetaInlines [ Str "2025-08-06" ] )
           , ( "dependencies"
             , MetaList [ MetaInlines [ Str "axioms" ] ]
             )
@@ -416,9 +416,182 @@ Pandoc
           , Str "satisfied:"
           ]
       , BulletList
-          [ [ OrderedList ( 1 , Example , Period ) [ [ Plain [] ] ] ]
-          , [ OrderedList ( 2 , Example , Period ) [ [ Plain [] ] ] ]
-          , [ OrderedList ( 3 , Example , Period ) [ [ Plain [] ] ] ]
+          [ [ Para
+                [ Str "For"
+                , Space
+                , Str "all"
+                , Space
+                , Math InlineMath "{g},{h},{j}"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Str ","
+                , Space
+                , Str "one"
+                , Space
+                , Str "has"
+                , SoftBreak
+                , Math
+                    InlineMath
+                    "\\GroupOperation{(\\GroupOperation{g}{h})}{j}=\\GroupOperation{g}{(\\GroupOperation{h}{j})}"
+                , Str "."
+                ]
+            ]
+          , [ Para
+                [ Str "There"
+                , Space
+                , Str "exists"
+                , Space
+                , Str "an"
+                , Space
+                , Str "element"
+                , Space
+                , Math InlineMath "\\Identity"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Space
+                , Str "such"
+                , Space
+                , Str "that,"
+                , Space
+                , Str "for"
+                , Space
+                , Str "every"
+                , SoftBreak
+                , Math InlineMath "{g}"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Str ","
+                , Space
+                , Str "one"
+                , Space
+                , Str "has"
+                , Space
+                , Math InlineMath "\\GroupOperation{\\Identity}{g}={g}"
+                , Space
+                , Str "and"
+                , SoftBreak
+                , Math InlineMath "\\GroupOperation{g}{\\Identity}={g}"
+                , Str "."
+                , Space
+                , Str "Such"
+                , Space
+                , Str "an"
+                , Space
+                , Str "element"
+                , Space
+                , Str "is"
+                , Space
+                , Str "unique"
+                , Space
+                , Str "and"
+                , Space
+                , Str "is"
+                , SoftBreak
+                , Str "called"
+                , Space
+                , Str "the"
+                , Space
+                , Strong [ Str "identity" , Space , Str "element" ]
+                , Str "."
+                ]
+            ]
+          , [ Para
+                [ Str "For"
+                , Space
+                , Str "each"
+                , Space
+                , Math InlineMath "{g}"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Str ","
+                , Space
+                , Str "there"
+                , Space
+                , Str "exists"
+                , Space
+                , Str "an"
+                , Space
+                , Str "element"
+                , Space
+                , Math InlineMath "{h}"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Space
+                , Str "such"
+                , SoftBreak
+                , Str "that"
+                , Space
+                , Math InlineMath "\\GroupOperation{g}{h}=\\Identity"
+                , Space
+                , Str "and"
+                , Space
+                , Math InlineMath "\\GroupOperation{h}{g}=\\Identity"
+                , Str ","
+                , SoftBreak
+                , Str "where"
+                , Space
+                , Math InlineMath "\\Identity"
+                , Space
+                , Str "is"
+                , Space
+                , Str "the"
+                , Space
+                , Str "identity"
+                , Space
+                , Str "element."
+                ]
+            , Para
+                [ Str "For"
+                , Space
+                , Str "each"
+                , Space
+                , Math InlineMath "{g}"
+                , Str ","
+                , Space
+                , Str "the"
+                , Space
+                , Str "element"
+                , Space
+                , Math InlineMath "{h}"
+                , Space
+                , Str "is"
+                , Space
+                , Str "unique"
+                , Space
+                , Str "and"
+                , Space
+                , Str "is"
+                , Space
+                , Str "called"
+                , Space
+                , Str "the"
+                , SoftBreak
+                , Strong [ Str "inverse" ]
+                , Space
+                , Str "of"
+                , Space
+                , Math InlineMath "{h}"
+                , Space
+                , Str "and"
+                , Space
+                , Str "is"
+                , Space
+                , Str "denoted"
+                , Space
+                , Math InlineMath "\\Inverse{g}"
+                , Str "."
+                ]
+            ]
           ]
       ]
   , Header

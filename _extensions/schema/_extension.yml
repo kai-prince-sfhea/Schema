@@ -3,10 +3,10 @@ description: |
   An extension for Quarto that provides a custom HTML format with specific features.
   It includes pre-rendering and rendering capabilities, along with a custom template and theme.
 author: Kai Prince SFHEA
-version: 0.1.7
+version: 0.1.8
 quarto-required: ">=1.6.0"
 contributes:
-  project:
+  metadata:
     project:
       type: website
       pre-render:
@@ -15,12 +15,15 @@ contributes:
       post-render:
         - quarto
         - quarto-post/MathResources.lua
-    website:
       resources:
       - "*.json"
       - "*.tex"
     format: 
       schema-html: default
+  shortcodes:
+    - shortcodes/shortcodes.lua
+  filters:
+    - filters/MathRendering.lua
   formats:
     common:
       lang: en-GB

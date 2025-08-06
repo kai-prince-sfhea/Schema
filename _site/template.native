@@ -223,14 +223,7 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-03" ] )
-          , ( "embedMap"
-            , MetaList
-                [ MetaInlines [ RawInline (Format "tex") "\\Set" ]
-                , MetaInlines [ RawInline (Format "tex") "\\Operation" ]
-                , MetaInlines [ RawInline (Format "tex") "\\Identity" ]
-                ]
-            )
+          , ( "date" , MetaInlines [ Str "2025-08-06" ] )
           , ( "macros"
             , MetaList
                 [ MetaMap
@@ -275,6 +268,13 @@ Pandoc
                        ])
                 ]
             )
+          , ( "templateMap"
+            , MetaList
+                [ MetaInlines [ RawInline (Format "tex") "\\Set" ]
+                , MetaInlines [ RawInline (Format "tex") "\\Operation" ]
+                , MetaInlines [ RawInline (Format "tex") "\\Identity" ]
+                ]
+            )
           , ( "terms"
             , MetaList
                 [ MetaMap
@@ -314,7 +314,10 @@ Pandoc
   [ Header
       1 ( "introduction" , [] , [] ) [ Str "Introduction" ]
   , Div
-      ( "def-associativity" , [ "theorem" , "definition" ] , [] )
+      ( "def-associativity"
+      , [ "theorem" , "definition" ]
+      , [ ( "templateMap" , "[\\Set,\\Operation,\\Identity]" ) ]
+      )
       [ Para
           [ Span
               ( "" , [ "theorem-title" ] , [] )
@@ -351,7 +354,10 @@ Pandoc
           ]
       ]
   , Div
-      ( "def-identity" , [ "theorem" , "definition" ] , [] )
+      ( "def-identity"
+      , [ "theorem" , "definition" ]
+      , [ ( "templateMap" , "[\\Set,\\Operation,\\Identity]" ) ]
+      )
       [ Para
           [ Span
               ( "" , [ "theorem-title" ] , [] )
@@ -429,78 +435,73 @@ Pandoc
           ]
       ]
   , Div
-      ( "def-uniqueInverse" , [ "theorem" , "definition" ] , [] )
+      ( "def-uniqueInverse"
+      , [ "theorem" , "definition" ]
+      , [ ( "templateMap" , "[\\Set,\\Operation,\\Identity]" ) ]
+      )
       [ Para
           [ Span
               ( "" , [ "theorem-title" ] , [] )
-              [ Strong [ Str "Definition" , Space , Str "4" ] ]
-          , Space
-          , Str "\160"
-          ]
-      , Div
-          ( "def-inverse" , [ "theorem" , "definition" ] , [] )
-          [ Para
-              [ Span
-                  ( "" , [ "theorem-title" ] , [] )
-                  [ Strong
-                      [ Str "Definition"
-                      , Space
-                      , Str "3"
-                      , Space
-                      , Str "("
-                      , Str "inverse"
-                      , Str ")"
-                      ]
+              [ Strong
+                  [ Str "Definition"
+                  , Space
+                  , Str "3"
+                  , Space
+                  , Str "("
+                  , Str "unique"
+                  , Space
+                  , Str "inverse"
+                  , Str ")"
                   ]
-              , Space
-              , Str "For"
-              , Space
-              , Str "each"
-              , Space
-              , Math InlineMath "{#1}"
-              , Space
-              , Str "in"
-              , Space
-              , Math InlineMath "\\Set"
-              , Str ","
-              , Space
-              , Str "there"
-              , Space
-              , Str "exists"
-              , Space
-              , Str "an"
-              , Space
-              , Str "element"
-              , Space
-              , Math InlineMath "{#2}"
-              , Space
-              , Str "in"
-              , Space
-              , Math InlineMath "\\Set"
-              , Space
-              , Str "such"
-              , Space
-              , Str "that"
-              , Space
-              , Math InlineMath "\\Operation{#1}{#2}=\\Identity"
-              , Space
-              , Str "and"
-              , Space
-              , Math InlineMath "\\Operation{#2}{#1}=\\Identity"
-              , Str ","
-              , Space
-              , Str "where"
-              , Space
-              , Math InlineMath "\\Identity"
-              , Space
-              , Str "is"
-              , Space
-              , Str "the"
-              , Space
-              , Str "identity"
-              , Space
-              , Str "element."
               ]
+          , Space
+          , Str "For"
+          , Space
+          , Str "each"
+          , Space
+          , Math InlineMath "{#1}"
+          , Space
+          , Str "in"
+          , Space
+          , Math InlineMath "\\Set"
+          , Str ","
+          , Space
+          , Str "there"
+          , Space
+          , Str "exists"
+          , Space
+          , Str "an"
+          , Space
+          , Str "element"
+          , Space
+          , Math InlineMath "{#2}"
+          , Space
+          , Str "in"
+          , Space
+          , Math InlineMath "\\Set"
+          , Space
+          , Str "such"
+          , Space
+          , Str "that"
+          , Space
+          , Math InlineMath "\\Operation{#1}{#2}=\\Identity"
+          , Space
+          , Str "and"
+          , Space
+          , Math InlineMath "\\Operation{#2}{#1}=\\Identity"
+          , Str ","
+          , Space
+          , Str "where"
+          , Space
+          , Math InlineMath "\\Identity"
+          , Space
+          , Str "is"
+          , Space
+          , Str "the"
+          , Space
+          , Str "identity"
+          , Space
+          , Str "element."
           ]
       , Para
           [ Str "For"

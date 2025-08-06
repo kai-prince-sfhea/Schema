@@ -23,14 +23,12 @@ end
 local FileLinks = LinksJSON[File] or {}
 local RefTerms = FileLinks.RefTerms or {}
 
+RenderDirFile = io.open(pandoc.path.join({MathDir,"Directories.json"}),"r"):read("a")
+RenderDir = quarto.json.decode(RenderDirFile)
+
 -- Specify inclusion of required files for different formats
 if quarto.doc.is_format("html") then
     print("- HTML File detected")
-
-    RenderDirFile = io.open(pandoc.path.join({MathDir,"Directories.json"}),"r"):read("a")
-    RenderDir = quarto.json.decode(RenderDirFile)
-    RenderDir[OutputDir].RenderMathJax = true
-    io.open(pandoc.path.join({MathDir,"Directories.json"}),"w"):write(schema.pretty_json(quarto.json.encode(RenderDir)))
     
     quarto.doc.add_format_resource("../resources/mathjax-config.js")
 elseif quarto.doc.is_format("latex") then
@@ -45,22 +43,13 @@ end
 
 -- Replace dummy variables
 function Math (math)
-    local matchRegex = math.text:match '(.?#[0-9]+)'
-    if matchRegex ~= nil then
-        local output = math.text
-        repeat
-            Term = matchRegex:match '.?#([0-9]+)'
-            FirstChar = matchRegex:match '^(.?)#[0-9]+' or ""
-            if FirstChar ~= "\\" then
-                newTerm = string.char(96+tonumber(Term))
-                replacement = FirstChar .. newTerm
-                output = output:gsub(matchRegex, replacement)
-            end
-            matchRegex = output:match '(.?#[0-9]+)'
-        until matchRegex == nil
-        quarto.log.info("Math: " .. output .. "\nFinal Math: " .. output)
-        return pandoc.Math(math.mathtype, output)
+    if quarto.doc.is_format("html") and RenderDir[OutputDir].RenderMathJax == false then
+        print(" - Maths detected")
+        
+        RenderDir[OutputDir].RenderMathJax = true
+        io.open(pandoc.path.join({MathDir,"Directories.json"}),"w"):write(schema.pretty_json(quarto.json.encode(RenderDir)))
     end
+    return schema.MathVariables(math)
 end
 
 local MentionedTerms = {}

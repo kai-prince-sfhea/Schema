@@ -11,7 +11,6 @@
   ],
   "Group": "{\\Gamma}",
   "GroupElement": "{\\gamma}",
-  "GroupIdentity": "{e}",
   "GroupOperation": [
     "{#1}\\cdot{#2}",
     2

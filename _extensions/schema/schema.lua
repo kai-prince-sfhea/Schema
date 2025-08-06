@@ -1,4 +1,3 @@
-print("Schema Functions Loaded")
 local M = {}
 
 local pandoc = require("pandoc")
@@ -113,6 +112,60 @@ M.RelativePath = function(CurrentPath, TargetPath)
         RelativePath = "."
     end
     return RelativePath
+end
+
+M.MathVariables = function(math)
+    local matchRegex = math.text:match '(.?#[0-9]+)'
+    if matchRegex ~= nil then
+        local output = math.text
+        repeat
+            Term = matchRegex:match '.?#([0-9]+)'
+            FirstChar = matchRegex:match '^(.?)#[0-9]+' or ""
+            if FirstChar ~= "\\" then
+                newTerm = string.char(96+tonumber(Term))
+                replacement = FirstChar .. newTerm
+                output = output:gsub(matchRegex, replacement)
+            end
+            matchRegex = output:match '(.?#[0-9]+)'
+        until matchRegex == nil
+        quarto.log.info("Math: " .. output .. "\nFinal Math: " .. output)
+        return pandoc.Math(math.mathtype, output)
+    else
+        return math
+    end
+end
+
+M.MathReplacement = function(math, templateMap, replacementMap)
+    local output = math.text
+    local TemplateArray = {}
+    for v,k in ipairs(templateMap) do
+        if math.text:match(k) ~= nil then
+            TemplateArray[v] = k
+        end
+    end
+    for v,k in ipairs(replacementMap) do
+        if v <= #templateMap and TemplateArray[v] ~= nil then
+            output = output:gsub(TemplateArray[v], k)
+        elseif v > #templateMap then
+            variable = "#" .. tostring(v-#templateMap)
+            output = output:gsub(variable, k)
+        end
+    end
+    return M.MathVariables(pandoc.Math(math.mathtype, output))
+end
+
+M.to_json_array = function(str)
+  -- Remove brackets
+  str = str:match("^%[(.*)%]$")
+  if not str then return "[]" end
+  -- Split by comma, trim, add quotes, escape backslashes
+  local arr = {}
+  for item in str:gmatch("[^,]+") do
+    item = item:gsub("^%s*", ""):gsub("%s*$", "") -- trim
+    item = item:gsub("\\", "\\\\")                -- escape backslash
+    table.insert(arr, '"' .. item .. '"')
+  end
+  return "[" .. table.concat(arr, ",") .. "]"
 end
 
 return M
