@@ -175,10 +175,10 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
 \theoremstyle{remark}
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
@@ -193,13 +193,13 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
-\newcommand{\Group}{{\Gamma}}
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
 \newcommand{\Inverse}[1]{{#1}^{-1}}
-\newcommand{\GroupElement}{{\gamma}}
+\newcommand{\Group}{{\Gamma}}
+\newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
+\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
 \newcommand{\Density}[1][\Folner]{{d}_{#1}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\GroupElement}{{\gamma}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -275,7 +275,7 @@ This is a Theorem.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, arc=.35mm, opacitybacktitle=0.6, colbacktitle=quarto-callout-tip-color!10!white, titlerule=0mm, toprule=.15mm, left=2mm, breakable, colback=white, bottomtitle=1mm, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, bottomrule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame, opacityback=0, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, bottomrule=.15mm, opacityback=0, colback=white, arc=.35mm, breakable, bottomtitle=1mm, left=2mm, toptitle=1mm, opacitybacktitle=0.6, titlerule=0mm, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, coltitle=black]
 
 This is a test tip.
 

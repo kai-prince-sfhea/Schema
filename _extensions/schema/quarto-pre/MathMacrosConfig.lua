@@ -123,7 +123,7 @@ local function extract_math_macro(value, file)
                         tonumber(variables),
                         variablesDefaultArray
                     },
-                    LaTeX = "\\NewDocumentCommand{\\".. cmd .."}[" .. variables .. "]" .. pandoc.utils.stringify(variablesDefaultArray) .. "{" .. macro .. "}"
+                    LaTeX = "\\NewDocumentCommand{\\".. cmd .."}{" .. pandoc.utils.stringify(variablesDefaultArray) .. "}{" .. macro .. "}"
                 }
             else
                 variablesDefaultString = pandoc.utils.stringify(value.variablesDefault)
