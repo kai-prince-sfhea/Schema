@@ -90,7 +90,7 @@ local function create_url_title(inlines, url, capitalize)
         OutputInlines:insert(title_url)
         for _, inl in ipairs(cited_title) do
             outl = inl
-            if capitalize then
+            if inl.t == "Str" and capitalize then
                 outl.content = inl.content:gsub("^%l", string.upper)
             end
             OutputInlines:insert(outl)
