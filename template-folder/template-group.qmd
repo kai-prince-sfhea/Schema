@@ -26,7 +26,7 @@ A *group* is a non-empty set $\Group$ together with a binary operation on $\Grou
 
 * {{< term ref="def-associativity" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" title=true >}}
 * {{< term ref="def-identity" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" title=true >}}
-* {{< term ref="def-Inverse" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" title=true >}}
+* {{< term ref="def-inverse" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" title=true >}}
 :::
 
 # More Information

@@ -27,6 +27,26 @@ do
   FileLinks = LinksJSON[File] or {}
 end
 
+-- Load in Shortcode Title
+local function load_title(term_data, removeURLs_option)
+  local output = {
+    capitalised = "",
+    uncapitalised = ""
+  }
+  if quarto.doc.is_format("html") and removeURLs_option == false then
+    -- title is true and HTML format and removeURLs is false
+    file = term_data.urlMD:match('%[[^]]+%]%(([^)]+) "[^"]+"%)')
+    output.capitalised = term_data.urlMD:gsub(schema.escape_pattern(file), FileLinks.RelLinks[file])
+    output.uncapitalised = term_data.urlTitle:gsub(schema.escape_pattern(file), FileLinks.RelLinks[file])
+  else
+    -- title is true but no links to be included
+    output.capitalised = term_data.titleMD
+    output.uncapitalised = term_data.title
+  end
+  return output
+end
+
+-- Apply filters to the Pandoc document
 local function apply_filters(Doc, meta, templateMap, replacementMap)
   local PandocDoc = pandoc.Pandoc(Doc.blocks, meta)
   if #templateMap > 0 and #replacementMap > 0 then
@@ -45,6 +65,20 @@ local function apply_filters(Doc, meta, templateMap, replacementMap)
     })
   end
   return PandocDoc
+end
+
+-- Output the correct format for the associated context
+local function format_shortcode_output(Filtered, context)
+  if context == "block" then
+    quarto.log.debug("Returning Blocks")
+    return Filtered.blocks
+  elseif context == "inline" then
+    quarto.log.debug("Returning Inlines")
+    return pandoc.Inlines(Filtered.blocks[1])
+  else
+    quarto.log.warning("'text' context not supported for term shortcode; returning empty.")
+    return pandoc.text(Filtered.blocks[1]) or pandoc.Str("")
+  end
 end
 
 return {
@@ -96,9 +130,9 @@ return {
     if  quarto.doc.is_format("html") and removeURLs_option == false then
       -- Term is nested and HTML format
       body = term_data.HTMLMD
-      -- Correct URLs in body 
+      -- Correct URLs in body
       for file in body:gmatch('%[[^]]+%]%(([^)]+) "[^"]+"%)') do
-         body = body:gsub(file, FileLinks.RelLinks[file])
+         body = body:gsub(schema.escape_pattern(file), FileLinks.RelLinks[file])
       end
     end
 
@@ -112,29 +146,47 @@ return {
     end
 
     -- Load in Shortcode Title
-    if title_option and quarto.doc.is_format("html") then
-      -- title is true and HTML format
-      file = term_data.urlMD:match('%[[^]]+%]%(([^)]+) "[^"]+"%)')
-      Corrected_urlMD = term_data.urlMD:gsub(file, FileLinks.RelLinks[file])
-      body = "*" .. Corrected_urlMD .. ":* " .. body
-    elseif title_option and not quarto.doc.is_format("html") then
-      -- title is true and not HTML format
-      body = "*" .. term_data.titleMD .. ":* " .. body
+    if title_option == true then
+      local title = load_title(term_data, removeURLs_option).capitalised
+      body = "*" .. title .. ":* " .. body
     end
 
     -- Apply Filters to body
     local PandocDoc = pandoc.read(body, "markdown")
     local Filtered = apply_filters(PandocDoc, meta, templateMap, replacementMap)
 
-    if context == "block" then
-      quarto.log.debug("Returning Blocks for term " .. term)
-      return Filtered.blocks
-    elseif context == "inline" then
-      quarto.log.debug("Returning Inlines for term " .. term)
-      return pandoc.Inlines(Filtered.blocks[1])
-    else
-      quarto.log.warning("'text' context not supported for term shortcode; returning empty.")
-      return pandoc.text(Filtered.blocks[1]) or pandoc.Str("")
+    return format_shortcode_output(Filtered, context)
+  end,
+  
+  ["term-title"] = function(args, kwargs, meta, raw_args, context)
+    -- kwargs:
+      -- ref: "[term]",
+      -- removeURLs: true|false
+    -- context: [block|inline|text]
+
+  -- Check that ref is included as mandatory
+    if not kwargs["ref"] then
+      quarto.log.warning("Error: 'ref' argument is required for term shortcode.")
+      return pandoc.Null()
     end
+    quarto.log.info("Processing term shortcode with ref: " .. pandoc.utils.stringify(kwargs["ref"]))
+    quarto.log.info("Context: " .. tostring(context or ""))
+
+    -- Load in Term, Term Data and Template Map
+    local term = "@" .. pandoc.utils.stringify(kwargs["ref"])
+    local term_data = TermsJSON[term]
+
+    -- Initialising Options
+    local removeURLs_option = kwargs["removeURLs"] == "true" or kwargs["RemoveURLs"] == "true"
+    quarto.log.info("Remove URLs Option: " .. tostring(removeURLs_option))
+
+    -- Load in Shortcode Title
+    local title = load_title(term_data, removeURLs_option).uncapitalised
+
+    -- Apply Filters to body
+    local PandocDoc = pandoc.read(title, "markdown")
+    local Filtered = apply_filters(PandocDoc, meta, {}, {})
+
+    return format_shortcode_output(Filtered, context)
   end
 }

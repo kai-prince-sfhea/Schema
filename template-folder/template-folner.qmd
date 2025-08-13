@@ -29,6 +29,7 @@ date: last-modified
 Recall the definition of a group:
 
 ::: {#def-group-recall}
+## {{< term-title ref="def-group" removeURLs=true >}}
 
 {{< term ref="def-group" block=true >}}
 :::

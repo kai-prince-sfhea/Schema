@@ -26,6 +26,15 @@ local FileLinks = LinksJSON[File] or {}
 local RefTerms = FileLinks.RefTerms or {}
 local RefMath = FileLinks.RefMath or {}
 
+-- Load MathJSON, Math Dependencies and Math Sorted Keys
+local MathSortedKeys = {}
+MathFile = io.open(pandoc.path.join({MathDir, "Math.json"}), "r")
+if MathFile ~= nil then
+    content = pandoc.json.decode(MathFile:read("a"))
+    MathSortedKeys = content.sortedKeys
+    MathFile:close()
+end
+
 do
     local fh = io.open(pandoc.path.join({MathDir,"Directories.json"}),"r")
     local data = fh and fh:read("a") or "{}"
@@ -174,8 +183,25 @@ function Pandoc(doc)
                 return (LinksJSON[path] and LinksJSON[path].Title)
                     or (path:gsub("\\", "/"):match("([^/]+)$") or path)
             end
+            -- Order pages by dependency order from LinksJSON.sorted_keys, then append any remaining (by title)
             local items = {}
+            local sorted_keys = (LinksJSON and LinksJSON.sorted_keys) or {}
+            local added = {}
+            for _, src in ipairs(sorted_keys) do
+                if page_set[src] then
+                    local url = schema.RelativePath(File, src)
+                    local title = title_for(src)
+                    table.insert(items, pandoc.Plain({ pandoc.Link(pandoc.Inlines{ pandoc.Str(title) }, url) }))
+                    added[src] = true
+                end
+            end
+            -- Add any pages not present in sorted_keys in a deterministic order (by title)
+            local remaining = {}
             for src, _ in pairs(page_set) do
+                if not added[src] then table.insert(remaining, src) end
+            end
+            table.sort(remaining, function(a, b) return title_for(a) < title_for(b) end)
+            for _, src in ipairs(remaining) do
                 local url = schema.RelativePath(File, src)
                 local title = title_for(src)
                 table.insert(items, pandoc.Plain({ pandoc.Link(pandoc.Inlines{ pandoc.Str(title) }, url) }))
@@ -229,8 +255,24 @@ function Pandoc(doc)
                 return (LinksJSON[path] and LinksJSON[path].Title)
                     or (path:gsub("\\", "/"):match("([^/]+)$") or path)
             end
+            -- Order pages by dependency order from LinksJSON.sorted_keys, then append any remaining (by title)
             local items = {}
+            local sorted_keys = (LinksJSON and LinksJSON.sorted_keys) or {}
+            local added = {}
+            for _, f in ipairs(sorted_keys) do
+                if page_set[f] then
+                    local url = schema.RelativePath(File, f)
+                    local title = title_for(f)
+                    table.insert(items, pandoc.Plain({ pandoc.Link(pandoc.Inlines{ pandoc.Str(title) }, url) }))
+                    added[f] = true
+                end
+            end
+            local remaining = {}
             for f, _ in pairs(page_set) do
+                if not added[f] then table.insert(remaining, f) end
+            end
+            table.sort(remaining, function(a, b) return title_for(a) < title_for(b) end)
+            for _, f in ipairs(remaining) do
                 local url = schema.RelativePath(File, f)
                 local title = title_for(f)
                 table.insert(items, pandoc.Plain({ pandoc.Link(pandoc.Inlines{ pandoc.Str(title) }, url) }))
@@ -254,7 +296,7 @@ function Pandoc(doc)
         if enable_ton then
             -- Determine if there are notation rows (from Links.json for this file)
             local notations = FileLinks.FileNotation or {}
-            if notations and #notations > 0 then
+            if next(notations) ~= nil then
                 print(" - External notation detected")
                 -- Build a markdown table for portability across Pandoc versions
                 local function esc_pipe(s)
@@ -265,17 +307,19 @@ function Pandoc(doc)
                 local md = ""
                 md = md .. "| Term | Description |\n"
                 md = md .. "| --- | --- |\n"
-                for _, row in ipairs(notations) do
-                    local term = (row.LaTeX..string.rep("{}", row.mandatoryVars)) or ""
-                    local desc = esc_pipe(row.description or "")
-                    print("  - Processing "..term.." with description: "..desc)
-                    local src = row.Source or ""
-                    if src ~= "" then
-                        local url = schema.RelativePath(File, src:gsub("#.*$", ""))
-                        if src:match("#") then url = url .. src:match("#.*$") end
-                        desc = desc .. " ([Source]("..url.."))"
+                for _, key in ipairs(MathSortedKeys) do
+                    if notations["\\" .. key] then
+                        local row = notations["\\" .. key]
+                        local term = (row.LaTeX..string.rep("{}", row.mandatoryVars)) or ""
+                        local desc = esc_pipe(row.description or "")
+                        local src = row.Source or ""
+                        if src ~= "" then
+                            local url = schema.RelativePath(File, src:gsub("#.*$", ""))
+                            if src:match("#") then url = url .. src:match("#.*$") end
+                            desc = desc .. " ([Source]("..url.."))"
+                        end
+                        md = md .. string.format("| %s | %s |\n", esc_pipe(term), desc)
                     end
-                    md = md .. string.format("| %s | %s |\n", esc_pipe(term), desc)
                 end
                 local tdoc = pandoc.read(md, "markdown")
 

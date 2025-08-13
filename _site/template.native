@@ -223,7 +223,7 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-08" ] )
+          , ( "date" , MetaInlines [ Str "2025-08-13" ] )
           , ( "macros"
             , MetaList
                 [ MetaMap
@@ -458,7 +458,7 @@ Pandoc
           ]
       ]
   , Div
-      ( "def-Inverse"
+      ( "def-inverse"
       , [ "theorem" , "definition" ]
       , [ ( "templateMap" , "[\\Set,\\Operation,\\Identity]" ) ]
       )

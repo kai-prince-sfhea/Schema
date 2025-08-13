@@ -44,7 +44,7 @@ For all ${#1},{#2},{#3}$ in $\Set$, one has $\Operation{(\Operation{#1}{#2})}{#3
 There exists an element $\Identity$ in $\Set$ such that, for every ${#1}$ in $\Set$, one has $\Operation{\Identity}{#1}={#1}$ and $\Operation{#1}{\Identity}={#1}$. Such an element is unique and is called the *identity element*.
 :::
 
-:::: {#def-Inverse templateMap="[\\Set,\\Operation,\\Identity]"}
+:::: {#def-inverse templateMap="[\\Set,\\Operation,\\Identity]"}
 ## unique inverse
 For each ${#1}$ in $\Set$, there exists an element ${#2}$ in $\Set$ such that $\Operation{#1}{#2}=\Identity$ and $\Operation{#2}{#1}=\Identity$, where $\Identity$ is the identity element.
 

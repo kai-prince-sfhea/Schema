@@ -325,7 +325,16 @@ Pandoc
       [ Para
           [ Span
               ( "" , [ "theorem-title" ] , [] )
-              [ Strong [ Str "Definition" , Space , Str "1" ] ]
+              [ Strong
+                  [ Str "Definition"
+                  , Space
+                  , Str "1"
+                  , Space
+                  , Str "("
+                  , Str "Group"
+                  , Str ")"
+                  ]
+              ]
           , Space
           , Str "A"
           , Space

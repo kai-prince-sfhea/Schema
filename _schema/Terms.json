@@ -18,26 +18,9 @@
     "sourceArgs": "",
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-Folner",
+    "termRef": "Følner",
     "translation": false,
     "type": "def"
-  },
-  "@def-Inverse": {
-    "HTMLMD": "For each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.",
-    "blockMD": "For each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.",
-    "blockType": "Div",
-    "divMD": "::: {#def-Inverse templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"}\n## unique inverse\n\nFor each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.\n:::",
-    "sourceArgs": "templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"",
-    "sourceFile": "template.qmd",
-    "sourceRef": "def-Inverse",
-    "templateMap": [
-      "\\Set",
-      "\\Operation",
-      "\\Identity"
-    ],
-    "titleMD": "Unique Inverse",
-    "translation": false,
-    "type": "def",
-    "urlMD": "[Unique Inverse](template.qmd \"Link to source page\")"
   },
   "@def-associativity": {
     "HTMLMD": "For all ${#1},{#2},{#3}$ in $\\Set$, one has $\\Operation{(\\Operation{#1}{#2})}{#3}=\\Operation{#1}{(\\Operation{#2}{#3})}$.",
@@ -52,10 +35,13 @@
       "\\Operation",
       "\\Identity"
     ],
+    "termRef": "associativity",
+    "title": "associativity",
     "titleMD": "Associativity",
     "translation": false,
     "type": "def",
-    "urlMD": "[Associativity](template.qmd \"Link to source page\")"
+    "urlMD": "[Associativity](template.qmd \"Link to source page\")",
+    "urlTitle": "[associativity](template.qmd \"Link to source page\")"
   },
   "@def-group": {
     "HTMLMD": "A *group* is a non-empty set $\\Group$ together with a binary operation on $\\Group$, denoted \"$\\GroupOperation{}{}$\", that combines any two elements $\\GroupElement$ and $\\GroupElement'$ of $\\Group$ to form an element of $\\Group$, denoted $\\GroupOperation{\\GroupElement}{\\GroupElement'}$, such that the following three requirements, known as *group axioms*, are satisfied:\n\n-   *[Associativity](template.qmd \"Link to source page\"):* For all ${g},{h},{j}$ in $\\Group$, one has $\\GroupOperation{(\\GroupOperation{g}{h})}{j}=\\GroupOperation{g}{(\\GroupOperation{h}{j})}$.\n-   *[Identity](template.qmd \"Link to source page\"):* There exists an element $\\Identity$ in $\\Group$ such that, for every ${g}$ in $\\Group$, one has $\\GroupOperation{\\Identity}{g}={g}$ and $\\GroupOperation{g}{\\Identity}={g}$. Such an element is unique and is called the *identity element*.\n-   *[Unique Inverse](template.qmd \"Link to source page\"):* For each ${g}$ in $\\Group$, there exists an element ${h}$ in $\\Group$ such that $\\GroupOperation{g}{h}=\\Identity$ and $\\GroupOperation{h}{g}=\\Identity$, where $\\Identity$ is the identity element. For each ${g}$, the element ${h}$ is unique and is called the *inverse* of ${h}$ and is denoted $\\Inverse{g}$.",
@@ -65,21 +51,28 @@
     "sourceArgs": "",
     "sourceFile": "template-folder\\template-group.qmd",
     "sourceRef": "def-group",
+    "termRef": "group",
+    "title": "Group",
     "titleMD": "Group",
     "translation": false,
     "type": "def",
-    "urlMD": "[Group](template-folder\\template-group.qmd \"Link to source page\")"
+    "urlMD": "[Group](template-folder\\template-group.qmd \"Link to source page\")",
+    "urlTitle": "[Group](template-folder\\template-group.qmd \"Link to source page\")"
   },
   "@def-group-recall": {
     "HTMLMD": "{{< term ref=\"def-group\" block=true >}}",
     "blockMD": "{{< term ref=\"def-group\" block=true >}}",
     "blockType": "Div",
-    "divMD": "::: {#def-group-recall}\n{{< term ref=\"def-group\" block=true >}}\n:::",
+    "divMD": "::: {#def-group-recall}\n## {{< term-title ref=\"def-group\" removeURLs=true >}}\n\n{{< term ref=\"def-group\" block=true >}}\n:::",
     "sourceArgs": "",
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-group-recall",
+    "title": "{{< term-title ref= \"def-group\" removeURLs=true >}}",
+    "titleMD": "{{< Term-Title Ref= \"Def-Group\" RemoveURLs=True >}}",
     "translation": false,
-    "type": "def"
+    "type": "def",
+    "urlMD": "[{{< Term-title Ref=\"def-group\" RemoveURLs=true >}}](template-folder\\template-folner.qmd \"Link to source page\")",
+    "urlTitle": "[{{< term-title ref=\"def-group\" removeURLs=true >}}](template-folder\\template-folner.qmd \"Link to source page\")"
   },
   "@def-identity": {
     "HTMLMD": "There exists an element $\\Identity$ in $\\Set$ such that, for every ${#1}$ in $\\Set$, one has $\\Operation{\\Identity}{#1}={#1}$ and $\\Operation{#1}{\\Identity}={#1}$. Such an element is unique and is called the *identity element*.",
@@ -94,10 +87,34 @@
       "\\Operation",
       "\\Identity"
     ],
+    "termRef": "identity",
+    "title": "identity",
     "titleMD": "Identity",
     "translation": false,
     "type": "def",
-    "urlMD": "[Identity](template.qmd \"Link to source page\")"
+    "urlMD": "[Identity](template.qmd \"Link to source page\")",
+    "urlTitle": "[identity](template.qmd \"Link to source page\")"
+  },
+  "@def-inverse": {
+    "HTMLMD": "For each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.",
+    "blockMD": "For each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.",
+    "blockType": "Div",
+    "divMD": "::: {#def-inverse templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"}\n## unique inverse\n\nFor each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.\n:::",
+    "sourceArgs": "templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"",
+    "sourceFile": "template.qmd",
+    "sourceRef": "def-inverse",
+    "templateMap": [
+      "\\Set",
+      "\\Operation",
+      "\\Identity"
+    ],
+    "termRef": "inverse",
+    "title": "unique inverse",
+    "titleMD": "Unique Inverse",
+    "translation": false,
+    "type": "def",
+    "urlMD": "[Unique Inverse](template.qmd \"Link to source page\")",
+    "urlTitle": "[unique inverse](template.qmd \"Link to source page\")"
   },
   "@def-leftFolner": {
     "HTMLMD": "Similarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$for all $\\GroupElement\\in\\Group$.",
@@ -107,6 +124,7 @@
     "sourceArgs": "",
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-leftFolner",
+    "termRef": "Følner",
     "translation": false,
     "type": "def"
   },
@@ -118,6 +136,7 @@
     "sourceArgs": "",
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-rightFolner",
+    "termRef": "Følner",
     "translation": false,
     "type": "def"
   },
@@ -129,12 +148,17 @@
     "sourceArgs": "",
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "thm-Test",
+    "title": "The Test Theorem",
     "titleMD": "The Test Theorem",
     "translation": false,
     "type": "thm",
-    "urlMD": "[The Test Theorem](template-folder\\template-folner.qmd \"Link to source page\")"
+    "urlMD": "[The Test Theorem](template-folder\\template-folner.qmd \"Link to source page\")",
+    "urlTitle": "[The Test Theorem](template-folder\\template-folner.qmd \"Link to source page\")"
   },
   "Følner": {
+    "relatedCommands": {
+      "\\Folner": true
+    },
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-Folner",
     "translation": false,
@@ -142,6 +166,9 @@
   },
   "Natural number": {
     "regex": "[Nn]atural numbers?",
+    "relatedCommands": {
+      "\\N": true
+    },
     "sourceFile": "template.qmd",
     "type": "term"
   },
@@ -232,6 +259,12 @@
   },
   "group": {
     "regex": "[Gg]roup",
+    "relatedCommands": {
+      "\\Group": true,
+      "\\GroupElement": true,
+      "\\GroupIdentity": true,
+      "\\GroupOperation": true
+    },
     "sourceFile": "template-folder\\template-group.qmd",
     "sourceRef": "def-group",
     "type": "term"
@@ -251,12 +284,14 @@
   "left-Følner": {
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-leftFolner",
+    "termRef": "Følner",
     "translation": false,
     "type": "term"
   },
   "right-Følner": {
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-rightFolner",
+    "termRef": "Følner",
     "translation": false,
     "type": "term"
   }

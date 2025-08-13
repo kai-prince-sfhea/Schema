@@ -22,19 +22,16 @@ if DocFile ~= nil then
     DocFile:close()
 end
 
--- Load MathDependencies JSON
-local MathDepJSON = {}
-MathDepFile = io.open(pandoc.path.join({MathDir, "MathDependencies.json"}), "r")
-if MathDepFile ~= nil then
-    MathDepJSON = pandoc.json.decode(MathDepFile:read("a"))
-    MathDepFile:close()
-end
-
--- Load MathJSON
+-- Load MathJSON, Math Dependencies and Math Sorted Keys
 local MathJSON = {}
+local MathDep = {}
+local MathSortedKeys = {}
 MathFile = io.open(pandoc.path.join({MathDir, "Math.json"}), "r")
 if MathFile ~= nil then
-    MathJSON = pandoc.json.decode(MathFile:read("a"))
+    content = pandoc.json.decode(MathFile:read("a"))
+    MathJSON = content.MathJSON
+    MathDep = content.dependencyGraph
+    MathSortedKeys = content.sortedKeys
     MathFile:close()
 end
 
@@ -79,9 +76,10 @@ local function process_shortcode(shortcode, path)
             templateMap = pandoc.json.decode(schema.to_json_array(templateArgs):gsub("\\\\", "\\"))
         end
         local shortcode_body = ""
-        local subpath = path
-        if path["@" .. ref] then
+        local subpath = path or {}
+        if subpath["@" .. ref] then
             PathStr = schema.pretty_json(pandoc.json.encode(path))
+            print("Warning: Recursive term reference detected for " .. ref .. " in path:\n" .. PathStr)
             return ""
         else
             subpath["@" .. ref] = true
@@ -92,7 +90,7 @@ local function process_shortcode(shortcode, path)
                 uniqueShortcodes[shortcode] = true
             end
             for shortcode, _ in pairs(uniqueShortcodes) do
-                shortcode_body = process_shortcode(shortcode, subpath)
+                shortcode_body, _ = process_shortcode(shortcode, subpath)
                 TermsJSON[term].HTMLMD = TermsJSON[term].HTMLMD:gsub(schema.escape_pattern(shortcode), shortcode_body)
                 clean_body = shortcode_body:gsub('%[([^]]+)%]%([^)]+ "[^"]+"%)', '%1')
                 TermsJSON[term].divMD = TermsJSON[term].divMD:gsub(schema.escape_pattern(shortcode), clean_body)
@@ -108,9 +106,9 @@ local function process_shortcode(shortcode, path)
         if #templateMap > 0 and TermsJSON[term].templateMap then
             shortcode_body = schema.MathReplacementMD(shortcode_body, TermsJSON[term].templateMap, templateMap)
         end
-        return shortcode_body
+        return shortcode_body, term
     else
-        return ""
+        return "", ""
     end
 end
 
@@ -118,6 +116,7 @@ end
 local function embed_content(body)
     local contents = body
     local uniqueShortcodes = {}
+    local terms = {}
 
     for shortcode, shortcode_code in body:gmatch('({{<%s*(%a+)%s+ref="[^"]+"%s+[^>]*>}})') do
         uniqueShortcodes[shortcode] = shortcode_code
@@ -125,19 +124,35 @@ local function embed_content(body)
 
     for shortcode, shortcode_code in pairs(uniqueShortcodes) do
         if shortcode_code == "term" then
-            shortcode_body = process_shortcode(shortcode, {})
+            shortcode_body, term_visited= process_shortcode(shortcode, {})
+            terms[term_visited] = true
             contents = contents:gsub(schema.escape_pattern(shortcode), shortcode_body)
         end
     end
+
+    local definedCommands = {}
+
+    for key, _ in pairs(terms) do
+        term_data = TermsJSON[key]
+        if term_data.termRef then
+            original_key = term_data.termRef
+            original_data = TermsJSON[original_key]
+            if original_data.relatedCommands then
+                for cmd, value in ipairs(original_data.relatedCommands) do
+                    definedCommands[cmd] = value
+                end
+            end
+        end
+    end
     
-    return contents
+    return contents, terms, definedCommands
 end
 
-FileDep = {}
+dependencyGraph = {}
 for k, v in pairs(DocJSON) do
     print("-Processing file: " .. k)
     Terms = {}
-    FileDep[k] = {}
+    dependencyGraph[k] = {}
     FileLinks = {}
     RelLinks = {}
     FileNotation = {}
@@ -146,10 +161,12 @@ for k, v in pairs(DocJSON) do
     RefMath = {}
     local CurrentTitle = (DocJSON[k] and DocJSON[k].title) or ""
 
-    FileContents = embed_content(v.contents)
+    FileContents, term_visited, FileNotationSet = embed_content(v.contents)
 
-    local LowerFileContents = string.lower(FileContents)
-    -- Precompute reference tokens like @term-id once per file (letters, digits, underscore, hyphen)
+    for term, _ in pairs(term_visited) do
+        Terms[term] = true
+    end
+
     local RefTokenSet = {}
     for match in FileContents:gmatch("(@[%w%-_]+)") do
         RefTokenSet[match] = true
@@ -163,21 +180,15 @@ for k, v in pairs(DocJSON) do
     end
 
     for term, termData in pairs(TermsJSON) do
-        local lowerTerm = string.lower(term)
-        local standardMatch = LowerFileContents:find(lowerTerm, 1, true)
+        local standardMatch = FileContents:find(term, 1, true)
         local referenceMatch = false
         if not standardMatch and term:match("@") then
             referenceMatch = RefTokenSet[term] or false
         end
         -- Regex detection for non-math terms (if provided)
         local regexMatch = false
-        if not standardMatch and not referenceMatch and termData.type == "term" and termData.regex then
+        if not standardMatch and not referenceMatch and termData.regex then
             local pattern = termData.regex
-            -- Lua pattern compatibility (basic): convert PCRE-like classes minimally
-            pattern = pattern:gsub("%[([^%]]+)%]", function(cls)
-                -- keep as is; Lua patterns support classes like [abc] directly
-                return "["..cls.."]"
-            end)
             -- Escape backslashes appropriately in Lua string matcher: pattern is already a Lua string here
             local ok, res = pcall(function() return FileContents:match(pattern) end)
             regexMatch = ok and (res ~= nil)
@@ -190,7 +201,7 @@ for k, v in pairs(DocJSON) do
             if termData.type == "math" then
                 cmd = term:match("^\\(.+)$")
                 DirJSON[pandoc.path.directory(k)].MathJax[cmd] = MathJSON[cmd].MathJax
-                for _, dep in ipairs(MathDepJSON.graph[cmd]) do
+                for _, dep in ipairs(MathDep[cmd]) do
                     Terms["\\" .. dep] = true
                 end
             end
@@ -199,8 +210,10 @@ for k, v in pairs(DocJSON) do
             File = termData.sourceFile
             if File ~= k then
                 Source = File
-                table.insert(FileDep[k], File)
-                FileLinks[File] = {}
+                if FileLinks[File] == nil then
+                    table.insert(dependencyGraph[k], File)
+                    FileLinks[File] = {}
+                end
 
                 -- Check if term is a math command
                 if termData.type == "math" then
@@ -220,14 +233,12 @@ for k, v in pairs(DocJSON) do
                 -- Compute relative link to source file
                 RelativePath = schema.RelativePath(k, File)
                 RelLinks[File] = RelativePath
-
-                -- notation rows for external terms now handled globally below
             end
         end
     end
 
     local FileLaTeX = "\n"
-    for _, term in ipairs(MathDepJSON.sorted_keys) do
+    for _, term in ipairs(MathSortedKeys) do
         local LaTeXcmd = "\\" .. term
         if Terms[LaTeXcmd] then
             FileLaTeX = FileLaTeX .. MathJSON[term].LaTeX .. "\n"
@@ -240,13 +251,13 @@ for k, v in pairs(DocJSON) do
             local src = termData.sourceFile or ""
             local srcWithRef = src
             if termData.sourceRef then srcWithRef = srcWithRef .. "#" .. termData.sourceRef end
-            table.insert(FileNotation, {
+            FileNotation[term] = {
                 LaTeX = "$"..term.."$",
                 description = termData.description,
                 Source = srcWithRef,
                 mandatoryVars = termData.mandatoryVars,
                 optionalVars = termData.optionalVars
-            })
+            }
             FileNotationSet[term] = true
         end
     end
@@ -261,6 +272,9 @@ for k, v in pairs(DocJSON) do
         Title = CurrentTitle
     }
 end
+
+LinkJSON["dependency_Graph"] = dependencyGraph
+LinkJSON["sorted_keys"] = schema.topo_sort(dependencyGraph)
 
 -- Save LinksJSON Output to File
 LinksJSONEncoding = schema.pretty_json(pandoc.json.encode(LinkJSON))

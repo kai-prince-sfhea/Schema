@@ -1,76 +1,127 @@
 {
-  "Density": {
-    "LaTeX": "\\newcommand{\\Density}[1][\\Folner]{{d}_{#1}}",
-    "MathJax": [
-      "{d}_{#1}",
-      1,
-      "\\Folner"
+  "MathJSON": {
+    "Density": {
+      "LaTeX": "\\newcommand{\\Density}[1][\\Folner]{{d}_{#1}}",
+      "MathJax": [
+        "{d}_{#1}",
+        1,
+        "\\Folner"
+      ],
+      "Source": "template-folder\\template-folner.qmd"
+    },
+    "Folner": {
+      "LaTeX": "\\newcommand{\\Folner}[1][\\vphantom{}]{{\\Phi}_{#1}}",
+      "MathJax": [
+        "{\\Phi}_{#1}",
+        1,
+        "\\vphantom{}"
+      ],
+      "Source": "template-folder\\template-folner.qmd"
+    },
+    "Group": {
+      "LaTeX": "\\newcommand{\\Group}{{\\Gamma}}",
+      "MathJax": "{\\Gamma}",
+      "Source": "template-folder\\template-group.qmd"
+    },
+    "GroupElement": {
+      "LaTeX": "\\newcommand{\\GroupElement}{{\\gamma}}",
+      "MathJax": "{\\gamma}",
+      "Source": "template-folder\\template-group.qmd"
+    },
+    "GroupIdentity": {
+      "LaTeX": "\\newcommand{\\GroupIdentity}{{e}}",
+      "MathJax": "{e}",
+      "Notation": "The identity of the group \\Group.",
+      "Source": "template-folder\\template-group.qmd"
+    },
+    "GroupOperation": {
+      "LaTeX": "\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}",
+      "MathJax": [
+        "{#1}\\cdot{#2}",
+        2
+      ],
+      "Source": "template-folder\\template-group.qmd"
+    },
+    "Identity": {
+      "LaTeX": "\\newcommand{\\Identity}{{e}}",
+      "MathJax": "{e}",
+      "Source": "template.qmd"
+    },
+    "Inverse": {
+      "LaTeX": "\\newcommand{\\Inverse}[1]{{#1}^{-1}}",
+      "MathJax": [
+        "{#1}^{-1}",
+        1
+      ],
+      "Source": "template.qmd"
+    },
+    "N": {
+      "LaTeX": "\\newcommand{\\N}{\\mathbb{N}}",
+      "MathJax": "\\mathbb{N}",
+      "Notation": "The Natural Numbers: 1, 2, 3, ...",
+      "Source": "template.qmd"
+    },
+    "Operation": {
+      "LaTeX": "\\newcommand{\\Operation}[2]{{#1}\\cdot{#2}}",
+      "MathJax": [
+        "{#1}\\cdot{#2}",
+        2
+      ],
+      "Source": "template.qmd"
+    },
+    "Set": {
+      "LaTeX": "\\newcommand{\\Set}{{S}}",
+      "MathJax": "{S}",
+      "Source": "template.qmd"
+    }
+  },
+  "dependencyGraph": {
+    "Density": [
+      "Density",
+      "Folner"
     ],
-    "Source": "template-folder\\template-folner.qmd"
-  },
-  "Folner": {
-    "LaTeX": "\\newcommand{\\Folner}[1][\\vphantom{}]{{\\Phi}_{#1}}",
-    "MathJax": [
-      "{\\Phi}_{#1}",
-      1,
-      "\\vphantom{}"
+    "Folner": [
+      "Folner"
     ],
-    "Source": "template-folder\\template-folner.qmd"
-  },
-  "Group": {
-    "LaTeX": "\\newcommand{\\Group}{{\\Gamma}}",
-    "MathJax": "{\\Gamma}",
-    "Source": "template-folder\\template-group.qmd"
-  },
-  "GroupElement": {
-    "LaTeX": "\\newcommand{\\GroupElement}{{\\gamma}}",
-    "MathJax": "{\\gamma}",
-    "Source": "template-folder\\template-group.qmd"
-  },
-  "GroupIdentity": {
-    "LaTeX": "\\newcommand{\\GroupIdentity}{{e}}",
-    "MathJax": "{e}",
-    "Notation": "The identity of the group \\Group.",
-    "Source": "template-folder\\template-group.qmd"
-  },
-  "GroupOperation": {
-    "LaTeX": "\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}",
-    "MathJax": [
-      "{#1}\\cdot{#2}",
-      2
+    "Group": [
+      "Group"
     ],
-    "Source": "template-folder\\template-group.qmd"
-  },
-  "Identity": {
-    "LaTeX": "\\newcommand{\\Identity}{{e}}",
-    "MathJax": "{e}",
-    "Source": "template.qmd"
-  },
-  "Inverse": {
-    "LaTeX": "\\newcommand{\\Inverse}[1]{{#1}^{-1}}",
-    "MathJax": [
-      "{#1}^{-1}",
-      1
+    "GroupElement": [
+      "GroupElement"
     ],
-    "Source": "template.qmd"
-  },
-  "N": {
-    "LaTeX": "\\newcommand{\\N}{\\mathbb{N}}",
-    "MathJax": "\\mathbb{N}",
-    "Notation": "The Natural Numbers: 1, 2, 3, ...",
-    "Source": "template.qmd"
-  },
-  "Operation": {
-    "LaTeX": "\\newcommand{\\Operation}[2]{{#1}\\cdot{#2}}",
-    "MathJax": [
-      "{#1}\\cdot{#2}",
-      2
+    "GroupIdentity": [
+      "GroupIdentity"
     ],
-    "Source": "template.qmd"
+    "GroupOperation": [
+      "GroupOperation"
+    ],
+    "Identity": [
+      "Identity"
+    ],
+    "Inverse": [
+      "Inverse"
+    ],
+    "N": [
+      "N"
+    ],
+    "Operation": [
+      "Operation"
+    ],
+    "Set": [
+      "Set"
+    ]
   },
-  "Set": {
-    "LaTeX": "\\newcommand{\\Set}{{S}}",
-    "MathJax": "{S}",
-    "Source": "template.qmd"
-  }
+  "sortedKeys": [
+    "Folner",
+    "Density",
+    "GroupElement",
+    "Operation",
+    "Inverse",
+    "Identity",
+    "GroupOperation",
+    "Group",
+    "N",
+    "Set",
+    "GroupIdentity"
+  ]
 }
