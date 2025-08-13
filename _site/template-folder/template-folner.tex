@@ -175,10 +175,10 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
 \theoremstyle{remark}
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
@@ -193,13 +193,14 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
-\newcommand{\Inverse}[1]{{#1}^{-1}}
+\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
 \newcommand{\Group}{{\Gamma}}
 \newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\Density}[1][\Folner]{{d}_{#1}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\GroupElement}{{\gamma}}
+\newcommand{\Density}[1][\Folner]{{d}_{#1}}
+\newcommand{\Identity}{{e}}
+\newcommand{\Inverse}[1]{{#1}^{-1}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -218,12 +219,47 @@
 
 \title{Følner sequence}
 \author{Kai Prince SFHEA}
-\date{2025-08-03}
+\date{2025-08-13}
 \begin{document}
 \maketitle
 
 
 \section{Introduction}\label{introduction}
+
+Recall the definition of a group:
+
+\begin{definition}[]\protect\hypertarget{def-group-recall}{}\label{def-group-recall}
+
+A \emph{group} is a non-empty set \(\Group\) together with a binary
+operation on \(\Group\), denoted ``\(\GroupOperation{}{}\)'', that
+combines any two elements \(\GroupElement\) and \(\GroupElement'\) of
+\(\Group\) to form an element of \(\Group\), denoted
+\(\GroupOperation{\GroupElement}{\GroupElement'}\), such that the
+following three requirements, known as \emph{group axioms}, are
+satisfied:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Associativity:} For all \({g},{h},{j}\) in \(\Group\), one has
+  \(\GroupOperation{(\GroupOperation{g}{h})}{j}=\GroupOperation{g}{(\GroupOperation{h}{j})}\).
+\item
+  \emph{Identity:} There exists an element \(\Identity\) in \(\Group\)
+  such that, for every \({g}\) in \(\Group\), one has
+  \(\GroupOperation{\Identity}{g}={g}\) and
+  \(\GroupOperation{g}{\Identity}={g}\). Such an element is unique and
+  is called the \emph{identity element}.
+\item
+  \emph{Unique Inverse:} For each \({g}\) in \(\Group\), there exists an
+  element \({h}\) in \(\Group\) such that
+  \(\GroupOperation{g}{h}=\Identity\) and
+  \(\GroupOperation{h}{g}=\Identity\), where \(\Identity\) is the
+  identity element. For each \({g}\), the element \({h}\) is unique and
+  is called the \emph{inverse} of \({h}\) and is denoted
+  \(\Inverse{g}\).
+\end{itemize}
+
+\end{definition}
 
 \begin{definition}[]\protect\hypertarget{def-rightFolner}{}\label{def-rightFolner}
 
@@ -275,7 +311,7 @@ This is a Theorem.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, bottomrule=.15mm, opacityback=0, colback=white, arc=.35mm, breakable, bottomtitle=1mm, left=2mm, toptitle=1mm, opacitybacktitle=0.6, titlerule=0mm, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, breakable, colbacktitle=quarto-callout-tip-color!10!white, titlerule=0mm, opacityback=0, colframe=quarto-callout-tip-color-frame, coltitle=black, bottomtitle=1mm, opacitybacktitle=0.6, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, arc=.35mm, toprule=.15mm, left=2mm, colback=white]
 
 This is a test tip.
 

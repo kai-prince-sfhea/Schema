@@ -3,7 +3,7 @@ description: |
   An extension for Quarto that provides a custom HTML format with specific features.
   It includes pre-rendering and rendering capabilities, along with a custom template and theme.
 author: Kai Prince SFHEA
-version: 0.1.8
+version: 0.1.9
 quarto-required: ">=1.6.0"
 contributes:
   metadata:
@@ -29,13 +29,20 @@ contributes:
       lang: en-GB
       filters:
         - filters/MathRendering.lua
+        - quarto
       number-sections: true
       crossref:
         ref-hyperlink: true
     html:
       template: templates/schema.html
       filters:
+        - quarto
         - sun123zxy/callouty-theorem
+      theme:
+        light: [flatly, custom.scss]
+        dark: [darkly, custom.scss]
+      respect-user-color-scheme: true
+      ton: true
     latex: default
     pdf:
       documentclass: article

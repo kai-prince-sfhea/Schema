@@ -2,6 +2,11 @@ local M = {}
 
 local pandoc = require("pandoc")
 
+-- Escape Pattern Function (found on Reddit)
+M.escape_pattern = function(str)
+    return str:gsub('([%^%$%(%)%%%.%[%]%*%+%-%q?])', '%%%1')
+end
+
 -- Pretty Print JSON
 M.pretty_json = function(json_str)
     indent = "  "
@@ -80,37 +85,36 @@ M.topo_sort = function(graph)
 end
 
 M.RelativePath = function(CurrentPath, TargetPath)
-    local CurrentVector = pandoc.path.split(pandoc.path.directory(CurrentPath))
+    -- Function to create a relative path from CurrentPath to TargetPath assuming they're both relative to the Project Root
+    local CurrentVector = pandoc.path.split(CurrentPath)
     local TargetVector = pandoc.path.split(TargetPath)
+    SharedRootIndex = 0
     local RelativeVector = {}
-    CurrentRootIndex = 0
-    TargetRootIndex = 0
-    RootVector = {}
     for i = 1, #CurrentVector do
         for j = 1, #TargetVector do
             if CurrentVector[i] == TargetVector[j] then
-                if i > CurrentRootIndex then
-                    CurrentRootIndex = i
-                end
-                if j > TargetRootIndex then
-                    TargetRootIndex = j
+                if i > SharedRootIndex then
+                    SharedRootIndex = i
                 end
             else
                 break
             end
         end
     end
-    UpIndex = #CurrentVector - CurrentRootIndex
-    for i = 1, UpIndex do
-        table.insert(RelativeVector, "..")
+    UpIndex = #CurrentVector - SharedRootIndex - 1
+    if UpIndex > 0 then
+        for i = 1, UpIndex do
+            table.insert(RelativeVector, "..")
+        end
     end
-    for i = TargetRootIndex + 1, #TargetVector do
+    for i = SharedRootIndex + 1, #TargetVector do
         table.insert(RelativeVector, TargetVector[i])
     end
     RelativePath = pandoc.path.join(RelativeVector)
     if RelativePath == "" then
         RelativePath = "."
     end
+    RelativePath = RelativePath:gsub("%.qmd$", ".html")
     return RelativePath
 end
 
@@ -154,18 +158,116 @@ M.MathReplacement = function(math, templateMap, replacementMap)
     return M.MathVariables(pandoc.Math(math.mathtype, output))
 end
 
+M.MathReplacementMD = function(md, templateMap, replacementMap)
+    local output = md
+    local TemplateArray = {}
+    for v,k in ipairs(templateMap) do
+        if md:match(k) ~= nil then
+            TemplateArray[v] = k
+        end
+    end
+    for v,k in ipairs(replacementMap) do
+        if v <= #templateMap and TemplateArray[v] ~= nil then
+            output = output:gsub(TemplateArray[v], k)
+        elseif v > #templateMap then
+            variable = "#" .. tostring(v-#templateMap)
+            output = output:gsub(variable, k)
+        end
+    end
+    return output
+end
+
 M.to_json_array = function(str)
-  -- Remove brackets
-  str = str:match("^%[(.*)%]$")
-  if not str then return "[]" end
-  -- Split by comma, trim, add quotes, escape backslashes
-  local arr = {}
-  for item in str:gmatch("[^,]+") do
-    item = item:gsub("^%s*", ""):gsub("%s*$", "") -- trim
-    item = item:gsub("\\", "\\\\")                -- escape backslash
-    table.insert(arr, '"' .. item .. '"')
-  end
-  return "[" .. table.concat(arr, ",") .. "]"
+    -- Remove brackets
+    body = str:match("^%[(.*)%]$")
+
+    if body then
+        -- Split by comma, trim, add quotes, escape backslashes
+        local arr = {}
+        for item in body:gmatch("[^,]+") do
+            item = item:gsub("^%s*", ""):gsub("%s*$", "") -- trim
+            item = item:gsub("\\", "\\\\")                -- escape backslash
+            table.insert(arr, '"' .. item .. '"')
+        end
+        return "[" .. table.concat(arr, ",") .. "]"
+    else
+        body = str:match("^\\%[(.*)\\%]$")
+        if body then
+            -- Split by comma, trim, add quotes, escape backslashes
+            local arr = {}
+            for item in body:gmatch("[^,]+") do
+                item = item:gsub("^%s*", ""):gsub("%s*$", "") -- trim
+                table.insert(arr, '"' .. item .. '"')
+            end
+            return "[" .. table.concat(arr, ",") .. "]"
+        else
+            return "[]"
+        end
+    end
+end
+
+M.LoadDiv = function(Div)
+    local doc = pandoc.Pandoc(pandoc.Blocks({}))
+    if Div.t and Div.t == "Div" then
+        -- If Div is already a Div, we can use it directly
+        doc = pandoc.Pandoc({Div}, doc.meta)
+    else
+        doc = pandoc.read(Div, "markdown")
+    end
+
+    -- Define DivContent and Div_blocks
+    local DivContent = doc.blocks[1]
+    local Div_blocks = DivContent.content
+
+    -- Initialise output table
+    local output = {
+        pandoc = doc,
+        Div = DivContent,
+        block = Div_blocks,
+        identifier = DivContent.identifier,
+        classes = DivContent.classes,
+        attributes = DivContent.attributes
+    }
+
+    -- Remove Header and create Inlines
+    if Div_blocks[1].t == "Header" then
+      i = 2
+      output.title = Div_blocks[1].content
+      output.block:remove(1)
+    end
+
+    -- Be defensive: attributes table may be absent
+    if DivContent.attributes.templateMap then
+        FormattedString = M.to_json_array(DivContent.attributes.templateMap)
+        if quarto and quarto.json then
+            output.templateMap = quarto.json.decode(FormattedString)
+        else
+            output.templateMap = pandoc.json.decode(FormattedString)
+        end
+    end
+    return output
+end
+
+-- Convert inline to markdown
+M.convert_md = function(inlines, metadata)
+    local md = pandoc.write(pandoc.Pandoc(inlines, metadata), "markdown", pandoc.WriterOptions({
+        wrap_text = "wrap-none"
+    }))
+    local replacementArray = {
+        ["\\<"] = "<",
+        ["\\>"] = ">",
+        ["\\%["] = "[",
+        ["\\%]"] = "]",
+        ["\\%("] = "(",
+        ["\\%)"] = ")",
+        ["\\{"] = "{",
+        ["\\}"] = "}",
+        ["\\$"] = "$"
+    }
+    for k, v in pairs(replacementArray) do
+        md = md:gsub(k, v)
+    end
+    return md:match("^%s*([^%s].*[^%s])%s*$")
 end
 
 return M

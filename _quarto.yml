@@ -19,6 +19,10 @@ format:
       ref-hyperlink: true
   native: default
 
+schema:
+  backlinks: true
+  outlinks: true
+
 callouty-theorem:
   thm:
     override-title: false

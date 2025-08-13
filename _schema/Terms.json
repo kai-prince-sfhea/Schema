@@ -1,0 +1,263 @@
+{
+  "@def-Density": {
+    "HTMLMD": "We call define *density of a subset $A\\subseteq\\Group$ with respect to a Følner sequence, $\\Folner$,* as $$\\Density(A)=\\lim_{N\\rightarrow\\infty}\\frac{|\\Folner[N]\\cap A|}{|\\Folner[N]|},$$ if it exists.",
+    "blockMD": "We call define *density of a subset $A\\subseteq\\Group$ with respect to a Følner sequence, $\\Folner$,* as $$\\Density(A)=\\lim_{N\\rightarrow\\infty}\\frac{|\\Folner[N]\\cap A|}{|\\Folner[N]|},$$ if it exists.",
+    "blockType": "Div",
+    "divMD": "::: {#def-Density}\nWe call define *density of a subset $A\\subseteq\\Group$ with respect to a Følner sequence, $\\Folner$,* as $$\\Density(A)=\\lim_{N\\rightarrow\\infty}\\frac{|\\Folner[N]\\cap A|}{|\\Folner[N]|},$$ if it exists.\n:::",
+    "sourceArgs": "",
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "def-Density",
+    "translation": false,
+    "type": "def"
+  },
+  "@def-Folner": {
+    "HTMLMD": "We call a sequence a *Følner sequence* if it is both a left and right Følner sequence.",
+    "blockMD": "We call a sequence a *Følner sequence* if it is both a left and right Følner sequence.",
+    "blockType": "Div",
+    "divMD": "::: {#def-Folner}\nWe call a sequence a *Følner sequence* if it is both a left and right Følner sequence.\n:::",
+    "sourceArgs": "",
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "def-Folner",
+    "translation": false,
+    "type": "def"
+  },
+  "@def-Inverse": {
+    "HTMLMD": "For each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.",
+    "blockMD": "For each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.",
+    "blockType": "Div",
+    "divMD": "::: {#def-Inverse templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"}\n## unique inverse\n\nFor each ${#1}$ in $\\Set$, there exists an element ${#2}$ in $\\Set$ such that $\\Operation{#1}{#2}=\\Identity$ and $\\Operation{#2}{#1}=\\Identity$, where $\\Identity$ is the identity element.\n\nFor each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\\Inverse{#1}$.\n:::",
+    "sourceArgs": "templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"",
+    "sourceFile": "template.qmd",
+    "sourceRef": "def-Inverse",
+    "templateMap": [
+      "\\Set",
+      "\\Operation",
+      "\\Identity"
+    ],
+    "titleMD": "Unique Inverse",
+    "translation": false,
+    "type": "def",
+    "urlMD": "[Unique Inverse](template.qmd \"Link to source page\")"
+  },
+  "@def-associativity": {
+    "HTMLMD": "For all ${#1},{#2},{#3}$ in $\\Set$, one has $\\Operation{(\\Operation{#1}{#2})}{#3}=\\Operation{#1}{(\\Operation{#2}{#3})}$.",
+    "blockMD": "For all ${#1},{#2},{#3}$ in $\\Set$, one has $\\Operation{(\\Operation{#1}{#2})}{#3}=\\Operation{#1}{(\\Operation{#2}{#3})}$.",
+    "blockType": "Div",
+    "divMD": "::: {#def-associativity templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"}\n## associativity\n\nFor all ${#1},{#2},{#3}$ in $\\Set$, one has $\\Operation{(\\Operation{#1}{#2})}{#3}=\\Operation{#1}{(\\Operation{#2}{#3})}$.\n:::",
+    "sourceArgs": "templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"",
+    "sourceFile": "template.qmd",
+    "sourceRef": "def-associativity",
+    "templateMap": [
+      "\\Set",
+      "\\Operation",
+      "\\Identity"
+    ],
+    "titleMD": "Associativity",
+    "translation": false,
+    "type": "def",
+    "urlMD": "[Associativity](template.qmd \"Link to source page\")"
+  },
+  "@def-group": {
+    "HTMLMD": "A *group* is a non-empty set $\\Group$ together with a binary operation on $\\Group$, denoted \"$\\GroupOperation{}{}$\", that combines any two elements $\\GroupElement$ and $\\GroupElement'$ of $\\Group$ to form an element of $\\Group$, denoted $\\GroupOperation{\\GroupElement}{\\GroupElement'}$, such that the following three requirements, known as *group axioms*, are satisfied:\n\n-   *[Associativity](template.qmd \"Link to source page\"):* For all ${g},{h},{j}$ in $\\Group$, one has $\\GroupOperation{(\\GroupOperation{g}{h})}{j}=\\GroupOperation{g}{(\\GroupOperation{h}{j})}$.\n-   *[Identity](template.qmd \"Link to source page\"):* There exists an element $\\Identity$ in $\\Group$ such that, for every ${g}$ in $\\Group$, one has $\\GroupOperation{\\Identity}{g}={g}$ and $\\GroupOperation{g}{\\Identity}={g}$. Such an element is unique and is called the *identity element*.\n-   *[Unique Inverse](template.qmd \"Link to source page\"):* For each ${g}$ in $\\Group$, there exists an element ${h}$ in $\\Group$ such that $\\GroupOperation{g}{h}=\\Identity$ and $\\GroupOperation{h}{g}=\\Identity$, where $\\Identity$ is the identity element. For each ${g}$, the element ${h}$ is unique and is called the *inverse* of ${h}$ and is denoted $\\Inverse{g}$.",
+    "blockMD": "A *group* is a non-empty set $\\Group$ together with a binary operation on $\\Group$, denoted \"$\\GroupOperation{}{}$\", that combines any two elements $\\GroupElement$ and $\\GroupElement'$ of $\\Group$ to form an element of $\\Group$, denoted $\\GroupOperation{\\GroupElement}{\\GroupElement'}$, such that the following three requirements, known as *group axioms*, are satisfied:\n\n-   *Associativity:* For all ${g},{h},{j}$ in $\\Group$, one has $\\GroupOperation{(\\GroupOperation{g}{h})}{j}=\\GroupOperation{g}{(\\GroupOperation{h}{j})}$.\n-   *Identity:* There exists an element $\\Identity$ in $\\Group$ such that, for every ${g}$ in $\\Group$, one has $\\GroupOperation{\\Identity}{g}={g}$ and $\\GroupOperation{g}{\\Identity}={g}$. Such an element is unique and is called the *identity element*.\n-   *Unique Inverse:* For each ${g}$ in $\\Group$, there exists an element ${h}$ in $\\Group$ such that $\\GroupOperation{g}{h}=\\Identity$ and $\\GroupOperation{h}{g}=\\Identity$, where $\\Identity$ is the identity element. For each ${g}$, the element ${h}$ is unique and is called the *inverse* of ${h}$ and is denoted $\\Inverse{g}$.",
+    "blockType": "Div",
+    "divMD": "::: {#def-group}\n## Group\n\nA *group* is a non-empty set $\\Group$ together with a binary operation on $\\Group$, denoted \"$\\GroupOperation{}{}$\", that combines any two elements $\\GroupElement$ and $\\GroupElement'$ of $\\Group$ to form an element of $\\Group$, denoted $\\GroupOperation{\\GroupElement}{\\GroupElement'}$, such that the following three requirements, known as *group axioms*, are satisfied:\n\n-   *Associativity:* For all ${g},{h},{j}$ in $\\Group$, one has $\\GroupOperation{(\\GroupOperation{g}{h})}{j}=\\GroupOperation{g}{(\\GroupOperation{h}{j})}$.\n-   *Identity:* There exists an element $\\Identity$ in $\\Group$ such that, for every ${g}$ in $\\Group$, one has $\\GroupOperation{\\Identity}{g}={g}$ and $\\GroupOperation{g}{\\Identity}={g}$. Such an element is unique and is called the *identity element*.\n-   *Unique Inverse:* For each ${g}$ in $\\Group$, there exists an element ${h}$ in $\\Group$ such that $\\GroupOperation{g}{h}=\\Identity$ and $\\GroupOperation{h}{g}=\\Identity$, where $\\Identity$ is the identity element. For each ${g}$, the element ${h}$ is unique and is called the *inverse* of ${h}$ and is denoted $\\Inverse{g}$.\n:::",
+    "sourceArgs": "",
+    "sourceFile": "template-folder\\template-group.qmd",
+    "sourceRef": "def-group",
+    "titleMD": "Group",
+    "translation": false,
+    "type": "def",
+    "urlMD": "[Group](template-folder\\template-group.qmd \"Link to source page\")"
+  },
+  "@def-group-recall": {
+    "HTMLMD": "{{< term ref=\"def-group\" block=true >}}",
+    "blockMD": "{{< term ref=\"def-group\" block=true >}}",
+    "blockType": "Div",
+    "divMD": "::: {#def-group-recall}\n{{< term ref=\"def-group\" block=true >}}\n:::",
+    "sourceArgs": "",
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "def-group-recall",
+    "translation": false,
+    "type": "def"
+  },
+  "@def-identity": {
+    "HTMLMD": "There exists an element $\\Identity$ in $\\Set$ such that, for every ${#1}$ in $\\Set$, one has $\\Operation{\\Identity}{#1}={#1}$ and $\\Operation{#1}{\\Identity}={#1}$. Such an element is unique and is called the *identity element*.",
+    "blockMD": "There exists an element $\\Identity$ in $\\Set$ such that, for every ${#1}$ in $\\Set$, one has $\\Operation{\\Identity}{#1}={#1}$ and $\\Operation{#1}{\\Identity}={#1}$. Such an element is unique and is called the *identity element*.",
+    "blockType": "Div",
+    "divMD": "::: {#def-identity templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"}\n## identity\n\nThere exists an element $\\Identity$ in $\\Set$ such that, for every ${#1}$ in $\\Set$, one has $\\Operation{\\Identity}{#1}={#1}$ and $\\Operation{#1}{\\Identity}={#1}$. Such an element is unique and is called the *identity element*.\n:::",
+    "sourceArgs": "templateMap=\"[\\\\Set,\\\\Operation,\\\\Identity]\"",
+    "sourceFile": "template.qmd",
+    "sourceRef": "def-identity",
+    "templateMap": [
+      "\\Set",
+      "\\Operation",
+      "\\Identity"
+    ],
+    "titleMD": "Identity",
+    "translation": false,
+    "type": "def",
+    "urlMD": "[Identity](template.qmd \"Link to source page\")"
+  },
+  "@def-leftFolner": {
+    "HTMLMD": "Similarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$for all $\\GroupElement\\in\\Group$.",
+    "blockMD": "Similarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$for all $\\GroupElement\\in\\Group$.",
+    "blockType": "Div",
+    "divMD": "::: {#def-leftFolner}\nSimilarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$for all $\\GroupElement\\in\\Group$.\n:::",
+    "sourceArgs": "",
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "def-leftFolner",
+    "translation": false,
+    "type": "def"
+  },
+  "@def-rightFolner": {
+    "HTMLMD": "We define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$for all $\\GroupElement\\in\\Group$.",
+    "blockMD": "We define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$for all $\\GroupElement\\in\\Group$.",
+    "blockType": "Div",
+    "divMD": "::: {#def-rightFolner}\nWe define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$for all $\\GroupElement\\in\\Group$.\n:::",
+    "sourceArgs": "",
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "def-rightFolner",
+    "translation": false,
+    "type": "def"
+  },
+  "@thm-Test": {
+    "HTMLMD": "This is a Theorem.",
+    "blockMD": "This is a Theorem.",
+    "blockType": "Div",
+    "divMD": "::: {#thm-Test}\n## The Test Theorem\n\nThis is a Theorem.\n:::",
+    "sourceArgs": "",
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "thm-Test",
+    "titleMD": "The Test Theorem",
+    "translation": false,
+    "type": "thm",
+    "urlMD": "[The Test Theorem](template-folder\\template-folner.qmd \"Link to source page\")"
+  },
+  "Følner": {
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "def-Folner",
+    "translation": false,
+    "type": "term"
+  },
+  "Natural number": {
+    "regex": "[Nn]atural numbers?",
+    "sourceFile": "template.qmd",
+    "type": "term"
+  },
+  "\\Density": {
+    "mandatoryVars": 0,
+    "optionalVars": 1,
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\Folner": {
+    "mandatoryVars": 0,
+    "optionalVars": 1,
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\Group": {
+    "mandatoryVars": 0,
+    "optionalVars": 0,
+    "sourceFile": "template-folder\\template-group.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\GroupElement": {
+    "mandatoryVars": 0,
+    "optionalVars": 0,
+    "sourceFile": "template-folder\\template-group.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\GroupIdentity": {
+    "description": "The identity of the group \\Group.",
+    "mandatoryVars": 0,
+    "optionalVars": 0,
+    "sourceFile": "template-folder\\template-group.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\GroupOperation": {
+    "mandatoryVars": 2,
+    "optionalVars": 0,
+    "sourceFile": "template-folder\\template-group.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\Identity": {
+    "mandatoryVars": 0,
+    "optionalVars": 0,
+    "sourceFile": "template.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\Inverse": {
+    "mandatoryVars": 1,
+    "optionalVars": 0,
+    "sourceFile": "template.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\N": {
+    "description": "The Natural Numbers: 1, 2, 3, ...",
+    "mandatoryVars": 0,
+    "optionalVars": 0,
+    "sourceFile": "template.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\Operation": {
+    "mandatoryVars": 2,
+    "optionalVars": 0,
+    "sourceFile": "template.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "\\Set": {
+    "mandatoryVars": 0,
+    "optionalVars": 0,
+    "sourceFile": "template.qmd",
+    "translation": false,
+    "type": "math"
+  },
+  "associativity": {
+    "regex": "[Aa]ssociativ[ei]t?y?",
+    "sourceFile": "template.qmd",
+    "sourceRef": "def-associativity",
+    "type": "term"
+  },
+  "group": {
+    "regex": "[Gg]roup",
+    "sourceFile": "template-folder\\template-group.qmd",
+    "sourceRef": "def-group",
+    "type": "term"
+  },
+  "identity": {
+    "regex": "[Ii]dentit[yi]e?s?",
+    "sourceFile": "template.qmd",
+    "sourceRef": "def-identity",
+    "type": "term"
+  },
+  "inverse": {
+    "regex": "[Ii]nverses?",
+    "sourceFile": "template.qmd",
+    "sourceRef": "def-inverse",
+    "type": "term"
+  },
+  "left-Følner": {
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "def-leftFolner",
+    "translation": false,
+    "type": "term"
+  },
+  "right-Følner": {
+    "sourceFile": "template-folder\\template-folner.qmd",
+    "sourceRef": "def-rightFolner",
+    "translation": false,
+    "type": "term"
+  }
+}

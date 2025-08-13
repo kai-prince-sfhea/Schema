@@ -223,26 +223,10 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-06" ] )
+          , ( "date" , MetaInlines [ Str "2025-08-08" ] )
           , ( "macros"
             , MetaList
                 [ MetaMap
-                    (fromList
-                       [ ( "command" , MetaInlines [ Str "N" ] )
-                       , ( "description"
-                         , MetaInlines
-                             [ Str "The"
-                             , Space
-                             , Str "Natural"
-                             , Space
-                             , Str "Numbers:"
-                             , Space
-                             , Math InlineMath "1, 2, 3, ..."
-                             ]
-                         )
-                       , ( "macro" , MetaInlines [ Str "\\mathbb{N}" ] )
-                       ])
-                , MetaMap
                     (fromList
                        [ ( "command" , MetaInlines [ Str "Inverse" ] )
                        , ( "macro" , MetaInlines [ Str "{#1}^{-1}" ] )
@@ -268,43 +252,82 @@ Pandoc
                        ])
                 ]
             )
-          , ( "templateMap"
-            , MetaList
-                [ MetaInlines [ RawInline (Format "tex") "\\Set" ]
-                , MetaInlines [ RawInline (Format "tex") "\\Operation" ]
-                , MetaInlines [ RawInline (Format "tex") "\\Identity" ]
-                ]
+          , ( "schema"
+            , MetaMap
+                (fromList
+                   [ ( "backlinks" , MetaBool True )
+                   , ( "outlinks" , MetaBool True )
+                   ])
             )
           , ( "terms"
             , MetaList
                 [ MetaMap
                     (fromList
-                       [ ( "alias"
-                         , MetaInlines [ Str "associativity" ]
+                       [ ( "associatedMacros"
+                         , MetaList
+                             [ MetaMap
+                                 (fromList
+                                    [ ( "command"
+                                      , MetaInlines [ Str "N" ]
+                                      )
+                                    , ( "description"
+                                      , MetaInlines
+                                          [ Str "The"
+                                          , Space
+                                          , Str "Natural"
+                                          , Space
+                                          , Str "Numbers:"
+                                          , Space
+                                          , Math
+                                              InlineMath "1, 2, 3, ..."
+                                          ]
+                                      )
+                                    , ( "macro"
+                                      , MetaInlines
+                                          [ Str "\\mathbb{N}" ]
+                                      )
+                                    ])
+                             ]
                          )
-                       , ( "id"
+                       , ( "regex"
+                         , MetaInlines
+                             [ Str "[Nn]atural"
+                             , Space
+                             , Str "numbers?"
+                             ]
+                         )
+                       , ( "term"
+                         , MetaInlines
+                             [ Str "Natural" , Space , Str "number" ]
+                         )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "id"
                          , MetaInlines [ Str "def-associativity" ]
                          )
-                       ])
-                , MetaMap
-                    (fromList
-                       [ ( "alias" , MetaInlines [ Str "identity" ] )
-                       , ( "id" , MetaInlines [ Str "def-identity" ] )
-                       ])
-                , MetaMap
-                    (fromList
-                       [ ( "alias" , MetaInlines [ Str "inverse" ] )
-                       , ( "id" , MetaInlines [ Str "def-inverse" ] )
-                       ])
-                , MetaMap
-                    (fromList
-                       [ ( "alias"
-                         , MetaInlines
-                             [ Str "unique" , Space , Str "inverse" ]
+                       , ( "regex"
+                         , MetaInlines [ Str "[Aa]ssociativ[ei]t?y?" ]
                          )
-                       , ( "id"
-                         , MetaInlines [ Str "def-uniqueInverse" ]
+                       , ( "term"
+                         , MetaInlines [ Str "associativity" ]
                          )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "id" , MetaInlines [ Str "def-identity" ] )
+                       , ( "regex"
+                         , MetaInlines [ Str "[Ii]dentit[yi]e?s?" ]
+                         )
+                       , ( "term" , MetaInlines [ Str "identity" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "id" , MetaInlines [ Str "def-inverse" ] )
+                       , ( "regex"
+                         , MetaInlines [ Str "[Ii]nverses?" ]
+                         )
+                       , ( "term" , MetaInlines [ Str "inverse" ] )
                        ])
                 ]
             )
@@ -430,12 +453,12 @@ Pandoc
           , Space
           , Str "the"
           , Space
-          , Strong [ Str "identity" , Space , Str "element" ]
+          , Emph [ Str "identity" , Space , Str "element" ]
           , Str "."
           ]
       ]
   , Div
-      ( "def-uniqueInverse"
+      ( "def-Inverse"
       , [ "theorem" , "definition" ]
       , [ ( "templateMap" , "[\\Set,\\Operation,\\Identity]" ) ]
       )
@@ -529,7 +552,7 @@ Pandoc
           , Space
           , Str "the"
           , Space
-          , Strong [ Str "inverse" ]
+          , Emph [ Str "inverse" ]
           , Space
           , Str "of"
           , Space

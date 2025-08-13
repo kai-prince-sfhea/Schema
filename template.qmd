@@ -1,18 +1,22 @@
 ---
 title: Axioms
 terms:
-  - alias: associativity
+  - term: Natural number
+    regex: "[Nn]atural numbers?"
+    associatedMacros:
+    - command: "N"
+      description: "The Natural Numbers: $1, 2, 3, ...$"
+      macro: '\\mathbb{N}'
+  - term: associativity
+    regex: "[Aa]ssociativ[ei]t?y?"
     id: def-associativity
-  - alias: identity
+  - term: identity
+    regex: "[Ii]dentit[yi]e?s?"
     id: def-identity
-  - alias: inverse
+  - term: inverse
+    regex: "[Ii]nverses?"
     id: def-inverse
-  - alias: unique inverse
-    id: def-uniqueInverse
 macros:
-  - command: "N"
-    description: "The Natural Numbers: $1, 2, 3, ...$"
-    macro: '\\mathbb{N}'
   - command: Inverse
     macro: '{#1}^{-1}'
     variables: 1
@@ -23,7 +27,6 @@ macros:
     variables: 2
   - command: Identity
     macro: '{e}'
-templateMap: [\Set,\Operation,\Identity]
 author: Kai Prince SFHEA
 date: last-modified
 ---
@@ -38,14 +41,14 @@ For all ${#1},{#2},{#3}$ in $\Set$, one has $\Operation{(\Operation{#1}{#2})}{#3
 
 ::: {#def-identity templateMap="[\\Set,\\Operation,\\Identity]"}
 ## identity
-There exists an element $\Identity$ in $\Set$ such that, for every ${#1}$ in $\Set$, one has $\Operation{\Identity}{#1}={#1}$ and $\Operation{#1}{\Identity}={#1}$. Such an element is unique and is called the **identity element**.
+There exists an element $\Identity$ in $\Set$ such that, for every ${#1}$ in $\Set$, one has $\Operation{\Identity}{#1}={#1}$ and $\Operation{#1}{\Identity}={#1}$. Such an element is unique and is called the *identity element*.
 :::
 
-:::: {#def-uniqueInverse templateMap="[\\Set,\\Operation,\\Identity]"}
+:::: {#def-Inverse templateMap="[\\Set,\\Operation,\\Identity]"}
 ## unique inverse
 For each ${#1}$ in $\Set$, there exists an element ${#2}$ in $\Set$ such that $\Operation{#1}{#2}=\Identity$ and $\Operation{#2}{#1}=\Identity$, where $\Identity$ is the identity element.
 
-For each ${#1}$, the element ${#2}$ is unique and is called the **inverse** of ${#2}$ and is denoted $\Inverse{#1}$.
+For each ${#1}$, the element ${#2}$ is unique and is called the *inverse* of ${#2}$ and is denoted $\Inverse{#1}$.
 ::::
 
 Test @def-associativity

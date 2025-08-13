@@ -1,24 +1,20 @@
 ---
 title: Group
 terms:
-  - alias: group
+  - term: group
+    regex: "[Gg]roup"
     id: def-group
-macros:
-  - command: Group
-    macro: '{\\Gamma}'
-  - command: GroupOperation
-    macro: '{#1}\\cdot{#2}'
-    variables: 2
-  - command: GroupIdentity
-    macro: '{e}'
-    description: "The identity of the group $\\Group$."
-  - command: GroupElement
-    macro: '{\\gamma}'
-environments:
-  - name: GroupOperation
-    before: 
-dependencies:
-  - axioms
+    associatedMacros:
+    - command: Group
+      macro: '{\\Gamma}'
+    - command: GroupOperation
+      macro: '{#1}\\cdot{#2}'
+      variables: 2
+    - command: GroupIdentity
+      macro: '{e}'
+      description: "The identity of the group $\\Group$."
+    - command: GroupElement
+      macro: '{\\gamma}'
 author: Kai Prince SFHEA
 date: last-modified
 ---
@@ -26,11 +22,11 @@ date: last-modified
 # Introduction
 ::: {#def-group}
 ## Group
-A group is a non-empty set $\Group$ together with a binary operation on $\Group$, denoted "$\GroupOperation{}{}$", that combines any two elements $\GroupElement$ and $\GroupElement'$ of $\Group$ to form an element of $\Group$, denoted $\GroupOperation{\GroupElement}{\GroupElement'}$, such that the following three requirements, known as **group axioms**, are satisfied:
+A *group* is a non-empty set $\Group$ together with a binary operation on $\Group$, denoted "$\GroupOperation{}{}$", that combines any two elements $\GroupElement$ and $\GroupElement'$ of $\Group$ to form an element of $\Group$, denoted $\GroupOperation{\GroupElement}{\GroupElement'}$, such that the following three requirements, known as *group axioms*, are satisfied:
 
-* {{< term ref="def-associativity" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" >}}
-* {{< term ref="def-identity" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" >}}
-* {{< term ref="def-uniqueInverse" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" >}}
+* {{< term ref="def-associativity" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" title=true >}}
+* {{< term ref="def-identity" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" title=true >}}
+* {{< term ref="def-Inverse" templateMap="[\\Group,\\GroupOperation,\\Identity,g,h,j]" title=true >}}
 :::
 
 # More Information

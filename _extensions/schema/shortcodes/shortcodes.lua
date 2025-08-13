@@ -1,53 +1,140 @@
 -- Load required libraries
 local schema = require("../schema")
 
--- Load LaTeX and MathJax File Directory
+-- Directories
 local InputDir = os.getenv("QUARTO_PROJECT_ROOT") or error("QUARTO_PROJECT_ROOT not set")
-local MathDir = pandoc.path.join({InputDir, "_maths"})
-local File = pandoc.path.make_relative(quarto.doc.input_file,InputDir)
-local OutputDir = pandoc.path.directory(File)
+local MathDir = pandoc.path.join({InputDir, "_schema"})
+local File = pandoc.path.make_relative(quarto.doc.input_file, InputDir)
 
--- Read Resources
+-- Read data
 local TermsJSON = {}
-TermsFile = io.open(pandoc.path.join({MathDir, "Terms.json"}), "r")
-if TermsFile ~= nil then
-    TermsJSON = pandoc.json.decode(TermsFile:read("a"))
+do
+  local fh = io.open(pandoc.path.join({MathDir, "Terms.json"}), "r")
+  if fh then
+    TermsJSON = pandoc.json.decode(fh:read("a"))
+    fh:close()
+  end
 end
 
-function getTermBody(term, replacementMap)
-    local entry = TermsJSON[term]
-    if entry.blockBody ~= nil then
-        local doc = pandoc.read(entry.blockBody)
-        local blocks = doc.blocks:walk({
-            Math = function(math)
-                if entry.sourceArgs ~= "" then
-                    templateArgs = entry.sourceArgs:match("templateMap=\"(%[[^\"]+%])\""):gsub("\\\\", "\\") 
-                    templateMap = quarto.json.decode(schema.to_json_array(templateArgs))
-                    return schema.MathReplacement(math, templateMap, replacementMap)
-                else
-                    return schema.MathVariables(math)
-                end
-            end
-        })
-        return blocks
-    else
-        return nil
-    end
+-- Links (for inline fallbacks / URLs)
+local LinksJSON, FileLinks = {}, {}
+do
+  local fh = io.open(pandoc.path.join({MathDir, "Links.json"}), "r")
+  if fh then
+    LinksJSON = pandoc.json.decode(fh:read("a"))
+    fh:close()
+  end
+  FileLinks = LinksJSON[File] or {}
+end
+
+local function apply_filters(Doc, meta, templateMap, replacementMap)
+  local PandocDoc = pandoc.Pandoc(Doc.blocks, meta)
+  if #templateMap > 0 and #replacementMap > 0 then
+    quarto.log.debug("Applying templateMap and replacementMap to PandocDoc")
+    PandocDoc = PandocDoc:walk({
+      Math = function(math)
+        return schema.MathReplacement(math, templateMap, replacementMap)
+      end
+    })
+  else
+    quarto.log.debug("No templateMap or replacementMap provided; skipping replacement.")
+    PandocDoc = PandocDoc:walk({
+      Math = function(math)
+        return schema.MathVariables(math)
+      end
+    })
+  end
+  return PandocDoc
 end
 
 return {
-  ["term"] = function(args, kwargs) 
+  ["term"] = function(args, kwargs, meta, raw_args, context)
+    -- kwargs:
+      -- ref: "[term]", 
+      -- title: true|false,
+      -- block: true|false,
+      -- templateMap: "[...]"
+      -- removeURLs: true|false
+    -- context: [block|inline|text]
+
+  -- Check that ref is included as mandatory
     if not kwargs["ref"] then
-        print("Error: 'ref' argument is required for term shortcode.")
-        return pandoc.Null()
+      quarto.log.warning("Error: 'ref' argument is required for term shortcode.")
+      return pandoc.Null()
     end
-    local term = "@"..pandoc.utils.stringify(kwargs["ref"])
-    local replacementMap = quarto.json.decode(schema.to_json_array(kwargs["templateMap"])) or {}
-    local body = getTermBody(term, replacementMap)
-    if body ~= nil and type(body) == "table" then
-        return body
+    quarto.log.info("Processing term shortcode with ref: " .. pandoc.utils.stringify(kwargs["ref"]))
+    quarto.log.info("Context: " .. tostring(context or ""))
+
+    -- Construct Replacement Map
+    local replacementMap = {}
+    if #kwargs["templateMap"] > 0 then
+      replacementMap = quarto.json.decode(schema.to_json_array(kwargs["templateMap"]))
+    end
+
+    -- Load in Term, Term Data and Template Map
+    local term = "@" .. pandoc.utils.stringify(kwargs["ref"])
+    local term_data = TermsJSON[term]
+    local templateMap = {}
+    if term_data.templateMap then
+      templateMap = term_data.templateMap
+    end
+
+    quarto.log.debug("Template Map:\n" .. schema.pretty_json(quarto.json.encode(templateMap)))
+    quarto.log.debug("Replacement Map:\n" .. schema.pretty_json(quarto.json.encode(replacementMap)))
+
+    -- Initialising Options
+    local title_option = kwargs["title"] == "true" or kwargs["Title"] == "true"
+    local block_option = kwargs["block"] == "true" or kwargs["Block"] == "true"
+    local removeURLs_option = kwargs["removeURLs"] == "true" or kwargs["RemoveURLs"] == "true"
+
+    quarto.log.info("Title Option: " .. tostring(title_option))
+    quarto.log.info("Block Option: " .. tostring(block_option))
+    quarto.log.info("Remove URLs Option: " .. tostring(removeURLs_option))
+
+    -- Load in Shortcode Body
+    local body = term_data.blockMD
+    if  quarto.doc.is_format("html") and removeURLs_option == false then
+      -- Term is nested and HTML format
+      body = term_data.HTMLMD
+      -- Correct URLs in body 
+      for file in body:gmatch('%[[^]]+%]%(([^)]+) "[^"]+"%)') do
+         body = body:gsub(file, FileLinks.RelLinks[file])
+      end
+    end
+
+    if not block_option or context ~= "block" then
+      -- Convert to Inlines if not block option or context is not block
+      body = body:gsub("\n+%-?%s*", " ")
+      if block_option and context ~= "block" then
+        -- block option is true but context is not block
+        quarto.log.warning("Term shortcode 'block' used in inline/text context; falling back to inline.")
+      end
+    end
+
+    -- Load in Shortcode Title
+    if title_option and quarto.doc.is_format("html") then
+      -- title is true and HTML format
+      file = term_data.urlMD:match('%[[^]]+%]%(([^)]+) "[^"]+"%)')
+      Corrected_urlMD = term_data.urlMD:gsub(file, FileLinks.RelLinks[file])
+      body = "*" .. Corrected_urlMD .. ":* " .. body
+    elseif title_option and not quarto.doc.is_format("html") then
+      -- title is true and not HTML format
+      body = "*" .. term_data.titleMD .. ":* " .. body
+    end
+
+    -- Apply Filters to body
+    local PandocDoc = pandoc.read(body, "markdown")
+    local Filtered = apply_filters(PandocDoc, meta, templateMap, replacementMap)
+
+    if context == "block" then
+      quarto.log.debug("Returning Blocks for term " .. term)
+      return Filtered.blocks
+    elseif context == "inline" then
+      quarto.log.debug("Returning Inlines for term " .. term)
+      return pandoc.Inlines(Filtered.blocks[1])
     else
-        return pandoc.Null()
+      quarto.log.warning("'text' context not supported for term shortcode; returning empty.")
+      return pandoc.text(Filtered.blocks[1]) or pandoc.Str("")
     end
   end
 }

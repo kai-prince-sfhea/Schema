@@ -1,7 +1,7 @@
 print("Creating Schema Files")
 -- Load Project Directories
 local InputDir = pandoc.system.get_working_directory() or error("Working directory not set")
-local MathDir = pandoc.path.join({InputDir, "_maths"})
+local MathDir = pandoc.path.join({InputDir, "_schema"})
 
 -- Find Filter Directory
 local ExtDir = pandoc.path.join({InputDir, "_extensions","kai-prince-sfhea","schema"})
@@ -38,6 +38,7 @@ local MathJSONCount = {}
 MathJSONFile = io.open(OutputMathJSONFile, "r")
 if MathJSONFile ~= nil then
     MathJSON = pandoc.json.decode(MathJSONFile:read("a"))
+    MathJSONFile:close()
     for k, v in pairs(MathJSON) do
         MathJSONCount[k] = 1  -- Initialize count for each command
         for _, file in ipairs(Files) do
@@ -53,12 +54,51 @@ local TermsJSON = {}
 TermsFile = io.open(OutputTermsFile, "r")
 if TermsFile ~= nil then
     TermsJSON = pandoc.json.decode(TermsFile:read("a"))
+    TermsFile:close()
 end
 
 local DocJSON = {}
 DocFile = io.open(OutputDocumentContentsFile, "r")
 if DocFile ~= nil then
     DocJSON = pandoc.json.decode(DocFile:read("a"))
+    DocFile:close()
+end
+
+-- Create URL formatted Title
+local function create_url_title(inlines, url)
+    local OutputInlines = pandoc.Inlines("")
+    local citations = false
+    local uncited_title = pandoc.Inlines("")
+    local cited_title = pandoc.Inlines("")
+    for _, inl in ipairs(inlines) do
+    if inl.t == "Cite" or citations == true then
+        citations = true
+        local outl = inl
+        if inl.t == "Str" then
+            outl.text = inl.text:gsub("^%l", string.upper)
+        end
+        cited_title:insert(outl)
+    else
+        local outl = inl
+        if inl.t == "Str" then
+            outl.text = inl.text:gsub("^%l", string.upper)
+        end
+        uncited_title:insert(outl)
+    end
+    end
+    if citations == true then
+        title_url = pandoc.Link(uncited_title, url, "Link to source page")
+        OutputInlines:insert(title_url)
+        for _, inl in ipairs(cited_title) do
+            outl = inl
+            outl.content = inl.content:gsub("^%l", string.upper)
+            OutputInlines:insert(outl)
+        end
+    else
+        title_url = pandoc.Link(inlines, url, "Link to source page")
+        OutputInlines:insert(title_url)
+    end
+    return OutputInlines
 end
 
 -- MathJSON Warning function
@@ -109,10 +149,14 @@ local function extract_math_macro(value, file)
         variables = pandoc.utils.stringify(value.variables)
         if value.variablesDefault ~= nil then
             if type(value.variablesDefault) == "table" and value.variablesDefault[2] ~= nil then
+                OptionalVariables = 0
+                MandatoryVariables = 0
                 for _, string in ipairs(value.variablesDefault) do
                     table.insert(variablesDefaultArray, "O{"..pandoc.utils.stringify(string).."} ")
+                    OptionalVariables = OptionalVariables + 1
                 end
                 if #variablesDefaultArray < variables + 0 then
+                    MandatoryVariables = variables - OptionalVariables
                     for i = #variablesDefaultArray + 1, variables + 0 do
                         table.insert(variablesDefaultArray, "m ")
                     end
@@ -125,6 +169,8 @@ local function extract_math_macro(value, file)
                     },
                     LaTeX = "\\NewDocumentCommand{\\".. cmd .."}{" .. pandoc.utils.stringify(variablesDefaultArray) .. "}{" .. macro .. "}"
                 }
+                TermsJSON["\\"..cmd].optionalVars = OptionalVariables
+                TermsJSON["\\"..cmd].mandatoryVars = MandatoryVariables
             else
                 variablesDefaultString = pandoc.utils.stringify(value.variablesDefault)
                 MathJSON[cmd] = {
@@ -135,6 +181,8 @@ local function extract_math_macro(value, file)
                     },
                     LaTeX = "\\newcommand{\\".. cmd .."}[" .. variables .. "][" .. variablesDefaultString .. "]{" .. macro .. "}"
                 }
+                TermsJSON["\\"..cmd].optionalVars = 1
+                TermsJSON["\\"..cmd].mandatoryVars = variables - 1
             end
         else
             MathJSON[cmd] = {
@@ -144,12 +192,16 @@ local function extract_math_macro(value, file)
                 },
                 LaTeX = "\\newcommand{\\".. cmd .."}[" .. variables .. "]{" .. macro .. "}"
             }
+            TermsJSON["\\"..cmd].optionalVars = 0
+            TermsJSON["\\"..cmd].mandatoryVars = variables + 0
         end
     else
         MathJSON[cmd] = {
             MathJax = macro,
             LaTeX = "\\newcommand{\\".. cmd .."}{" .. macro .. "}"
         }
+        TermsJSON["\\"..cmd].optionalVars = 0
+        TermsJSON["\\"..cmd].mandatoryVars = 0
     end
     if value.description ~= nil then
         MathJSON[cmd].Notation = pandoc.utils.stringify(value.description)
@@ -161,7 +213,7 @@ local function extract_math_macro(value, file)
     MathJSON[cmd].Source = file
 end
 
--- Load and process the metadata of each Input File
+-- Parse each input file's metadata/body; extract macros, terms, anchors
 for _, file in ipairs(Files) do
     print("-Processing file: " .. file)
     local fileContents = io.open(file, "r"):read("*a")
@@ -174,7 +226,8 @@ for _, file in ipairs(Files) do
         body = fileContents
     end
     DocJSON[file] = {
-        contents = body
+        contents = body,
+        title = pandoc.utils.stringify(contents.meta.title or "")
     }
 
     ---@type pandoc.List
@@ -193,19 +246,53 @@ for _, file in ipairs(Files) do
 
     if type(metadata.terms) == "table" then
         for _, term in ipairs(metadata.terms) do
-            local termName = pandoc.utils.stringify(term.alias)
+            -- YAML schema: term, regex, prefixes, associatedMacros
+            local baseName = pandoc.utils.stringify(term.term)
+            if baseName and baseName ~= "" then
+                TermsJSON[baseName] = {
+                    sourceFile = file,
+                    type = "term"
+                }
+                if term.translate == false then
+                    TermsJSON[baseName].translation = false
+                end
+                if term.id then
+                    local termRef = pandoc.utils.stringify(term.id)
+                    TermsJSON[baseName].sourceRef = termRef
+                end
+                if term.regex then
+                    TermsJSON[baseName].regex = pandoc.utils.stringify(term.regex)
+                end
 
-            TermsJSON[termName] = {
-                sourceFile = file,
-                type = "term"
-            }
+                -- Generate prefixed term aliases if provided
+                if type(term.prefixes) == "table" then
+                    for _, p in ipairs(term.prefixes) do
+                        local pref = pandoc.utils.stringify(p.prefix or "")
+                        if pref ~= "" then
+                            local name = pref .. baseName
+                            TermsJSON[name] = {
+                                sourceFile = file,
+                                type = "term"
+                            }
+                            if p.id then
+                                TermsJSON[name].sourceRef = pandoc.utils.stringify(p.id)
+                            end
+                            if term.translate == false then
+                                TermsJSON[name].translation = false
+                            end
+                            if term.regex then
+                                TermsJSON[name].regex = pref .. pandoc.utils.stringify(term.regex)
+                            end
+                        end
+                    end
+                end
 
-            if term.translate == false then
-                TermsJSON[termName].translation = false
-            end
-            if term.id then
-                termRef = pandoc.utils.stringify(term.id)
-                TermsJSON[termName].sourceRef = termRef
+                -- Associated macros defined inside a term
+                if type(term.associatedMacros) == "table" then
+                    for _, macroDef in ipairs(term.associatedMacros) do
+                        extract_math_macro(macroDef, file)
+                    end
+                end
             end
         end
     end
@@ -227,14 +314,21 @@ for _, file in ipairs(Files) do
             end
         end
         if found_block then
-            blockContent = pandoc.write(pandoc.Pandoc({found_block}, contents.meta), "markdown")
+            -- Preserve full block AST to conserve Div/classes/IDs when reusing via shortcodes
+            TermsJSON["@"..ref].divMD = schema.convert_md(found_block, metadata)
             TermsJSON["@"..ref].blockType = found_block.t
-            blockTitle, blockBody = blockContent:match("## ([^\n]+)\n\n(.+)\n:::")
-            if blockTitle then
-                TermsJSON["@"..ref].blockTitle = blockTitle
-                TermsJSON["@"..ref].blockBody = blockBody
-            else
-                TermsJSON["@"..ref].blockBody = blockContent:match("\n(.+)\n:::")
+            local Div_data = schema.LoadDiv(TermsJSON["@"..ref].divMD)
+            TermsJSON["@"..ref].blockMD = schema.convert_md(Div_data.block, metadata)
+            TermsJSON["@"..ref].HTMLMD = TermsJSON["@"..ref].blockMD
+            if Div_data.title then
+                TermsJSON["@"..ref].titleMD = schema.convert_md(Div_data.title, metadata):gsub("%s+", " "):gsub("(%a)(%a*)", function(a,b) return string.upper(a)..b end)
+                TermsJSON["@"..ref].urlMD = schema.convert_md(create_url_title(Div_data.title,file), metadata):gsub("%s+", " ")
+            end
+            if Div_data.templateMap then
+                TermsJSON["@"..ref].templateMap = Div_data.templateMap
+            end
+            if Div_data.classes and #Div_data.classes > 0 then
+                TermsJSON["@"..ref].classes = Div_data.classes
             end
         end
     end
@@ -266,16 +360,28 @@ local dependencyData = {
 
 -- Save MathJSON Output to File
 MathJSONEncoding = schema.pretty_json(pandoc.json.encode(MathJSON))
-io.open(OutputMathJSONFile, "w"):write(MathJSONEncoding)
+do
+    local f = io.open(OutputMathJSONFile, "w")
+    if f then f:write(MathJSONEncoding); f:close() end
+end
 
 -- Save TermsJSON Output to File
 TermsJSONEncoding = schema.pretty_json(pandoc.json.encode(TermsJSON))
-io.open(OutputTermsFile, "w"):write(TermsJSONEncoding)
+do
+    local f = io.open(OutputTermsFile, "w")
+    if f then f:write(TermsJSONEncoding); f:close() end
+end
 
 -- Save DocJSON Output to File
 DocJSONEncoding = schema.pretty_json(pandoc.json.encode(DocJSON))
-io.open(OutputDocumentContentsFile, "w"):write(DocJSONEncoding)
+do
+    local f = io.open(OutputDocumentContentsFile, "w")
+    if f then f:write(DocJSONEncoding); f:close() end
+end
 
 -- Save Dependencies to File
 dependencyJSONEncoding = schema.pretty_json(pandoc.json.encode(dependencyData))
-io.open(OutputDependenciesFile, "w"):write(dependencyJSONEncoding)
+do
+    local f = io.open(OutputDependenciesFile, "w")
+    if f then f:write(dependencyJSONEncoding); f:close() end
+end

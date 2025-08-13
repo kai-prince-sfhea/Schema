@@ -223,76 +223,84 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-06" ] )
-          , ( "dependencies"
-            , MetaList [ MetaInlines [ Str "axioms" ] ]
-            )
-          , ( "environments"
-            , MetaList
-                [ MetaMap
-                    (fromList
-                       [ ( "before" , MetaString "" )
-                       , ( "name"
-                         , MetaInlines [ Str "GroupOperation" ]
-                         )
-                       ])
-                ]
-            )
-          , ( "macros"
-            , MetaList
-                [ MetaMap
-                    (fromList
-                       [ ( "command" , MetaInlines [ Str "Group" ] )
-                       , ( "macro" , MetaInlines [ Str "{\\Gamma}" ] )
-                       ])
-                , MetaMap
-                    (fromList
-                       [ ( "command"
-                         , MetaInlines [ Str "GroupOperation" ]
-                         )
-                       , ( "macro"
-                         , MetaInlines [ Str "{#1}\\cdot{#2}" ]
-                         )
-                       , ( "variables" , MetaInlines [ Str "2" ] )
-                       ])
-                , MetaMap
-                    (fromList
-                       [ ( "command"
-                         , MetaInlines [ Str "GroupIdentity" ]
-                         )
-                       , ( "description"
-                         , MetaInlines
-                             [ Str "The"
-                             , Space
-                             , Str "identity"
-                             , Space
-                             , Str "of"
-                             , Space
-                             , Str "the"
-                             , Space
-                             , Str "group"
-                             , Space
-                             , Math InlineMath "\\Group"
-                             , Str "."
-                             ]
-                         )
-                       , ( "macro" , MetaInlines [ Str "{e}" ] )
-                       ])
-                , MetaMap
-                    (fromList
-                       [ ( "command"
-                         , MetaInlines [ Str "GroupElement" ]
-                         )
-                       , ( "macro" , MetaInlines [ Str "{\\gamma}" ] )
-                       ])
-                ]
+          , ( "date" , MetaInlines [ Str "2025-08-13" ] )
+          , ( "schema"
+            , MetaMap
+                (fromList
+                   [ ( "backlinks" , MetaBool True )
+                   , ( "outlinks" , MetaBool True )
+                   ])
             )
           , ( "terms"
             , MetaList
                 [ MetaMap
                     (fromList
-                       [ ( "alias" , MetaInlines [ Str "group" ] )
+                       [ ( "associatedMacros"
+                         , MetaList
+                             [ MetaMap
+                                 (fromList
+                                    [ ( "command"
+                                      , MetaInlines [ Str "Group" ]
+                                      )
+                                    , ( "macro"
+                                      , MetaInlines [ Str "{\\Gamma}" ]
+                                      )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "command"
+                                      , MetaInlines
+                                          [ Str "GroupOperation" ]
+                                      )
+                                    , ( "macro"
+                                      , MetaInlines
+                                          [ Str "{#1}\\cdot{#2}" ]
+                                      )
+                                    , ( "variables"
+                                      , MetaInlines [ Str "2" ]
+                                      )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "command"
+                                      , MetaInlines
+                                          [ Str "GroupIdentity" ]
+                                      )
+                                    , ( "description"
+                                      , MetaInlines
+                                          [ Str "The"
+                                          , Space
+                                          , Str "identity"
+                                          , Space
+                                          , Str "of"
+                                          , Space
+                                          , Str "the"
+                                          , Space
+                                          , Str "group"
+                                          , Space
+                                          , Math InlineMath "\\Group"
+                                          , Str "."
+                                          ]
+                                      )
+                                    , ( "macro"
+                                      , MetaInlines [ Str "{e}" ]
+                                      )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "command"
+                                      , MetaInlines
+                                          [ Str "GroupElement" ]
+                                      )
+                                    , ( "macro"
+                                      , MetaInlines [ Str "{\\gamma}" ]
+                                      )
+                                    ])
+                             ]
+                         )
                        , ( "id" , MetaInlines [ Str "def-group" ] )
+                       , ( "regex" , MetaInlines [ Str "[Gg]roup" ] )
+                       , ( "term" , MetaInlines [ Str "group" ] )
                        ])
                 ]
             )
@@ -319,7 +327,7 @@ Pandoc
           , Space
           , Str "A"
           , Space
-          , Str "group"
+          , Emph [ Str "group" ]
           , Space
           , Str "is"
           , Space
@@ -408,7 +416,7 @@ Pandoc
           , Space
           , Str "as"
           , Space
-          , Strong [ Str "group" , Space , Str "axioms" ]
+          , Emph [ Str "group" , Space , Str "axioms" ]
           , Str ","
           , Space
           , Str "are"
@@ -417,7 +425,9 @@ Pandoc
           ]
       , BulletList
           [ [ Para
-                [ Str "For"
+                [ Emph [ Str "Associativity:" ]
+                , Space
+                , Str "For"
                 , Space
                 , Str "all"
                 , Space
@@ -431,7 +441,7 @@ Pandoc
                 , Str "one"
                 , Space
                 , Str "has"
-                , SoftBreak
+                , Space
                 , Math
                     InlineMath
                     "\\GroupOperation{(\\GroupOperation{g}{h})}{j}=\\GroupOperation{g}{(\\GroupOperation{h}{j})}"
@@ -439,7 +449,9 @@ Pandoc
                 ]
             ]
           , [ Para
-                [ Str "There"
+                [ Emph [ Str "Identity:" ]
+                , Space
+                , Str "There"
                 , Space
                 , Str "exists"
                 , Space
@@ -460,7 +472,7 @@ Pandoc
                 , Str "for"
                 , Space
                 , Str "every"
-                , SoftBreak
+                , Space
                 , Math InlineMath "{g}"
                 , Space
                 , Str "in"
@@ -475,7 +487,7 @@ Pandoc
                 , Math InlineMath "\\GroupOperation{\\Identity}{g}={g}"
                 , Space
                 , Str "and"
-                , SoftBreak
+                , Space
                 , Math InlineMath "\\GroupOperation{g}{\\Identity}={g}"
                 , Str "."
                 , Space
@@ -492,17 +504,19 @@ Pandoc
                 , Str "and"
                 , Space
                 , Str "is"
-                , SoftBreak
+                , Space
                 , Str "called"
                 , Space
                 , Str "the"
                 , Space
-                , Strong [ Str "identity" , Space , Str "element" ]
+                , Emph [ Str "identity" , Space , Str "element" ]
                 , Str "."
                 ]
             ]
           , [ Para
-                [ Str "For"
+                [ Emph [ Str "Unique" , Space , Str "Inverse:" ]
+                , Space
+                , Str "For"
                 , Space
                 , Str "each"
                 , Space
@@ -528,7 +542,7 @@ Pandoc
                 , Math InlineMath "\\Group"
                 , Space
                 , Str "such"
-                , SoftBreak
+                , Space
                 , Str "that"
                 , Space
                 , Math InlineMath "\\GroupOperation{g}{h}=\\Identity"
@@ -537,7 +551,7 @@ Pandoc
                 , Space
                 , Math InlineMath "\\GroupOperation{h}{g}=\\Identity"
                 , Str ","
-                , SoftBreak
+                , Space
                 , Str "where"
                 , Space
                 , Math InlineMath "\\Identity"
@@ -549,9 +563,8 @@ Pandoc
                 , Str "identity"
                 , Space
                 , Str "element."
-                ]
-            , Para
-                [ Str "For"
+                , Space
+                , Str "For"
                 , Space
                 , Str "each"
                 , Space
@@ -575,8 +588,8 @@ Pandoc
                 , Str "called"
                 , Space
                 , Str "the"
-                , SoftBreak
-                , Strong [ Str "inverse" ]
+                , Space
+                , Emph [ Str "inverse" ]
                 , Space
                 , Str "of"
                 , Space

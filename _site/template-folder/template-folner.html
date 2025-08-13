@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kai Prince SFHEA">
-<meta name="dcterms.date" content="2025-08-03">
+<meta name="dcterms.date" content="2025-08-13">
 
 <title>Følner sequence – KaisFormatting Template</title>
 <style>
@@ -37,10 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-991b1886d3c685c7aa2b62b80640c7af.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-067955df3661f82dfdd6bf9749e8521d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8c5a2aa88c292dddbca42d3763a814fe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-067955df3661f82dfdd6bf9749e8521d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -100,7 +104,178 @@ window.Quarto = {
 
 </head>
 
-<body class="quarto-light">
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -112,6 +287,7 @@ window.Quarto = {
     <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="template-folner.tex"><i class="bi bi-file"></i>LaTeX</a></li><li><a href="template-folner.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="template-folner.native"><i class="bi bi-file"></i>Native</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -132,7 +308,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">3 August 2025</p>
+      <p class="date">13 August 2025</p>
     </div>
   </div>
   
@@ -144,72 +320,60 @@ window.Quarto = {
 </header>
 
 
+<section id="sec-Notation" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sec-Notation">Notation</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\N\)</span></td>
+<td>The Natural Numbers: 1, 2, 3, … (<a href="..\template.html">Source</a>)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-Backlinks" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sec-Backlinks">Backlinks</h2>
+<ul>
+<li><a href="template-group.html">Group</a></li>
+<li><a href="..\template.html">Axioms</a></li>
+</ul>
+</section>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<p>Recall the definition of a <a href=".\template-group.html#def-group">group</a>:</p>
+<div id="def-group-recall" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1</strong></span> A <em>group</em> is a non-empty set <span class="math inline">\(\Group\)</span> together with a binary operation on <span class="math inline">\(\Group\)</span>, denoted “<span class="math inline">\(\GroupOperation{}{}\)</span>”, that combines any two elements <span class="math inline">\(\GroupElement\)</span> and <span class="math inline">\(\GroupElement'\)</span> of <span class="math inline">\(\Group\)</span> to form an element of <span class="math inline">\(\Group\)</span>, denoted <span class="math inline">\(\GroupOperation{\GroupElement}{\GroupElement'}\)</span>, such that the following three requirements, known as <em>group axioms</em>, are satisfied:</p>
+<ul>
+<li><em><a href="..\template.html" title="Link to source page">Associativity</a>:</em> For all <span class="math inline">\({g},{h},{j}\)</span> in <span class="math inline">\(\Group\)</span>, one has <span class="math inline">\(\GroupOperation{(\GroupOperation{g}{h})}{j}=\GroupOperation{g}{(\GroupOperation{h}{j})}\)</span>.</li>
+<li><em><a href="..\template.html" title="Link to source page">Identity</a>:</em> There exists an element <span class="math inline">\(\Identity\)</span> in <span class="math inline">\(\Group\)</span> such that, for every <span class="math inline">\({g}\)</span> in <span class="math inline">\(\Group\)</span>, one has <span class="math inline">\(\GroupOperation{\Identity}{g}={g}\)</span> and <span class="math inline">\(\GroupOperation{g}{\Identity}={g}\)</span>. Such an element is unique and is called the <em>identity element</em>.</li>
+<li><em><a href="..\template.html" title="Link to source page">Unique Inverse</a>:</em> For each <span class="math inline">\({g}\)</span> in <span class="math inline">\(\Group\)</span>, there exists an element <span class="math inline">\({h}\)</span> in <span class="math inline">\(\Group\)</span> such that <span class="math inline">\(\GroupOperation{g}{h}=\Identity\)</span> and <span class="math inline">\(\GroupOperation{h}{g}=\Identity\)</span>, where <span class="math inline">\(\Identity\)</span> is the identity element. For each <span class="math inline">\({g}\)</span>, the element <span class="math inline">\({h}\)</span> is unique and is called the <em>inverse</em> of <span class="math inline">\({h}\)</span> and is denoted <span class="math inline">\(\Inverse{g}\)</span>.</li>
+</ul>
 </div>
-<div class="callout-body-container">
 <div id="def-rightFolner" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 1</strong></span> We define a <em>right-Følner sequence</em> in a group, <span class="math inline">\(\Group\)</span>, as a sequence <span class="math inline">\(\Folner =(\Folner[N])_{N\in\mathbb{N}}\)</span> of finite subsets of <span class="math inline">\(\Gamma\)</span> satisfying <span class="math display">\[\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1\]</span>for all <span class="math inline">\(\GroupElement\in\Group\)</span>.</p>
+<p><span class="theorem-title"><strong>Definition 2</strong></span> We define a <em>right-Følner sequence</em> in a group, <span class="math inline">\(\Group\)</span>, as a sequence <span class="math inline">\(\Folner =(\Folner[N])_{N\in\mathbb{N}}\)</span> of finite subsets of <span class="math inline">\(\Gamma\)</span> satisfying <span class="math display">\[\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1\]</span>for all <span class="math inline">\(\GroupElement\in\Group\)</span>.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
 <div id="def-leftFolner" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 2</strong></span> Similarly, we define a <em>left-Følner sequence</em> in a group, <span class="math inline">\(\Group\)</span>, as a sequence <span class="math inline">\(\Folner =(\Folner[N])_{N\in\mathbb{N}}\)</span> of finite subsets of <span class="math inline">\(\Gamma\)</span> satisfying <span class="math display">\[\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 \]</span>for all <span class="math inline">\(\GroupElement\in\Group\)</span>.</p>
+<p><span class="theorem-title"><strong>Definition 3</strong></span> Similarly, we define a <em>left-Følner sequence</em> in a group, <span class="math inline">\(\Group\)</span>, as a sequence <span class="math inline">\(\Folner =(\Folner[N])_{N\in\mathbb{N}}\)</span> of finite subsets of <span class="math inline">\(\Gamma\)</span> satisfying <span class="math display">\[\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 \]</span>for all <span class="math inline">\(\GroupElement\in\Group\)</span>.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
 <div id="def-Folner" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3</strong></span> We call a sequence a <em>Følner sequence</em> if it is both a left and right Følner sequence.</p>
-</div>
-</div>
-</div>
+<p><span class="theorem-title"><strong>Definition 4</strong></span> We call a sequence a <em>Følner sequence</em> if it is both a left and right Følner sequence.</p>
 </div>
 <p>A related definition is the following:</p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
 <div id="def-Density" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4</strong></span> We call define <em>density of a subset <span class="math inline">\(A\subseteq\Group\)</span> with respect to a Følner sequence, <span class="math inline">\(\Folner\)</span>,</em> as <span class="math display">\[\Density(A)=\lim_{N\rightarrow\infty}\frac{|\Folner[N]\cap A|}{|\Folner[N]|},\]</span> if it exists.</p>
-</div>
-</div>
-</div>
+<p><span class="theorem-title"><strong>Definition 5</strong></span> We call define <em>density of a subset <span class="math inline">\(A\subseteq\Group\)</span> with respect to a Følner sequence, <span class="math inline">\(\Folner\)</span>,</em> as <span class="math display">\[\Density(A)=\lim_{N\rightarrow\infty}\frac{|\Folner[N]\cap A|}{|\Folner[N]|},\]</span> if it exists.</p>
 </div>
 <p>For <span class="math inline">\(\N\)</span>, the <em>natural density</em>, <span class="math inline">\(\Density[]\)</span>, is defined when the Følner sequence is constructed with <span class="math inline">\(\Folner[N]=[1,...,N]\)</span>.</p>
 </section>
 <section id="results" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Results</h1>
-<div class="callout callout-style-simple callout-important no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
 <div id="thm-Test" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 1 (The Test Theorem)</strong></span> This is a Theorem.</p>
-</div>
-</div>
-</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -235,6 +399,19 @@ Tip
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

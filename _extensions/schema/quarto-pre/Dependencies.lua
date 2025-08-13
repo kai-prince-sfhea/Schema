@@ -1,11 +1,11 @@
-print("Extracting file dependencies...")
+print("Extracting schema links and notation...")
 -- Load Project Directories
 local InputDir = pandoc.system.get_working_directory() or error("Working directory not set")
-local MathDir = pandoc.path.join({InputDir, "_maths"})
+local MathDir = pandoc.path.join({InputDir, "_schema"})
 
 -- Find Filter Directory
 local ExtDir = pandoc.path.join({InputDir, "_extensions","kai-prince-sfhea","schema"})
-ok, err, code = os.rename(ExtDir.."/", ExtDir.."/")
+local ok, err, code = os.rename(ExtDir.."/", ExtDir.."/")
 if not ok then
     ExtDir = pandoc.path.join({InputDir, "_extensions","schema"})
 end
@@ -19,6 +19,7 @@ local DocumentContentsFile = pandoc.path.join({MathDir, "Document-contents.json"
 DocFile = io.open(DocumentContentsFile, "r")
 if DocFile ~= nil then
     DocJSON = pandoc.json.decode(DocFile:read("a"))
+    DocFile:close()
 end
 
 -- Load MathDependencies JSON
@@ -26,6 +27,7 @@ local MathDepJSON = {}
 MathDepFile = io.open(pandoc.path.join({MathDir, "MathDependencies.json"}), "r")
 if MathDepFile ~= nil then
     MathDepJSON = pandoc.json.decode(MathDepFile:read("a"))
+    MathDepFile:close()
 end
 
 -- Load MathJSON
@@ -33,13 +35,16 @@ local MathJSON = {}
 MathFile = io.open(pandoc.path.join({MathDir, "Math.json"}), "r")
 if MathFile ~= nil then
     MathJSON = pandoc.json.decode(MathFile:read("a"))
+    MathFile:close()
 end
 
 -- Load Terms JSON
+local OutputTermsFile = pandoc.path.join({MathDir, "Terms.json"})
 local TermsJSON = {}
-TermsFile = io.open(pandoc.path.join({MathDir, "Terms.json"}), "r")
+TermsFile = io.open(OutputTermsFile, "r")
 if TermsFile ~= nil then
     TermsJSON = pandoc.json.decode(TermsFile:read("a"))
+    TermsFile:close()
 end
 
 -- Set Output Links File 
@@ -48,6 +53,7 @@ local LinkJSON = {}
 LinksFile = io.open(OutputLinksFile, "r")
 if LinksFile ~= nil then
     LinkJSON = pandoc.json.decode(LinksFile:read("a"))
+    LinksFile:close()
 end
 
 -- Set Output Directories File 
@@ -56,52 +62,98 @@ local DirJSON = {}
 DirFile = io.open(OutputDirFile, "r")
 if DirFile ~= nil then
     DirJSON = pandoc.json.decode(DirFile:read("a"))
+    DirFile:close()
     for k, _ in pairs(DirJSON) do
         DirJSON[k].RenderMathJax = false -- Initialize math flag to false
     end
 end
 
--- Include Shortcodes
-local function append_shortcodes(body)
-    local contents = body .. "\n\n Shortcodes:\n\n"
-    local visited = {}
-
-    local function visit_shortcode(visited_body)
-        for shortcodeArg in visited_body:gmatch("{{< term ref=\"([^>%s\"]+)\"[^>]* >}}") do
-            shortcodeTerm = "@" .. shortcodeArg
-            if not visited[shortcodeTerm] then
-                visited[shortcodeTerm] = true
-                contents = contents .. shortcodeTerm .. "\n"
-
-                if TermsJSON[shortcodeTerm] then
-                    if TermsJSON[shortcodeTerm].blockTitle then
-                        contents = contents .. TermsJSON[shortcodeTerm].blockTitle .. "\n"
-                    end
-                    if TermsJSON[shortcodeTerm].blockBody then
-                        shortcodeBody = TermsJSON[shortcodeTerm].blockBody
-                        contents = contents .. shortcodeBody .. "\n\n"
-                        visit_shortcode(shortcodeBody)
-                    end
-                end
+-- Get shortcode body and complete nested shortcodes
+local function process_shortcode(shortcode, path)
+    if shortcode:match('^{{<%s*term%s+ref="([^"]+)"%s+([^>]+)>}}$') then
+        local ref, args = shortcode:match('{{<%s*term%s+ref="([^"]+)"%s+([^>]+)>}}')
+        local term = "@" .. ref 
+        local templateArgs = args:match('templateMap="(%[[^"]+%])"')
+        local templateMap = {}
+        if templateArgs then
+            templateMap = pandoc.json.decode(schema.to_json_array(templateArgs):gsub("\\\\", "\\"))
+        end
+        local shortcode_body = ""
+        local subpath = path
+        if path["@" .. ref] then
+            PathStr = schema.pretty_json(pandoc.json.encode(path))
+            return ""
+        else
+            subpath["@" .. ref] = true
+        end
+        if TermsJSON[term].blockMD:match('({{<%s*term%s+ref="[^"]+"%s+[^>]*>}})') then
+            local uniqueShortcodes = {}
+            for shortcode in TermsJSON[term].blockMD:gmatch('({{<%s*term%s+ref="[^"]+"%s+[^>]*>}})') do
+                uniqueShortcodes[shortcode] = true
             end
+            for shortcode, _ in pairs(uniqueShortcodes) do
+                shortcode_body = process_shortcode(shortcode, subpath)
+                TermsJSON[term].HTMLMD = TermsJSON[term].HTMLMD:gsub(schema.escape_pattern(shortcode), shortcode_body)
+                clean_body = shortcode_body:gsub('%[([^]]+)%]%([^)]+ "[^"]+"%)', '%1')
+                TermsJSON[term].divMD = TermsJSON[term].divMD:gsub(schema.escape_pattern(shortcode), clean_body)
+                TermsJSON[term].blockMD = TermsJSON[term].blockMD:gsub(schema.escape_pattern(shortcode), clean_body)
+            end
+        end
+        local inline = TermsJSON[term].blockMD:gsub("\n+%-?%s*", " ")
+        if args:match('title%s*=%s*true') then
+            shortcode_body = "*" .. TermsJSON[term].urlMD .. ":* " .. inline
+        else
+            shortcode_body = inline
+        end
+        if #templateMap > 0 and TermsJSON[term].templateMap then
+            shortcode_body = schema.MathReplacementMD(shortcode_body, TermsJSON[term].templateMap, templateMap)
+        end
+        return shortcode_body
+    else
+        return ""
+    end
+end
+
+-- Inline the contents of {{< term ref="..." >}} shortcodes to capture nested references
+local function embed_content(body)
+    local contents = body
+    local uniqueShortcodes = {}
+
+    for shortcode, shortcode_code in body:gmatch('({{<%s*(%a+)%s+ref="[^"]+"%s+[^>]*>}})') do
+        uniqueShortcodes[shortcode] = shortcode_code
+    end
+
+    for shortcode, shortcode_code in pairs(uniqueShortcodes) do
+        if shortcode_code == "term" then
+            shortcode_body = process_shortcode(shortcode, {})
+            contents = contents:gsub(schema.escape_pattern(shortcode), shortcode_body)
         end
     end
     
-    visit_shortcode(contents)
     return contents
 end
 
 FileDep = {}
 for k, v in pairs(DocJSON) do
+    print("-Processing file: " .. k)
     Terms = {}
     FileDep[k] = {}
     FileLinks = {}
     RelLinks = {}
     FileNotation = {}
+    FileNotationSet = {}
     RefTerms = {}
     RefMath = {}
+    local CurrentTitle = (DocJSON[k] and DocJSON[k].title) or ""
 
-    FileContents = append_shortcodes(v.contents)
+    FileContents = embed_content(v.contents)
+
+    local LowerFileContents = string.lower(FileContents)
+    -- Precompute reference tokens like @term-id once per file (letters, digits, underscore, hyphen)
+    local RefTokenSet = {}
+    for match in FileContents:gmatch("(@[%w%-_]+)") do
+        RefTokenSet[match] = true
+    end
 
     if not DirJSON[pandoc.path.directory(k)] then
         DirJSON[pandoc.path.directory(k)] = {
@@ -111,18 +163,27 @@ for k, v in pairs(DocJSON) do
     end
 
     for term, termData in pairs(TermsJSON) do
-        standardMatch = string.lower(FileContents):find(string.lower(term))
-        referenceMatch = false
+        local lowerTerm = string.lower(term)
+        local standardMatch = LowerFileContents:find(lowerTerm, 1, true)
+        local referenceMatch = false
         if not standardMatch and term:match("@") then
-            for match in FileContents:gmatch("(@[-a-zA-Z]+)") do
-                if match == term then
-                    referenceMatch = true
-                    break
-                end
-            end
+            referenceMatch = RefTokenSet[term] or false
+        end
+        -- Regex detection for non-math terms (if provided)
+        local regexMatch = false
+        if not standardMatch and not referenceMatch and termData.type == "term" and termData.regex then
+            local pattern = termData.regex
+            -- Lua pattern compatibility (basic): convert PCRE-like classes minimally
+            pattern = pattern:gsub("%[([^%]]+)%]", function(cls)
+                -- keep as is; Lua patterns support classes like [abc] directly
+                return "["..cls.."]"
+            end)
+            -- Escape backslashes appropriately in Lua string matcher: pattern is already a Lua string here
+            local ok, res = pcall(function() return FileContents:match(pattern) end)
+            regexMatch = ok and (res ~= nil)
         end
         -- Check if term is in the file contents
-        if standardMatch or referenceMatch then
+        if standardMatch or referenceMatch or regexMatch then
             Terms[term] = true
             
             -- Check if term is a math command
@@ -134,7 +195,7 @@ for k, v in pairs(DocJSON) do
                 end
             end
 
-            -- Check if term source file is different from current file
+            -- Cross-page references: record backlinks/outlinks info
             File = termData.sourceFile
             if File ~= k then
                 Source = File
@@ -156,18 +217,11 @@ for k, v in pairs(DocJSON) do
                     table.insert(FileLinks[File],SourceRef)
                 end
 
-                -- Create relative link if source file is in the same directory
+                -- Compute relative link to source file
                 RelativePath = schema.RelativePath(k, File)
                 RelLinks[File] = RelativePath
 
-                if termData.description and termData.type == "math" then
-                    notationRow = {
-                        LaTeX = term,
-                        description = termData.description,
-                        Source = Source
-                    }
-                    table.insert(FileNotation, notationRow)
-                end
+                -- notation rows for external terms now handled globally below
             end
         end
     end
@@ -180,20 +234,66 @@ for k, v in pairs(DocJSON) do
         end
     end
 
+    -- Build Table of Notation rows for used math macros
+    for term, termData in pairs(TermsJSON) do
+        if termData.type == "math" and termData.description and Terms[term] and not FileNotationSet[term] then
+            local src = termData.sourceFile or ""
+            local srcWithRef = src
+            if termData.sourceRef then srcWithRef = srcWithRef .. "#" .. termData.sourceRef end
+            table.insert(FileNotation, {
+                LaTeX = "$"..term.."$",
+                description = termData.description,
+                Source = srcWithRef,
+                mandatoryVars = termData.mandatoryVars,
+                optionalVars = termData.optionalVars
+            })
+            FileNotationSet[term] = true
+        end
+    end
+
     LinkJSON[k] = {
         FileLinks = FileLinks,
         FileNotation = FileNotation,
         LaTeX = FileLaTeX .. "\n",
         RefMath = RefMath,
         RefTerms = RefTerms,
-        RelLinks = RelLinks
+        RelLinks = RelLinks,
+        Title = CurrentTitle
     }
 end
 
 -- Save LinksJSON Output to File
 LinksJSONEncoding = schema.pretty_json(pandoc.json.encode(LinkJSON))
-io.open(OutputLinksFile, "w"):write(LinksJSONEncoding)
+do
+    local f = io.open(OutputLinksFile, "w")
+    if f then
+        f:write(LinksJSONEncoding)
+        f:close()
+    else
+        print("Warning: Unable to open Links.json for writing: " .. tostring(OutputLinksFile))
+    end
+end
+
+-- Save TermsJSON Output to File
+TermsJSONEncoding = schema.pretty_json(pandoc.json.encode(TermsJSON))
+do
+    local f = io.open(OutputTermsFile, "w")
+    if f then
+        f:write(TermsJSONEncoding)
+        f:close()
+    else
+        print("Warning: Unable to open Terms.json for writing: " .. tostring(OutputTermsFile))
+    end
+end
 
 -- Save DirJSON Output to File
 DirJSONEncoding = schema.pretty_json(pandoc.json.encode(DirJSON))
-io.open(OutputDirFile, "w"):write(DirJSONEncoding)
+do
+    local f = io.open(OutputDirFile, "w")
+    if f then
+        f:write(DirJSONEncoding)
+        f:close()
+    else
+        print("Warning: Unable to open Directories.json for writing: " .. tostring(OutputDirFile))
+    end
+end

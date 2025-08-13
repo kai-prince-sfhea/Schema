@@ -223,10 +223,7 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-03" ] )
-          , ( "dependencies"
-            , MetaList [ MetaInlines [ Str "group" ] ]
-            )
+          , ( "date" , MetaInlines [ Str "2025-08-13" ] )
           , ( "macros"
             , MetaList
                 [ MetaMap
@@ -238,43 +235,67 @@ Pandoc
                          , MetaInlines [ Str "\\Folner" ]
                          )
                        ])
-                , MetaMap
-                    (fromList
-                       [ ( "command" , MetaInlines [ Str "Folner" ] )
-                       , ( "macro"
-                         , MetaInlines [ Str "{\\Phi}_{#1}" ]
-                         )
-                       , ( "variables" , MetaInlines [ Str "1" ] )
-                       , ( "variablesDefault"
-                         , MetaInlines [ Str "\\vphantom{}" ]
-                         )
-                       ])
                 ]
+            )
+          , ( "schema"
+            , MetaMap
+                (fromList
+                   [ ( "backlinks" , MetaBool True )
+                   , ( "outlinks" , MetaBool True )
+                   ])
             )
           , ( "terms"
             , MetaList
                 [ MetaMap
                     (fromList
-                       [ ( "alias" , MetaInlines [ Str "F\248lner" ] )
+                       [ ( "associatedMacros"
+                         , MetaList
+                             [ MetaMap
+                                 (fromList
+                                    [ ( "command"
+                                      , MetaInlines [ Str "Folner" ]
+                                      )
+                                    , ( "macro"
+                                      , MetaInlines
+                                          [ Str "{\\Phi}_{#1}" ]
+                                      )
+                                    , ( "variables"
+                                      , MetaInlines [ Str "1" ]
+                                      )
+                                    , ( "variablesDefault"
+                                      , MetaInlines
+                                          [ Str "\\vphantom{}" ]
+                                      )
+                                    ])
+                             ]
+                         )
                        , ( "id" , MetaInlines [ Str "def-Folner" ] )
-                       , ( "translate" , MetaBool False )
-                       ])
-                , MetaMap
-                    (fromList
-                       [ ( "alias"
-                         , MetaInlines [ Str "right-F\248lner" ]
+                       , ( "macro" , MetaInlines [ Str "Folner" ] )
+                       , ( "prefixes"
+                         , MetaList
+                             [ MetaMap
+                                 (fromList
+                                    [ ( "id"
+                                      , MetaInlines
+                                          [ Str "def-rightFolner" ]
+                                      )
+                                    , ( "prefix"
+                                      , MetaInlines [ Str "right-" ]
+                                      )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "id"
+                                      , MetaInlines
+                                          [ Str "def-leftFolner" ]
+                                      )
+                                    , ( "prefix"
+                                      , MetaInlines [ Str "left-" ]
+                                      )
+                                    ])
+                             ]
                          )
-                       , ( "id"
-                         , MetaInlines [ Str "def-rightFolner" ]
-                         )
-                       , ( "translate" , MetaBool False )
-                       ])
-                , MetaMap
-                    (fromList
-                       [ ( "alias"
-                         , MetaInlines [ Str "left-F\248lner" ]
-                         )
-                       , ( "id" , MetaInlines [ Str "def-leftFolner" ] )
+                       , ( "term" , MetaInlines [ Str "F\248lner" ] )
                        , ( "translate" , MetaBool False )
                        ])
                 ]
@@ -286,12 +307,314 @@ Pandoc
     }
   [ Header
       1 ( "introduction" , [] , [] ) [ Str "Introduction" ]
+  , Para
+      [ Str "Recall"
+      , Space
+      , Str "the"
+      , Space
+      , Str "definition"
+      , Space
+      , Str "of"
+      , Space
+      , Str "a"
+      , Space
+      , Str "group:"
+      ]
+  , Div
+      ( "def-group-recall" , [ "theorem" , "definition" ] , [] )
+      [ Para
+          [ Span
+              ( "" , [ "theorem-title" ] , [] )
+              [ Strong [ Str "Definition" , Space , Str "1" ] ]
+          , Space
+          , Str "A"
+          , Space
+          , Emph [ Str "group" ]
+          , Space
+          , Str "is"
+          , Space
+          , Str "a"
+          , Space
+          , Str "non-empty"
+          , Space
+          , Str "set"
+          , Space
+          , Math InlineMath "\\Group"
+          , Space
+          , Str "together"
+          , Space
+          , Str "with"
+          , Space
+          , Str "a"
+          , Space
+          , Str "binary"
+          , Space
+          , Str "operation"
+          , Space
+          , Str "on"
+          , Space
+          , Math InlineMath "\\Group"
+          , Str ","
+          , Space
+          , Str "denoted"
+          , Space
+          , Quoted
+              DoubleQuote [ Math InlineMath "\\GroupOperation{}{}" ]
+          , Str ","
+          , Space
+          , Str "that"
+          , Space
+          , Str "combines"
+          , Space
+          , Str "any"
+          , Space
+          , Str "two"
+          , Space
+          , Str "elements"
+          , Space
+          , Math InlineMath "\\GroupElement"
+          , Space
+          , Str "and"
+          , Space
+          , Math InlineMath "\\GroupElement'"
+          , Space
+          , Str "of"
+          , Space
+          , Math InlineMath "\\Group"
+          , Space
+          , Str "to"
+          , Space
+          , Str "form"
+          , Space
+          , Str "an"
+          , Space
+          , Str "element"
+          , Space
+          , Str "of"
+          , Space
+          , Math InlineMath "\\Group"
+          , Str ","
+          , Space
+          , Str "denoted"
+          , Space
+          , Math
+              InlineMath
+              "\\GroupOperation{\\GroupElement}{\\GroupElement'}"
+          , Str ","
+          , Space
+          , Str "such"
+          , Space
+          , Str "that"
+          , Space
+          , Str "the"
+          , Space
+          , Str "following"
+          , Space
+          , Str "three"
+          , Space
+          , Str "requirements,"
+          , Space
+          , Str "known"
+          , Space
+          , Str "as"
+          , Space
+          , Emph [ Str "group" , Space , Str "axioms" ]
+          , Str ","
+          , Space
+          , Str "are"
+          , Space
+          , Str "satisfied:"
+          ]
+      , BulletList
+          [ [ Plain
+                [ Emph [ Str "Associativity:" ]
+                , Space
+                , Str "For"
+                , Space
+                , Str "all"
+                , Space
+                , Math InlineMath "{g},{h},{j}"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Str ","
+                , Space
+                , Str "one"
+                , Space
+                , Str "has"
+                , Space
+                , Math
+                    InlineMath
+                    "\\GroupOperation{(\\GroupOperation{g}{h})}{j}=\\GroupOperation{g}{(\\GroupOperation{h}{j})}"
+                , Str "."
+                ]
+            ]
+          , [ Plain
+                [ Emph [ Str "Identity:" ]
+                , Space
+                , Str "There"
+                , Space
+                , Str "exists"
+                , Space
+                , Str "an"
+                , Space
+                , Str "element"
+                , Space
+                , Math InlineMath "\\Identity"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Space
+                , Str "such"
+                , Space
+                , Str "that,"
+                , Space
+                , Str "for"
+                , Space
+                , Str "every"
+                , Space
+                , Math InlineMath "{g}"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Str ","
+                , Space
+                , Str "one"
+                , Space
+                , Str "has"
+                , Space
+                , Math InlineMath "\\GroupOperation{\\Identity}{g}={g}"
+                , Space
+                , Str "and"
+                , Space
+                , Math InlineMath "\\GroupOperation{g}{\\Identity}={g}"
+                , Str "."
+                , Space
+                , Str "Such"
+                , Space
+                , Str "an"
+                , Space
+                , Str "element"
+                , Space
+                , Str "is"
+                , Space
+                , Str "unique"
+                , Space
+                , Str "and"
+                , Space
+                , Str "is"
+                , Space
+                , Str "called"
+                , Space
+                , Str "the"
+                , Space
+                , Emph [ Str "identity" , Space , Str "element" ]
+                , Str "."
+                ]
+            ]
+          , [ Plain
+                [ Emph [ Str "Unique" , Space , Str "Inverse:" ]
+                , Space
+                , Str "For"
+                , Space
+                , Str "each"
+                , Space
+                , Math InlineMath "{g}"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Str ","
+                , Space
+                , Str "there"
+                , Space
+                , Str "exists"
+                , Space
+                , Str "an"
+                , Space
+                , Str "element"
+                , Space
+                , Math InlineMath "{h}"
+                , Space
+                , Str "in"
+                , Space
+                , Math InlineMath "\\Group"
+                , Space
+                , Str "such"
+                , Space
+                , Str "that"
+                , Space
+                , Math InlineMath "\\GroupOperation{g}{h}=\\Identity"
+                , Space
+                , Str "and"
+                , Space
+                , Math InlineMath "\\GroupOperation{h}{g}=\\Identity"
+                , Str ","
+                , Space
+                , Str "where"
+                , Space
+                , Math InlineMath "\\Identity"
+                , Space
+                , Str "is"
+                , Space
+                , Str "the"
+                , Space
+                , Str "identity"
+                , Space
+                , Str "element."
+                , Space
+                , Str "For"
+                , Space
+                , Str "each"
+                , Space
+                , Math InlineMath "{g}"
+                , Str ","
+                , Space
+                , Str "the"
+                , Space
+                , Str "element"
+                , Space
+                , Math InlineMath "{h}"
+                , Space
+                , Str "is"
+                , Space
+                , Str "unique"
+                , Space
+                , Str "and"
+                , Space
+                , Str "is"
+                , Space
+                , Str "called"
+                , Space
+                , Str "the"
+                , Space
+                , Emph [ Str "inverse" ]
+                , Space
+                , Str "of"
+                , Space
+                , Math InlineMath "{h}"
+                , Space
+                , Str "and"
+                , Space
+                , Str "is"
+                , Space
+                , Str "denoted"
+                , Space
+                , Math InlineMath "\\Inverse{g}"
+                , Str "."
+                ]
+            ]
+          ]
+      ]
   , Div
       ( "def-rightFolner" , [ "theorem" , "definition" ] , [] )
       [ Para
           [ Span
               ( "" , [ "theorem-title" ] , [] )
-              [ Strong [ Str "Definition" , Space , Str "1" ] ]
+              [ Strong [ Str "Definition" , Space , Str "2" ] ]
           , Space
           , Str "We"
           , Space
@@ -347,7 +670,7 @@ Pandoc
       [ Para
           [ Span
               ( "" , [ "theorem-title" ] , [] )
-              [ Strong [ Str "Definition" , Space , Str "2" ] ]
+              [ Strong [ Str "Definition" , Space , Str "3" ] ]
           , Space
           , Str "Similarly,"
           , Space
@@ -405,7 +728,7 @@ Pandoc
       [ Para
           [ Span
               ( "" , [ "theorem-title" ] , [] )
-              [ Strong [ Str "Definition" , Space , Str "3" ] ]
+              [ Strong [ Str "Definition" , Space , Str "4" ] ]
           , Space
           , Str "We"
           , Space
@@ -458,7 +781,7 @@ Pandoc
       [ Para
           [ Span
               ( "" , [ "theorem-title" ] , [] )
-              [ Strong [ Str "Definition" , Space , Str "4" ] ]
+              [ Strong [ Str "Definition" , Space , Str "5" ] ]
           , Space
           , Str "We"
           , Space

@@ -175,13 +175,11 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
-\newcommand{\Inverse}[1]{{#1}^{-1}}
-\newcommand{\Group}{{\Gamma}}
-\newcommand{\Identity}{{e}}
-\newcommand{\Operation}[2]{{#1}\cdot{#2}}
 \newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\Set}{{S}}
+\newcommand{\Group}{{\Gamma}}
 \newcommand{\GroupElement}{{\gamma}}
+\newcommand{\Identity}{{e}}
+\newcommand{\Inverse}[1]{{#1}^{-1}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -200,7 +198,7 @@
 
 \title{Group}
 \author{Kai Prince SFHEA}
-\date{2025-08-06}
+\date{2025-08-13}
 \begin{document}
 \maketitle
 
@@ -209,32 +207,32 @@
 
 \begin{definition}[Group]\protect\hypertarget{def-group}{}\label{def-group}
 
-A group is a non-empty set \(\Group\) together with a binary operation
-on \(\Group\), denoted ``\(\GroupOperation{}{}\)'', that combines any
-two elements \(\GroupElement\) and \(\GroupElement'\) of \(\Group\) to
-form an element of \(\Group\), denoted
+A \emph{group} is a non-empty set \(\Group\) together with a binary
+operation on \(\Group\), denoted ``\(\GroupOperation{}{}\)'', that
+combines any two elements \(\GroupElement\) and \(\GroupElement'\) of
+\(\Group\) to form an element of \(\Group\), denoted
 \(\GroupOperation{\GroupElement}{\GroupElement'}\), such that the
-following three requirements, known as \textbf{group axioms}, are
+following three requirements, known as \emph{group axioms}, are
 satisfied:
 
 \begin{itemize}
 \item
-  For all \({g},{h},{j}\) in \(\Group\), one has
+  \emph{Associativity:} For all \({g},{h},{j}\) in \(\Group\), one has
   \(\GroupOperation{(\GroupOperation{g}{h})}{j}=\GroupOperation{g}{(\GroupOperation{h}{j})}\).
 \item
-  There exists an element \(\Identity\) in \(\Group\) such that, for
-  every \({g}\) in \(\Group\), one has
+  \emph{Identity:} There exists an element \(\Identity\) in \(\Group\)
+  such that, for every \({g}\) in \(\Group\), one has
   \(\GroupOperation{\Identity}{g}={g}\) and
   \(\GroupOperation{g}{\Identity}={g}\). Such an element is unique and
-  is called the \textbf{identity element}.
+  is called the \emph{identity element}.
 \item
-  For each \({g}\) in \(\Group\), there exists an element \({h}\) in
-  \(\Group\) such that \(\GroupOperation{g}{h}=\Identity\) and
+  \emph{Unique Inverse:} For each \({g}\) in \(\Group\), there exists an
+  element \({h}\) in \(\Group\) such that
+  \(\GroupOperation{g}{h}=\Identity\) and
   \(\GroupOperation{h}{g}=\Identity\), where \(\Identity\) is the
-  identity element.
-
-  For each \({g}\), the element \({h}\) is unique and is called the
-  \textbf{inverse} of \({h}\) and is denoted \(\Inverse{g}\).
+  identity element. For each \({g}\), the element \({h}\) is unique and
+  is called the \emph{inverse} of \({h}\) and is denoted
+  \(\Inverse{g}\).
 \end{itemize}
 
 \end{definition}

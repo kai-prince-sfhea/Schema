@@ -4,20 +4,55 @@
     "href": "template.html",
     "title": "Axioms",
     "section": "",
-    "text": "1 Introduction\n\n\n\n\n\n\n\nDefinition 1 (associativity) For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\n\n\n\n\n\n\n\n\n\nDefinition 2 (identity) There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\n\n\n\n\n\n\n\n\n\nDefinition 3 (unique inverse) For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\).\n\n\n\n\nTest Definition 1\n\n\n2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "text": "Definition 1 (associativity) For all \\({a},{b},{c}\\) in \\(\\Set\\), one has \\(\\Operation{(\\Operation{a}{b})}{c}=\\Operation{a}{(\\Operation{b}{c})}\\).\n\n\nDefinition 2 (identity) There exists an element \\(\\Identity\\) in \\(\\Set\\) such that, for every \\({a}\\) in \\(\\Set\\), one has \\(\\Operation{\\Identity}{a}={a}\\) and \\(\\Operation{a}{\\Identity}={a}\\). Such an element is unique and is called the identity element.\n\n\nDefinition 3 (unique inverse) For each \\({a}\\) in \\(\\Set\\), there exists an element \\({b}\\) in \\(\\Set\\) such that \\(\\Operation{a}{b}=\\Identity\\) and \\(\\Operation{b}{a}=\\Identity\\), where \\(\\Identity\\) is the identity element.\nFor each \\({a}\\), the element \\({b}\\) is unique and is called the inverse of \\({b}\\) and is denoted \\(\\Inverse{a}\\).\n\nTest Definition 1"
+  },
+  {
+    "objectID": "template.html#sec-Outlinks",
+    "href": "template.html#sec-Outlinks",
+    "title": "Axioms",
+    "section": "Outlinks",
+    "text": "Outlinks\n\nGroup\nFølner sequence"
   },
   {
     "objectID": "template-folder/template-folner.html",
     "href": "template-folder/template-folner.html",
     "title": "Følner sequence",
     "section": "",
-    "text": "1 Introduction\n\n\n\n\n\n\n\nDefinition 1 We define a right-Følner sequence in a group, \\(\\Group\\), as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1\\]for all \\(\\GroupElement\\in\\Group\\).\n\n\n\n\n\n\n\n\n\n\n\nDefinition 2 Similarly, we define a left-Følner sequence in a group, \\(\\Group\\), as a sequence \\(\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}\\) of finite subsets of \\(\\Gamma\\) satisfying \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 \\]for all \\(\\GroupElement\\in\\Group\\).\n\n\n\n\n\n\n\n\n\n\n\nDefinition 3 We call a sequence a Følner sequence if it is both a left and right Følner sequence.\n\n\n\n\nA related definition is the following:\n\n\n\n\n\n\n\nDefinition 4 We call define density of a subset \\(A\\subseteq\\Group\\) with respect to a Følner sequence, \\(\\Folner\\), as \\[\\Density(A)=\\lim_{N\\rightarrow\\infty}\\frac{|\\Folner[N]\\cap A|}{|\\Folner[N]|},\\] if it exists.\n\n\n\n\nFor \\(\\N\\), the natural density, \\(\\Density[]\\), is defined when the Følner sequence is constructed with \\(\\Folner[N]=[1,...,N]\\).\n\n\n2 Results\n\n\n\n\n\n\n\nTheorem 1 (The Test Theorem) This is a Theorem.\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThis is a test tip.\n\n\n\n\n3 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "text": "Term\nDescription\n\n\n\n\n\\(\\N\\)\nThe Natural Numbers: 1, 2, 3, … (Source)"
+  },
+  {
+    "objectID": "template-folder/template-folner.html#sec-Notation",
+    "href": "template-folder/template-folner.html#sec-Notation",
+    "title": "Følner sequence",
+    "section": "",
+    "text": "Term\nDescription\n\n\n\n\n\\(\\N\\)\nThe Natural Numbers: 1, 2, 3, … (Source)"
+  },
+  {
+    "objectID": "template-folder/template-folner.html#sec-Backlinks",
+    "href": "template-folder/template-folner.html#sec-Backlinks",
+    "title": "Følner sequence",
+    "section": "Backlinks",
+    "text": "Backlinks\n\nGroup\nAxioms"
   },
   {
     "objectID": "template-folder/template-group.html",
     "href": "template-folder/template-group.html",
     "title": "Group",
     "section": "",
-    "text": "1 Introduction\n\n\n\n\n\n\n\nDefinition 1 (Group) A group is a non-empty set \\(\\Group\\) together with a binary operation on \\(\\Group\\), denoted “\\(\\GroupOperation{}{}\\)”, that combines any two elements \\(\\GroupElement\\) and \\(\\GroupElement'\\) of \\(\\Group\\) to form an element of \\(\\Group\\), denoted \\(\\GroupOperation{\\GroupElement}{\\GroupElement'}\\), such that the following three requirements, known as group axioms, are satisfied:\n\nFor all \\({g},{h},{j}\\) in \\(\\Group\\), one has \\(\\GroupOperation{(\\GroupOperation{g}{h})}{j}=\\GroupOperation{g}{(\\GroupOperation{h}{j})}\\).\nThere exists an element \\(\\Identity\\) in \\(\\Group\\) such that, for every \\({g}\\) in \\(\\Group\\), one has \\(\\GroupOperation{\\Identity}{g}={g}\\) and \\(\\GroupOperation{g}{\\Identity}={g}\\). Such an element is unique and is called the identity element.\nFor each \\({g}\\) in \\(\\Group\\), there exists an element \\({h}\\) in \\(\\Group\\) such that \\(\\GroupOperation{g}{h}=\\Identity\\) and \\(\\GroupOperation{h}{g}=\\Identity\\), where \\(\\Identity\\) is the identity element.\nFor each \\({g}\\), the element \\({h}\\) is unique and is called the inverse of \\({h}\\) and is denoted \\(\\Inverse{g}\\).\n\n\n\n\n\n\n\n2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
+    "text": "Axioms"
+  },
+  {
+    "objectID": "template-folder/template-group.html#sec-Backlinks",
+    "href": "template-folder/template-group.html#sec-Backlinks",
+    "title": "Group",
+    "section": "",
+    "text": "Axioms"
+  },
+  {
+    "objectID": "template-folder/template-group.html#sec-Outlinks",
+    "href": "template-folder/template-group.html#sec-Outlinks",
+    "title": "Group",
+    "section": "Outlinks",
+    "text": "Outlinks\n\nFølner sequence"
   }
 ]
