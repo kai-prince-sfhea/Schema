@@ -77,8 +77,8 @@
   },
   "dependencyGraph": {
     "Density": [
-      "Density",
-      "Folner"
+      "Folner",
+      "Density"
     ],
     "Folner": [
       "Folner"
@@ -112,16 +112,16 @@
     ]
   },
   "sortedKeys": [
-    "Folner",
-    "Density",
-    "GroupElement",
-    "Operation",
-    "Inverse",
-    "Identity",
     "GroupOperation",
+    "Operation",
+    "Identity",
+    "Folner",
+    "GroupElement",
     "Group",
-    "N",
+    "Inverse",
+    "GroupIdentity",
+    "Density",
     "Set",
-    "GroupIdentity"
+    "N"
   ]
 }

@@ -180,7 +180,7 @@ for k, v in pairs(DocJSON) do
     end
 
     for term, termData in pairs(TermsJSON) do
-        local standardMatch = FileContents:find(term, 1, true)
+        local standardMatch = FileContents:match(schema.escape_pattern(term))
         local referenceMatch = false
         if not standardMatch and term:match("@") then
             referenceMatch = RefTokenSet[term] or false
@@ -203,6 +203,7 @@ for k, v in pairs(DocJSON) do
                 DirJSON[pandoc.path.directory(k)].MathJax[cmd] = MathJSON[cmd].MathJax
                 for _, dep in ipairs(MathDep[cmd]) do
                     Terms["\\" .. dep] = true
+                    DirJSON[pandoc.path.directory(k)].MathJax[dep] = MathJSON[dep].MathJax
                 end
             end
 

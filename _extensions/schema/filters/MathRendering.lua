@@ -110,7 +110,6 @@ function link_terms_in_body(el)
     if trailing ~= "" then core = core:sub(1, #core - #trailing) end
 
     if core ~= "" and RefTerms[core] and not MentionedTerms[core] then
-        print('Creating link for term: "' .. core .. '"')
         MentionedTerms[core] = true
         local entry = TermsJSON[core]
         if not entry then return nil end
@@ -119,7 +118,6 @@ function link_terms_in_body(el)
         local url = ".\\" .. FileLinks.RelLinks[sourceFile]:gsub("%.qmd$", ".html")
         if entry.sourceRef then
             url = url .. "#" .. entry.sourceRef
-            print("Adding source reference to URL: " .. url)
         end
         -- Return [leading][Link(core)][trailing]
         local inlines = pandoc.List()
