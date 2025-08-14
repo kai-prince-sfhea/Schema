@@ -52,14 +52,119 @@ M.pretty_json = function(json_str)
     return formatted
 end
 
--- Graph Alphabetical sort
-M.key_sort = function(graph)
-    local keys = {}
-    for k, _ in pairs(graph) do
-        table.insert(keys, k)
+M.json_encode = function(table)
+    local output_string = ""
+    if quarto and quarto.json then
+        output_string = quarto.json.encode(table)
+    else
+        output_string = pandoc.json.encode(table)
     end
-    table.sort(keys)
-    return keys
+    output_string = M.pretty_json(output_string)
+    return output_string
+end
+
+-- Count Keys
+M.count_keys = function(graph)
+    local count = 0
+    for k,_ in pairs(graph) do
+        count = count + 1
+    end
+    return count
+end
+
+-- Graph Key Value Switch
+M.key_value_switch = function(graph)
+    local output_keys = {}
+    for k,v in pairs(graph) do
+        output_keys[v] = k
+    end
+    return output_keys
+end
+
+-- Graph Index Isolate
+M.index_isolate = function(graph)
+    local output_indices = {}
+    local index_values = {}
+    for k,_ in ipairs(graph) do
+        table.insert(output_indices, graph[k])
+        index_values[k] = true
+    end
+    return output_indices, index_values
+end
+
+-- Graph Key Isolate
+M.key_isolate = function(graph)
+    local output_keys = {}
+    local _, index_values = M.index_isolate(graph)
+    for k,_ in pairs(graph) do
+        if not index_values[k] then
+            table.insert(output_keys, k)
+        end
+    end
+    return output_keys
+end
+
+-- Graph Key Standardise
+M.key_standardise = function(keys)
+    local output_keys = {}
+    for _, k in ipairs(keys) do
+        output_keys[string.lower(k:gsub("[^%w]", ""))] = k
+    end
+    return output_keys
+end
+
+-- Graph Key Replace
+M.key_replace = function(ordered_keys, key_replacements)
+    local output_keys = {}
+    for _, k in ipairs(ordered_keys) do
+        table.insert(output_keys, key_replacements[k] or k)
+    end
+    return output_keys
+end
+
+-- Graph Index Alphabetical Sort
+M.index_sort = function(graph)
+    local indices = M.index_isolate(graph)
+    local output = {}
+    local table_values = {}
+    for _, index in ipairs(indices) do
+        if type(graph[index]) == "table" then
+            table.insert(table_values, graph[index])
+        else
+            table.insert(output, graph[index])
+        end
+    end
+    table.sort(output)
+    return output, table_values
+end
+
+-- Graph Key Alphabetical Sort
+M.key_sort = function(graph)
+    local keys = M.key_isolate(graph)
+    local standard_keys = M.key_standardise(keys)
+    local sorted_keys = M.key_isolate(standard_keys)
+    table.sort(sorted_keys)
+    sorted_keys = M.key_replace(sorted_keys, standard_keys)
+    return sorted_keys
+end
+
+-- Graph Key Weighted Sort
+M.weighted_key_sort = function(graph)
+    local keys = M.key_sort(graph)
+    local key_count = M.count_keys(graph)
+    local sorted_keys = {}
+    local key_values = {}
+    for i, key in ipairs(keys) do
+        new_key = i + #graph[key] * key_count
+        table.insert(sorted_keys, new_key)
+        key_values[new_key] = key
+    end
+    table.sort(sorted_keys)
+    local output_keys = {}
+    for _, i in ipairs(sorted_keys) do
+        table.insert(output_keys, key_values[i])
+    end
+    return output_keys
 end
 
 -- Build dependencies
@@ -81,15 +186,16 @@ end
 
 -- Topological sort
 M.topo_sort = function(graph)
-    local sorted_keys = M.key_sort(graph)
+    local sorted_keys = M.weighted_key_sort(graph)
     local visited = {}
     local result = {}
 
     local function visit(node)
         if not visited[node] then
             visited[node] = true
-            if graph[node] then
-                node_keys = M.key_sort(graph[node])
+            if graph[node] and #graph[node] > 0 then
+                local node_keys = graph[node]
+                table.sort(node_keys)
                 for _, dep in ipairs(node_keys) do
                     if graph[dep] and dep ~= node then
                         visit(dep)

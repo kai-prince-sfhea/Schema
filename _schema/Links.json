@@ -12,9 +12,9 @@
     }
   },
   "sorted_keys": [
-    "template-folder\\template-folner.qmd",
+    "template.qmd",
     "template-folder\\template-group.qmd",
-    "template.qmd"
+    "template-folder\\template-folner.qmd"
   ],
   "template-folder\\template-folner.qmd": {
     "FileLinks": {
@@ -22,8 +22,8 @@
         "def-group"
       ],
       "template.qmd": [
-        "def-inverse",
         "def-associativity",
+        "def-inverse",
         "def-identity"
       ]
     },
@@ -36,7 +36,7 @@
         "optionalVars": 0
       }
     },
-    "LaTeX": "\n\\newcommand{\\Density}[1][\\Folner]{{d}_{#1}}\n\\newcommand{\\Folner}[1][\\vphantom{}]{{\\Phi}_{#1}}\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\N}{\\mathbb{N}}\n\n",
+    "LaTeX": "\n\\newcommand{\\Folner}[1][\\vphantom{}]{{\\Phi}_{#1}}\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\N}{\\mathbb{N}}\n\\newcommand{\\Density}[1][\\Folner]{{d}_{#1}}\n\n",
     "RefMath": {
       "\\Group": true,
       "\\GroupElement": true,
@@ -60,8 +60,8 @@
   "template-folder\\template-group.qmd": {
     "FileLinks": {
       "template.qmd": [
-        "def-inverse",
         "def-associativity",
+        "def-inverse",
         "def-identity"
       ]
     },

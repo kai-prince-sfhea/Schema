@@ -367,21 +367,21 @@ Math = {
 }
 
 -- Save MathJSON Output to File
-MathJSONEncoding = schema.pretty_json(pandoc.json.encode(Math))
+MathJSONEncoding = schema.json_encode(Math)
 do
     local f = io.open(OutputMathJSONFile, "w")
     if f then f:write(MathJSONEncoding); f:close() end
 end
 
 -- Save TermsJSON Output to File
-TermsJSONEncoding = schema.pretty_json(pandoc.json.encode(TermsJSON))
+TermsJSONEncoding = schema.json_encode(TermsJSON)
 do
     local f = io.open(OutputTermsFile, "w")
     if f then f:write(TermsJSONEncoding); f:close() end
 end
 
 -- Save DocJSON Output to File
-DocJSONEncoding = schema.pretty_json(pandoc.json.encode(DocJSON))
+DocJSONEncoding = schema.json_encode(DocJSON)
 do
     local f = io.open(OutputDocumentContentsFile, "w")
     if f then f:write(DocJSONEncoding); f:close() end

@@ -193,7 +193,6 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
-\newcommand{\Density}[1][\Folner]{{d}_{#1}}
 \newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
 \newcommand{\Group}{{\Gamma}}
 \newcommand{\GroupElement}{{\gamma}}
@@ -201,6 +200,7 @@
 \newcommand{\Identity}{{e}}
 \newcommand{\Inverse}[1]{{#1}^{-1}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Density}[1][\Folner]{{d}_{#1}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -230,9 +230,9 @@
 \begin{itemize}
 \tightlist
 \item
-  \href{template-group.html}{Group}
-\item
   \href{../template.html}{Axioms}
+\item
+  \href{template-group.html}{Group}
 \end{itemize}
 
 \section{Introduction}\label{introduction}
@@ -322,7 +322,7 @@ This is a Theorem.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, colbacktitle=quarto-callout-tip-color!10!white, arc=.35mm, coltitle=black, leftrule=.75mm, bottomtitle=1mm, opacitybacktitle=0.6, bottomrule=.15mm, rightrule=.15mm, left=2mm, breakable, toptitle=1mm, colback=white, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, colframe=quarto-callout-tip-color-frame, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, opacitybacktitle=0.6, leftrule=.75mm, breakable, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white, arc=.35mm, toprule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, colframe=quarto-callout-tip-color-frame, toptitle=1mm, rightrule=.15mm, titlerule=0mm, left=2mm]
 
 This is a test tip.
 

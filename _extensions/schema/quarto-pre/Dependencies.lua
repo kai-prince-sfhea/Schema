@@ -281,7 +281,7 @@ LinkJSON["dependency_Graph"] = dependencyGraph
 LinkJSON["sorted_keys"] = schema.topo_sort(dependencyGraph)
 
 -- Save LinksJSON Output to File
-LinksJSONEncoding = schema.pretty_json(pandoc.json.encode(LinkJSON))
+LinksJSONEncoding = schema.json_encode(LinkJSON)
 do
     local f = io.open(OutputLinksFile, "w")
     if f then
@@ -293,7 +293,7 @@ do
 end
 
 -- Save TermsJSON Output to File
-TermsJSONEncoding = schema.pretty_json(pandoc.json.encode(TermsJSON))
+TermsJSONEncoding = schema.json_encode(TermsJSON)
 do
     local f = io.open(OutputTermsFile, "w")
     if f then
@@ -305,7 +305,7 @@ do
 end
 
 -- Save DirJSON Output to File
-DirJSONEncoding = schema.pretty_json(pandoc.json.encode(DirJSON))
+DirJSONEncoding = schema.json_encode(DirJSON)
 do
     local f = io.open(OutputDirFile, "w")
     if f then
