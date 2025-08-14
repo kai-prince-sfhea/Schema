@@ -1,5 +1,13 @@
 {
   ".": {
+    "ChangedFiles": {
+      "html": {
+        "template.html": true
+      },
+      "tex": {
+        "template.tex": true
+      }
+    },
     "MathJax": {
       "Identity": "{e}",
       "Inverse": [
@@ -15,6 +23,16 @@
     "RenderMathJax": true
   },
   "template-folder": {
+    "ChangedFiles": {
+      "html": {
+        "template-folner.html": true,
+        "template-group.html": true
+      },
+      "tex": {
+        "template-folner.tex": true,
+        "template-group.tex": true
+      }
+    },
     "MathJax": {
       "Density": [
         "{d}_{#1}",

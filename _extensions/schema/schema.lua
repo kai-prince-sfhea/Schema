@@ -7,6 +7,15 @@ M.escape_pattern = function(str)
     return str:gsub('([%^%$%(%)%%%.%[%]%*%+%-%q?])', '%%%1')
 end
 
+-- Meta Boolean Function
+M.meta_bool = function(v)
+    if v == nil then return false end
+    if type(v) == "boolean" then return v end
+    if type(v) == "table" and v.t == "MetaBool" then return v.c end
+    if type(v) == "string" then return v:lower() == "true" end
+    return false
+end
+
 -- Pretty Print JSON
 M.pretty_json = function(json_str)
     indent = "  "

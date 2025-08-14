@@ -61,7 +61,9 @@ if DirFile ~= nil then
     DirJSON = pandoc.json.decode(DirFile:read("a"))
     DirFile:close()
     for k, _ in pairs(DirJSON) do
-        DirJSON[k].RenderMathJax = false -- Initialize math flag to false
+        -- Initialize render-specific variables
+        DirJSON[k].RenderMathJax = false
+        DirJSON[k].ChangedFiles = {}
     end
 end
 
@@ -175,6 +177,7 @@ for k, v in pairs(DocJSON) do
     if not DirJSON[pandoc.path.directory(k)] then
         DirJSON[pandoc.path.directory(k)] = {
             RenderMathJax = false,
+            ChangedFiles = {},
             MathJax = {}
         }
     end

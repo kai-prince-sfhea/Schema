@@ -223,7 +223,7 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-13" ] )
+          , ( "date" , MetaInlines [ Str "2025-08-14" ] )
           , ( "macros"
             , MetaList
                 [ MetaMap
@@ -241,6 +241,7 @@ Pandoc
             , MetaMap
                 (fromList
                    [ ( "backlinks" , MetaBool True )
+                   , ( "force-https" , MetaBool True )
                    , ( "outlinks" , MetaBool True )
                    ])
             )

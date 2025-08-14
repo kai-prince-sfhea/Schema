@@ -112,16 +112,16 @@
     ]
   },
   "sortedKeys": [
-    "GroupOperation",
-    "Operation",
-    "Identity",
+    "GroupIdentity",
     "Folner",
-    "GroupElement",
+    "Density",
+    "N",
+    "GroupOperation",
     "Group",
     "Inverse",
-    "GroupIdentity",
-    "Density",
-    "Set",
-    "N"
+    "Identity",
+    "GroupElement",
+    "Operation",
+    "Set"
   ]
 }

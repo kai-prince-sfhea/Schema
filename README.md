@@ -43,8 +43,10 @@ format:
 schema:
   backlinks: true
   outlinks: true
+  force-https: true
   # backlinks-title: Related pages
   # outlinks-title: Referenced by
+  # force-https: replace http:// with https:// in output html files
 ```
 
 2) Define terms and macros in page YAML
@@ -130,7 +132,7 @@ The overall goal of this Extension is to maximise the accessibility of Research 
 1. Starting from the Maths perspective and then generalising, enable webpages to cover individual concepts with configuration, such as notation and abbreviations carrying over to the rest of the website and alternative formats.
     1. It is preferable that the terminology be defined rigorously to enhance knowledge graph building as well as allowing for more accurate automatic translations.
     1. It is preferable that there be an option for definitions to be provided using templates, that can be updated when embedded on other pages.
-1. Correct citations and their rendering when in callout block titles, as well as add error warnings in scripts and filters to assist with troubleshooting.
+1. Correct citations and their rendering when in callout block titles, as well as add error warnings in scripts and filters to assist with troubleshooting. Also implement change-tracking so that the freeze option can apply to renders.
 1. Allow Rocq to be used as an option for code blocks, with compilation options including raw code and/or pretty-printing, for the purpose of allowing website visitors to view and run Rocq code to verify proofs.
 1. Embed knowledge graph building within the compilation process to allow for hyperlinked cross-referencing of specific objects and terminology across the website, as well as making the knowledge easily accessible to AI models.
     1. A graphical representation (similar to Obsidian) would be pretty cool!

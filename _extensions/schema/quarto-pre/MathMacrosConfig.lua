@@ -236,6 +236,7 @@ for _, file in ipairs(Files) do
     ---@field macros table|nil
     ---@field dependencies table|nil
     ---@field terms table|nil
+    ---@field schema table|nil
     local metadata = contents.meta
 
     -- Pass each Math Macro

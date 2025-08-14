@@ -22,6 +22,7 @@ format:
 schema:
   backlinks: true
   outlinks: true
+  force-https: true
 
 callouty-theorem:
   thm:
