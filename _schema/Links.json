@@ -1,8 +1,8 @@
 {
   "dependency_Graph": {
     "template-folder\\template-folner.qmd": [
-      "template.qmd",
-      "template-folder\\template-group.qmd"
+      "template-folder\\template-group.qmd",
+      "template.qmd"
     ],
     "template-folder\\template-group.qmd": [
       "template.qmd"
@@ -12,9 +12,9 @@
     }
   },
   "sorted_keys": [
-    "template.qmd",
+    "template-folder\\template-folner.qmd",
     "template-folder\\template-group.qmd",
-    "template-folder\\template-folner.qmd"
+    "template.qmd"
   ],
   "template-folder\\template-folner.qmd": {
     "FileLinks": {
@@ -36,7 +36,7 @@
         "optionalVars": 0
       }
     },
-    "LaTeX": "\n\\newcommand{\\Folner}[1][\\vphantom{}]{{\\Phi}_{#1}}\n\\newcommand{\\Density}[1][\\Folner]{{d}_{#1}}\n\\newcommand{\\N}{\\mathbb{N}}\n\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\n",
+    "LaTeX": "\n\\newcommand{\\Density}[1][\\Folner]{{d}_{#1}}\n\\newcommand{\\Folner}[1][\\vphantom{}]{{\\Phi}_{#1}}\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\N}{\\mathbb{N}}\n\n",
     "RefMath": {
       "\\Group": true,
       "\\GroupElement": true,
@@ -68,7 +68,7 @@
     "FileNotation": {
       
     },
-    "LaTeX": "\n\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\n",
+    "LaTeX": "\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\\newcommand{\\GroupOperation}[2]{{#1}\\cdot{#2}}\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\n",
     "RefMath": {
       "\\Identity": true,
       "\\Inverse": true
@@ -90,7 +90,7 @@
     "FileNotation": {
       
     },
-    "LaTeX": "\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\Operation}[2]{{#1}\\cdot{#2}}\n\\newcommand{\\Set}{{S}}\n\n",
+    "LaTeX": "\n\\newcommand{\\Identity}{{e}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\\newcommand{\\Operation}[2]{{#1}\\cdot{#2}}\n\\newcommand{\\Set}{{S}}\n\n",
     "RefMath": {
       
     },

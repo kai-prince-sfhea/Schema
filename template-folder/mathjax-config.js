@@ -31,12 +31,44 @@ fetch('./Mathjax.json')
                         OpenMath: ['OpenMath']
                     }
                 },
-                loader: {load: ['[tex]/texhtml','[tex]/html']},
+                loader: {load: ['[tex]/texhtml','[tex]/html','ui/safe']},
                 tex:
                 {
                     allowTexHTML: true,
                     packages: {'[+]': ['texhtml','html']},
                     macros: macros
+                },
+                options: {
+                    safeOptions: {
+                        allow: {
+                            URLs: 'safe',
+                            classes: 'safe',
+                            cssIDs: 'safe',
+                            styles: 'safe'
+                        },
+                        safeProtocols: {
+                            http: false,
+                            https: true,
+                            file: true,
+                            javascript: false,
+                            data: false
+                        },
+                        safeStyles: {
+                            color: true,
+                            backgroundColor: true,
+                            border: true,
+                            cursor: true,
+                            margin: true,
+                            padding: true,
+                            textShadow: true,
+                            fontFamily: true,
+                            fontSize: true,
+                            fontStyle: true,
+                            fontWeight: true,
+                            opacity: true,
+                            outline: true
+                        }
+                    }
                 }
             };
 

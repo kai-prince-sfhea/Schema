@@ -52,6 +52,16 @@ M.pretty_json = function(json_str)
     return formatted
 end
 
+-- Graph Alphabetical sort
+M.key_sort = function(graph)
+    local keys = {}
+    for k, _ in pairs(graph) do
+        table.insert(keys, k)
+    end
+    table.sort(keys)
+    return keys
+end
+
 -- Build dependencies
 M.extract_dependencies = function(body, key_table, regex)
     local deps = {}
@@ -61,6 +71,7 @@ M.extract_dependencies = function(body, key_table, regex)
             deps[dep] = true
         end
     end
+
     local output = {}
     for k, v in pairs(deps) do
         table.insert(output, k)
@@ -70,6 +81,7 @@ end
 
 -- Topological sort
 M.topo_sort = function(graph)
+    local sorted_keys = M.key_sort(graph)
     local visited = {}
     local result = {}
 
@@ -77,8 +89,9 @@ M.topo_sort = function(graph)
         if not visited[node] then
             visited[node] = true
             if graph[node] then
-                for _, dep in ipairs(graph[node]) do
-                    if graph[dep] then
+                node_keys = M.key_sort(graph[node])
+                for _, dep in ipairs(node_keys) do
+                    if graph[dep] and dep ~= node then
                         visit(dep)
                     end
                 end
@@ -87,7 +100,7 @@ M.topo_sort = function(graph)
         end
     end
 
-    for node, _ in pairs(graph) do
+    for _, node in ipairs(sorted_keys) do
         visit(node)
     end
     return result
