@@ -223,7 +223,7 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-14" ] )
+          , ( "date" , MetaInlines [ Str "2025-08-19" ] )
           , ( "macros"
             , MetaList
                 [ MetaMap

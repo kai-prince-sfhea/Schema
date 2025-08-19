@@ -137,7 +137,6 @@ function link_terms_in_body(el)
 end
 
 function Meta(meta)
-    in_header = true
     if meta and meta.schema then
         local s = meta.schema
         enable_backlinks = schema.meta_bool(s.backlinks)
@@ -319,7 +318,9 @@ function Pandoc(doc)
                     if src ~= "" then
                         local url = schema.RelativePath(File, src:gsub("#.*$", ""))
                         if src:match("#") then url = url .. src:match("#.*$") end
-                        desc = desc .. " ([Source]("..url.."))"
+                        if quarto.doc.is_format("html") then
+                            desc = desc .. " ([Source]("..url.."))"
+                        end
                     end
                     md = md .. string.format("| %s | %s |\n", esc_pipe(term), desc)
                 end

@@ -91,7 +91,7 @@ local function create_url_title(inlines, url, capitalize)
         for _, inl in ipairs(cited_title) do
             outl = inl
             if inl.t == "Str" and capitalize then
-                outl.content = inl.content:gsub("^%l", string.upper)
+                outl.text = inl.text:gsub("^%l", string.upper)
             end
             OutputInlines:insert(outl)
         end
@@ -129,6 +129,7 @@ local function extract_math_macro(value, file)
     local variables
     local variablesDefaultString = ""
     local variablesDefaultArray = {}
+    local variablesDefaultArrayPlain = {}
 
     if MathJSONCount[cmd] == nil then
         MathJSONCount[cmd] = 1
@@ -154,6 +155,7 @@ local function extract_math_macro(value, file)
                 MandatoryVariables = 0
                 for _, string in ipairs(value.variablesDefault) do
                     table.insert(variablesDefaultArray, "O{"..pandoc.utils.stringify(string).."} ")
+                    table.insert(variablesDefaultArrayPlain, pandoc.utils.stringify(string))
                     OptionalVariables = OptionalVariables + 1
                 end
                 if #variablesDefaultArray < variables + 0 then
@@ -166,7 +168,7 @@ local function extract_math_macro(value, file)
                     MathJax = {
                         macro,
                         tonumber(variables),
-                        variablesDefaultArray
+                        variablesDefaultArrayPlain
                     },
                     LaTeX = "\\NewDocumentCommand{\\".. cmd .."}{" .. pandoc.utils.stringify(variablesDefaultArray) .. "}{" .. macro .. "}"
                 }

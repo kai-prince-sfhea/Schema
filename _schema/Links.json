@@ -22,9 +22,9 @@
         "def-group"
       ],
       "template.qmd": [
-        "def-associativity",
+        "def-identity",
         "def-inverse",
-        "def-identity"
+        "def-associativity"
       ]
     },
     "FileNotation": {
@@ -60,9 +60,9 @@
   "template-folder\\template-group.qmd": {
     "FileLinks": {
       "template.qmd": [
-        "def-associativity",
+        "def-identity",
         "def-inverse",
-        "def-identity"
+        "def-associativity"
       ]
     },
     "FileNotation": {
