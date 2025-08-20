@@ -175,10 +175,10 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
 \theoremstyle{remark}
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
@@ -223,17 +223,6 @@
 \begin{document}
 \maketitle
 
-
-\subsection*{Backlinks}\label{sec-Backlinks}
-\addcontentsline{toc}{subsection}{Backlinks}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{../template.html}{Axioms}
-\item
-  \href{template-group.html}{Group}
-\end{itemize}
 
 \section{Introduction}\label{introduction}
 
@@ -322,7 +311,7 @@ This is a Theorem.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, colframe=quarto-callout-tip-color-frame, rightrule=.15mm, left=2mm, colbacktitle=quarto-callout-tip-color!10!white, breakable, bottomrule=.15mm, opacityback=0, toptitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, colback=white, titlerule=0mm, bottomtitle=1mm, arc=.35mm, leftrule=.75mm, toprule=.15mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, bottomtitle=1mm, toprule=.15mm, coltitle=black, breakable, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, colback=white, toptitle=1mm, left=2mm, leftrule=.75mm, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, colbacktitle=quarto-callout-tip-color!10!white, arc=.35mm, rightrule=.15mm, opacityback=0]
 
 This is a test tip.
 

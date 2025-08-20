@@ -170,7 +170,7 @@ function Pandoc(doc)
     end
 
     -- Backlinks: unique pages this file depends on
-    if enable_backlinks then
+    if enable_backlinks and quarto.doc.is_format("html") then
         local page_set = {}
         local function consider(term)
             local tdata = TermsJSON[term]
@@ -224,7 +224,7 @@ function Pandoc(doc)
     end
 
     -- Outlinks: unique pages referencing terms defined here
-    if enable_outlinks then
+    if enable_outlinks and quarto.doc.is_format("html") then
         -- Build set of terms covered in this file (both math and non-math)
         local covered = {}
         for term, tdata in pairs(TermsJSON or {}) do
