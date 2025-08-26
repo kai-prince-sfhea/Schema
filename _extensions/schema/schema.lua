@@ -335,6 +335,10 @@ M.to_json_array = function(str)
 end
 
 M.LoadDiv = function(Div)
+    if not Div then
+        return nil
+    end
+
     local doc = pandoc.Pandoc(pandoc.Blocks({}))
     if Div.t and Div.t == "Div" then
         -- If Div is already a Div, we can use it directly
@@ -346,6 +350,9 @@ M.LoadDiv = function(Div)
     -- Define DivContent and Div_blocks
     local DivContent = doc.blocks[1]
     local Div_blocks = DivContent.content
+    if Div_blocks[1] == nil then
+        return nil
+    end
 
     -- Initialise output table
     local output = {

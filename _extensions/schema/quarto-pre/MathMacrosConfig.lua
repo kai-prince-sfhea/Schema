@@ -270,19 +270,21 @@ for _, file in ipairs(Files) do
             TermsJSON["@"..ref].divMD = schema.convert_md(found_block, metadata)
             TermsJSON["@"..ref].blockType = found_block.t
             local Div_data = schema.LoadDiv(TermsJSON["@"..ref].divMD)
-            TermsJSON["@"..ref].blockMD = schema.convert_md(Div_data.block, metadata)
-            TermsJSON["@"..ref].HTMLMD = TermsJSON["@"..ref].blockMD
-            if Div_data.title then
-                TermsJSON["@"..ref].title = schema.convert_md(Div_data.title, metadata):gsub("%s+", " ")
-                TermsJSON["@"..ref].titleMD = schema.convert_md(Div_data.title, metadata):gsub("%s+", " "):gsub("(%a)(%a*)", function(a,b) return string.upper(a)..b end)
-                TermsJSON["@"..ref].urlTitle = schema.convert_md(create_url_title(Div_data.title,file, false), metadata):gsub("%s+", " ")
-                TermsJSON["@"..ref].urlMD = schema.convert_md(create_url_title(Div_data.title,file, true), metadata):gsub("%s+", " ")
-            end
-            if Div_data.templateMap then
-                TermsJSON["@"..ref].templateMap = Div_data.templateMap
-            end
-            if Div_data.classes and #Div_data.classes > 0 then
-                TermsJSON["@"..ref].classes = Div_data.classes
+            if Div_data ~= nil then 
+                TermsJSON["@"..ref].blockMD = schema.convert_md(Div_data.block, metadata)
+                TermsJSON["@"..ref].HTMLMD = TermsJSON["@"..ref].blockMD
+                if Div_data.title then
+                    TermsJSON["@"..ref].title = schema.convert_md(Div_data.title, metadata):gsub("%s+", " ")
+                    TermsJSON["@"..ref].titleMD = schema.convert_md(Div_data.title, metadata):gsub("%s+", " "):gsub("(%a)(%a*)", function(a,b) return string.upper(a)..b end)
+                    TermsJSON["@"..ref].urlTitle = schema.convert_md(create_url_title(Div_data.title,file, false), metadata):gsub("%s+", " ")
+                    TermsJSON["@"..ref].urlMD = schema.convert_md(create_url_title(Div_data.title,file, true), metadata):gsub("%s+", " ")
+                end
+                if Div_data.templateMap then
+                    TermsJSON["@"..ref].templateMap = Div_data.templateMap
+                end
+                if Div_data.classes and #Div_data.classes > 0 then
+                    TermsJSON["@"..ref].classes = Div_data.classes
+                end
             end
         end
     end
