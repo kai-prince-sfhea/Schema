@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Kai Prince SFHEA">
-<meta name="dcterms.date" content="2025-09-17">
 
-<title>Følner sequence – KaisFormatting Template</title>
+<title>Page with no linked terms – KaisFormatting Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -284,33 +282,21 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="template-folner.tex"><i class="bi bi-file"></i>LaTeX</a></li><li><a href="template-folner.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="template-folner.native"><i class="bi bi-file"></i>Native</a></li></ul></div></div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="template-no-terms.tex"><i class="bi bi-file"></i>LaTeX</a></li><li><a href="template-no-terms.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="template-no-terms.native"><i class="bi bi-file"></i>Native</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Følner sequence</h1>
+<h1 class="title">Page with no linked terms</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Kai Prince SFHEA </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">17 September 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -320,86 +306,17 @@ window.Quarto = {
 </header>
 
 
-<section id="sec-Notation" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sec-Notation">Notation</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Term</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\N\)</span></td>
-<td>The Natural Numbers: 1, 2, 3, … (<a href="..\template.html">Source</a>)</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="sec-Backlinks" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sec-Backlinks">Backlinks</h2>
-<ul>
-<li><a href="..\template.html">Axioms</a></li>
-<li><a href="template-group.html">Group</a></li>
-</ul>
-</section>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>Recall the definition of a <a href=".\template-group.html#def-group">group</a>:</p>
-<div id="def-group-recall" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 1 (Group)</strong></span> A <em>group</em> is a non-empty set <span class="math inline">\(\Group\)</span> together with a binary operation on <span class="math inline">\(\Group\)</span>, denoted “<span class="math inline">\(\GroupOperation{}{}\)</span>”, that combines any two elements <span class="math inline">\(\GroupElement\)</span> and <span class="math inline">\(\GroupElement'\)</span> of <span class="math inline">\(\Group\)</span> to form an element of <span class="math inline">\(\Group\)</span>, denoted <span class="math inline">\(\GroupOperation{\GroupElement}{\GroupElement'}\)</span>, such that the following three requirements, known as <em>group axioms</em>, are satisfied:</p>
-<ul>
-<li><em><a href="..\template.html" title="Link to source page">Associativity</a>:</em> For all <span class="math inline">\({g},{h},{j}\)</span> in <span class="math inline">\(\Group\)</span>, one has <span class="math inline">\(\GroupOperation{(\GroupOperation{g}{h})}{j}=\GroupOperation{g}{(\GroupOperation{h}{j})}\)</span>.</li>
-<li><em><a href="..\template.html" title="Link to source page">Identity</a>:</em> There exists an element <span class="math inline">\(\Identity\)</span> in <span class="math inline">\(\Group\)</span> such that, for every <span class="math inline">\({g}\)</span> in <span class="math inline">\(\Group\)</span>, one has <span class="math inline">\(\GroupOperation{\Identity}{g}={g}\)</span> and <span class="math inline">\(\GroupOperation{g}{\Identity}={g}\)</span>. Such an element is unique and is called the <em>identity element</em>.</li>
-<li><em><a href="..\template.html" title="Link to source page">Unique Inverse</a>:</em> For each <span class="math inline">\({g}\)</span> in <span class="math inline">\(\Group\)</span>, there exists an element <span class="math inline">\({h}\)</span> in <span class="math inline">\(\Group\)</span> such that <span class="math inline">\(\GroupOperation{g}{h}=\Identity\)</span> and <span class="math inline">\(\GroupOperation{h}{g}=\Identity\)</span>, where <span class="math inline">\(\Identity\)</span> is the identity element. For each <span class="math inline">\({g}\)</span>, the element <span class="math inline">\({h}\)</span> is unique and is called the <em>inverse</em> of <span class="math inline">\({h}\)</span> and is denoted <span class="math inline">\(\Inverse{g}\)</span>.</li>
-</ul>
-</div>
-<div id="def-rightFolner" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 2</strong></span> We define a <em>right-Følner sequence</em> in a group, <span class="math inline">\(\Group\)</span>, as a sequence <span class="math inline">\(\Folner =(\Folner[N])_{N\in\mathbb{N}}\)</span> of finite subsets of <span class="math inline">\(\Gamma\)</span> satisfying <span class="math display">\[\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1\]</span> for all <span class="math inline">\(\GroupElement\in\Group\)</span>.</p>
-</div>
-<div id="def-leftFolner" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3</strong></span> Similarly, we define a <em>left-Følner sequence</em> in a group, <span class="math inline">\(\Group\)</span>, as a sequence <span class="math inline">\(\Folner =(\Folner[N])_{N\in\mathbb{N}}\)</span> of finite subsets of <span class="math inline">\(\Gamma\)</span> satisfying <span class="math display">\[\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 \]</span> for all <span class="math inline">\(\GroupElement\in\Group\)</span>.</p>
-</div>
-<div id="def-Folner" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4</strong></span> We call a sequence a <em>Følner sequence</em> if it is both a left and right Følner sequence.</p>
-</div>
-<p>A related definition is the following:</p>
-<div id="def-Density" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 5</strong></span> We call define <em>density of a subset <span class="math inline">\(A\subseteq\Group\)</span> with respect to a Følner sequence, <span class="math inline">\(\Folner\)</span>,</em> as <span class="math display">\[\Density(A)=\lim_{N\rightarrow\infty}\frac{|\Folner[N]\cap A|}{|\Folner[N]|},\]</span> if it exists.</p>
-</div>
-<p>For <span class="math inline">\(\N\)</span>, the <em>natural density</em>, <span class="math inline">\(\Density[]\)</span>, is defined when the Følner sequence is constructed with <span class="math inline">\(\Folner[N]=[1,...,N]\)</span>.</p>
+<p>This mention of groups should not link to the <a href="../template-folder/template-group.html">group page</a>.</p>
+<p>This mention of Følner sequences should not link to the <a href="../template-folder/template-folner.html">Følner sequences page</a>.</p>
+<p>This equation should render: <span class="math display">\[\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 \]</span></p>
 </section>
-<section id="results" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Results</h1>
-<div id="thm-Test" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 1 (The Test Theorem)</strong></span> This is a Theorem.</p>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is a test tip.</p>
-</div>
-</div>
-</section>
-<section id="more-information" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> More Information</h1>
+<section id="more-information" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> More Information</h1>
 <p>You can learn more about controlling the appearance of HTML output here: <a href="https://quarto.org/docs/output-formats/html-basics.html" class="uri">https://quarto.org/docs/output-formats/html-basics.html</a></p>
 
 
-<section id="sec-Outlinks" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sec-Outlinks">Outlinks</h2>
-<ul>
-<li><a href="template-no-terms.html">Page with no linked terms</a></li>
-</ul>
-</section>
 </section>
 
 </main> <!-- /main -->

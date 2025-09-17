@@ -221,13 +221,7 @@ for _, file in ipairs(Files) do
     print("-Processing file: " .. file)
     local fileContents = io.open(file, "r"):read("*a")
     local contents = pandoc.read(fileContents, "markdown")
-    local body = ""
-
-    if fileContents:match("^%-%-%-") then
-        body = fileContents:match("^%-%-%-.+%-%-%-%s*(.*)%s*$")  -- Extract body after YAML metadata
-    else
-        body = fileContents
-    end
+    body = schema.convert_md(contents.blocks, {})  -- Convert body to markdown string without metadata block
     DocJSON[file] = {
         contents = body,
         title = pandoc.utils.stringify(contents.meta.title or "")
@@ -240,6 +234,9 @@ for _, file in ipairs(Files) do
     ---@field terms table|nil
     ---@field schema table|nil
     local metadata = contents.meta
+    if metadata.schema and metadata.schema.disable_terms == true then
+        DocJSON[file].disable_terms = true
+    end
 
     -- Pass each Math Macro
     if type(metadata.macros) == "table" then

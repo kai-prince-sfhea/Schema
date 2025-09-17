@@ -35,11 +35,15 @@ Recall the definition of a group:
 :::
 
 ::: {#def-rightFolner}
-We define a *right-Følner sequence* in a group, $\Group$, as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1$$for all $\GroupElement\in\Group$.
+We define a *right-Følner sequence* in a group, $\Group$, as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying
+$$\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1$$
+for all $\GroupElement\in\Group$.
 :::
 
 ::: {#def-leftFolner}
-Similarly, we define a *left-Følner sequence* in a group, $\Group$, as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying $$\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 $$for all $\GroupElement\in\Group$.
+Similarly, we define a *left-Følner sequence* in a group, $\Group$, as a sequence $\Folner =(\Folner[N])_{N\in\mathbb{N}}$ of finite subsets of $\Gamma$ satisfying
+$$\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 $$
+for all $\GroupElement\in\Group$.
 :::
 
 ::: {#def-Folner}

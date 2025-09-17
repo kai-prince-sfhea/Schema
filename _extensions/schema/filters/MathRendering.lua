@@ -105,9 +105,10 @@ local enable_ton = false
 local backlinks_title = "Backlinks"
 local outlinks_title = "Outlinks"
 local ton_title = "Notation"
+local disable_terms = false
 
 function link_terms_in_body(el)
-    if not (quarto.doc.is_format("html") and el.t == "Str") then return nil end
+    if not (quarto.doc.is_format("html") and el.t == "Str" and disable_terms == false) then return nil end
     local text = el.text
     -- Separate leading/trailing punctuation so first visible occurrence can be linked
     local leading = text:match("^(%p+)") or ""
@@ -141,6 +142,7 @@ function Meta(meta)
         local s = meta.schema
         enable_backlinks = schema.meta_bool(s.backlinks)
         enable_outlinks = schema.meta_bool(s.outlinks)
+        disable_terms = schema.meta_bool(s["disable-terms"])
         backlinks_title = pandoc.utils.stringify(s["backlinks-title"] or backlinks_title)
         outlinks_title = pandoc.utils.stringify(s["outlinks-title"] or outlinks_title)
         RenderDir[OutputDir].ChangedFiles[FileType][OutputFile] = schema.meta_bool(s["force-https"])
@@ -236,7 +238,7 @@ function Pandoc(doc)
         -- Set of files that reference any covered term
         local page_set = {}
         for otherFile, data in pairs(LinksJSON or {}) do
-            if otherFile ~= File then
+            if otherFile ~= File and data.RefTerms and data.RefMath then
                 local rterms = (data and data.RefTerms) or {}
                 for term, _ in pairs(rterms) do
                     if covered[term] then

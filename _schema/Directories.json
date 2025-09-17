@@ -26,11 +26,13 @@
     "ChangedFiles": {
       "html": {
         "template-folner.html": true,
-        "template-group.html": true
+        "template-group.html": true,
+        "template-no-terms.html": false
       },
       "tex": {
         "template-folner.tex": true,
-        "template-group.tex": true
+        "template-group.tex": true,
+        "template-no-terms.tex": false
       }
     },
     "MathJax": {

@@ -7,11 +7,15 @@
     "template-folder\\template-group.qmd": [
       "template.qmd"
     ],
+    "template-folder\\template-no-terms.qmd": {
+      
+    },
     "template.qmd": {
       
     }
   },
   "sorted_keys": [
+    "template-folder\\template-no-terms.qmd",
     "template.qmd",
     "template-folder\\template-group.qmd",
     "template-folder\\template-folner.qmd"
@@ -22,8 +26,8 @@
         "def-group"
       ],
       "template.qmd": [
-        "def-identity",
         "def-inverse",
+        "def-identity",
         "def-associativity"
       ]
     },
@@ -60,8 +64,8 @@
   "template-folder\\template-group.qmd": {
     "FileLinks": {
       "template.qmd": [
-        "def-identity",
         "def-inverse",
+        "def-identity",
         "def-associativity"
       ]
     },
@@ -82,6 +86,28 @@
       "template.qmd": "..\\template.html"
     },
     "Title": "Group"
+  },
+  "template-folder\\template-no-terms.qmd": {
+    "FileLinks": {
+      
+    },
+    "FileNotation": {
+      
+    },
+    "LaTeX": "\n\\newcommand{\\Folner}[1][\\vphantom{}]{{\\Phi}_{#1}}\n\\newcommand{\\Group}{{\\Gamma}}\n\\newcommand{\\GroupElement}{{\\gamma}}\n\\newcommand{\\Inverse}[1]{{#1}^{-1}}\n\n",
+    "RefMath": {
+      "\\Folner": true,
+      "\\Group": true,
+      "\\GroupElement": true,
+      "\\Inverse": true
+    },
+    "RefTerms": {
+      
+    },
+    "RelLinks": {
+      
+    },
+    "Title": "Page with no linked terms"
   },
   "template.qmd": {
     "FileLinks": {

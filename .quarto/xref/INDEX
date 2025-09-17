@@ -32,5 +32,10 @@
     "template-folner.html": "9c7f25e7",
     "template-folner.tex": "ff58e0e6",
     "template-folner-commonmark.md": "3070761d"
+  },
+  "template-folder/template-no-terms.qmd": {
+    "template-no-terms.html": "839b1a70",
+    "template-no-terms.tex": "5607fafd",
+    "template-no-terms.native": "41096f75"
   }
 }

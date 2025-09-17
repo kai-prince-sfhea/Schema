@@ -162,6 +162,7 @@ for k, v in pairs(DocJSON) do
     RefTerms = {}
     RefMath = {}
     local CurrentTitle = (DocJSON[k] and DocJSON[k].title) or ""
+    local disable_terms = schema.meta_bool(v.disable_terms) or false
 
     FileContents, term_visited, FileNotationSet = embed_content(v.contents)
 
@@ -199,6 +200,7 @@ for k, v in pairs(DocJSON) do
         -- Check if term is in the file contents
         if standardMatch or referenceMatch or regexMatch then
             Terms[term] = true
+            File = termData.sourceFile
             
             -- Check if term is a math command
             if termData.type == "math" then
@@ -208,23 +210,24 @@ for k, v in pairs(DocJSON) do
                     Terms["\\" .. dep] = true
                     DirJSON[pandoc.path.directory(k)].MathJax[dep] = MathJSON[dep].MathJax
                 end
+
+                if File ~= k then
+                    RefMath[term] = true
+                end
             end
 
             -- Cross-page references: record backlinks/outlinks info
-            File = termData.sourceFile
-            if File ~= k then
+            if File ~= k and not disable_terms then
+                -- Check if term is a math command
+                if termData.type ~= "math" then
+                    -- If term is not math, add to RefTerms
+                    RefTerms[term] = true
+                end
+
                 Source = File
                 if FileLinks[File] == nil then
                     table.insert(dependencyGraph[k], File)
                     FileLinks[File] = {}
-                end
-
-                -- Check if term is a math command
-                if termData.type == "math" then
-                    RefMath[term] = true
-                else
-                    -- If term is not math, add to RefTerms
-                    RefTerms[term] = true
                 end
 
                 -- Check if term has a relative link

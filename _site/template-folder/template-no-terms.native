@@ -1,0 +1,281 @@
+Pandoc
+  Meta
+    { unMeta =
+        fromList
+          [ ( "callouty-theorem"
+            , MetaMap
+                (fromList
+                   [ ( "cor" , MetaInlines [ Str "default" ] )
+                   , ( "def"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "note" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "exr"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "caution" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "lem"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "warning" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "proof"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool True )
+                                     , ( "icon" , MetaBool False )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "prp"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "note" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   , ( "remark"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool False )
+                                     , ( "icon" , MetaBool True )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "solution"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "default" ]
+                                       )
+                                     , ( "collapse" , MetaBool True )
+                                     , ( "icon" , MetaBool True )
+                                     , ( "type"
+                                       , MetaInlines [ Str "tip" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool True )
+                            ])
+                     )
+                   , ( "thm"
+                     , MetaMap
+                         (fromList
+                            [ ( "callout"
+                              , MetaMap
+                                  (fromList
+                                     [ ( "appearance"
+                                       , MetaInlines [ Str "minimal" ]
+                                       )
+                                     , ( "type"
+                                       , MetaInlines [ Str "important" ]
+                                       )
+                                     ])
+                              )
+                            , ( "override-title" , MetaBool False )
+                            ])
+                     )
+                   ])
+            )
+          , ( "schema"
+            , MetaMap (fromList [ ( "disable_terms" , MetaBool True ) ])
+            )
+          , ( "title"
+            , MetaInlines
+                [ Str "Page"
+                , Space
+                , Str "with"
+                , Space
+                , Str "no"
+                , Space
+                , Str "linked"
+                , Space
+                , Str "terms"
+                ]
+            )
+          ]
+    }
+  [ Header
+      1 ( "introduction" , [] , [] ) [ Str "Introduction" ]
+  , Para
+      [ Str "This"
+      , Space
+      , Str "mention"
+      , Space
+      , Str "of"
+      , Space
+      , Str "groups"
+      , Space
+      , Str "should"
+      , Space
+      , Str "not"
+      , Space
+      , Str "link"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Link
+          ( "" , [] , [] )
+          [ Str "group" , Space , Str "page" ]
+          ( "template-group.qmd" , "" )
+      , Str "."
+      ]
+  , Para
+      [ Str "This"
+      , Space
+      , Str "mention"
+      , Space
+      , Str "of"
+      , Space
+      , Str "F\248lner"
+      , Space
+      , Str "sequences"
+      , Space
+      , Str "should"
+      , Space
+      , Str "not"
+      , Space
+      , Str "link"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Link
+          ( "" , [] , [] )
+          [ Str "F\248lner"
+          , Space
+          , Str "sequences"
+          , Space
+          , Str "page"
+          ]
+          ( "template-folner.qmd" , "" )
+      , Str "."
+      ]
+  , Para
+      [ Str "This"
+      , Space
+      , Str "equation"
+      , Space
+      , Str "should"
+      , Space
+      , Str "render:"
+      , SoftBreak
+      , Math
+          DisplayMath
+          "\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 "
+      ]
+  , Header
+      1
+      ( "more-information" , [] , [] )
+      [ Str "More" , Space , Str "Information" ]
+  , Para
+      [ Str "You"
+      , Space
+      , Str "can"
+      , Space
+      , Str "learn"
+      , Space
+      , Str "more"
+      , Space
+      , Str "about"
+      , Space
+      , Str "controlling"
+      , Space
+      , Str "the"
+      , Space
+      , Str "appearance"
+      , Space
+      , Str "of"
+      , Space
+      , Str "HTML"
+      , Space
+      , Str "output"
+      , Space
+      , Str "here:"
+      , Space
+      , Link
+          ( "" , [ "uri" ] , [] )
+          [ Str
+              "https://quarto.org/docs/output-formats/html-basics.html"
+          ]
+          ( "https://quarto.org/docs/output-formats/html-basics.html"
+          , ""
+          )
+      ]
+  ]

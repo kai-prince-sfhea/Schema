@@ -117,10 +117,10 @@
     "urlTitle": "[unique inverse](template.qmd \"Link to source page\")"
   },
   "@def-leftFolner": {
-    "HTMLMD": "Similarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$for all $\\GroupElement\\in\\Group$.",
-    "blockMD": "Similarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$for all $\\GroupElement\\in\\Group$.",
+    "HTMLMD": "Similarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$ for all $\\GroupElement\\in\\Group$.",
+    "blockMD": "Similarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$ for all $\\GroupElement\\in\\Group$.",
     "blockType": "Div",
-    "divMD": "::: {#def-leftFolner}\nSimilarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$for all $\\GroupElement\\in\\Group$.\n:::",
+    "divMD": "::: {#def-leftFolner}\nSimilarly, we define a *left-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 $$ for all $\\GroupElement\\in\\Group$.\n:::",
     "sourceArgs": "",
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-leftFolner",
@@ -129,10 +129,10 @@
     "type": "def"
   },
   "@def-rightFolner": {
-    "HTMLMD": "We define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$for all $\\GroupElement\\in\\Group$.",
-    "blockMD": "We define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$for all $\\GroupElement\\in\\Group$.",
+    "HTMLMD": "We define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$ for all $\\GroupElement\\in\\Group$.",
+    "blockMD": "We define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$ for all $\\GroupElement\\in\\Group$.",
     "blockType": "Div",
-    "divMD": "::: {#def-rightFolner}\nWe define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$for all $\\GroupElement\\in\\Group$.\n:::",
+    "divMD": "::: {#def-rightFolner}\nWe define a *right-Følner sequence* in a group, $\\Group$, as a sequence $\\Folner =(\\Folner[N])_{N\\in\\mathbb{N}}$ of finite subsets of $\\Gamma$ satisfying $$\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1$$ for all $\\GroupElement\\in\\Group$.\n:::",
     "sourceArgs": "",
     "sourceFile": "template-folder\\template-folner.qmd",
     "sourceRef": "def-rightFolner",
@@ -258,7 +258,7 @@
     "type": "term"
   },
   "group": {
-    "regex": "[Gg]roup",
+    "regex": "[Gg]roups?",
     "relatedCommands": {
       "\\Group": true,
       "\\GroupElement": true,

@@ -223,7 +223,7 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-13" ] )
+          , ( "date" , MetaInlines [ Str "2025-09-17" ] )
           , ( "schema"
             , MetaMap
                 (fromList
@@ -300,7 +300,7 @@ Pandoc
                              ]
                          )
                        , ( "id" , MetaInlines [ Str "def-group" ] )
-                       , ( "regex" , MetaInlines [ Str "[Gg]roup" ] )
+                       , ( "regex" , MetaInlines [ Str "[Gg]roups?" ] )
                        , ( "term" , MetaInlines [ Str "group" ] )
                        ])
                 ]

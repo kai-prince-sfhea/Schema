@@ -11,7 +11,28 @@
     "href": "template.html#sec-Outlinks",
     "title": "Axioms",
     "section": "Outlinks",
-    "text": "Outlinks\n\nGroup\nFølner sequence"
+    "text": "Outlinks\n\nPage with no linked terms\nGroup\nFølner sequence"
+  },
+  {
+    "objectID": "template-folder/template-group.html",
+    "href": "template-folder/template-group.html",
+    "title": "Group",
+    "section": "",
+    "text": "Axioms"
+  },
+  {
+    "objectID": "template-folder/template-group.html#sec-Backlinks",
+    "href": "template-folder/template-group.html#sec-Backlinks",
+    "title": "Group",
+    "section": "",
+    "text": "Axioms"
+  },
+  {
+    "objectID": "template-folder/template-group.html#sec-Outlinks",
+    "href": "template-folder/template-group.html#sec-Outlinks",
+    "title": "Group",
+    "section": "Outlinks",
+    "text": "Outlinks\n\nPage with no linked terms\nFølner sequence"
   },
   {
     "objectID": "template-folder/template-folner.html",
@@ -35,24 +56,17 @@
     "text": "Backlinks\n\nAxioms\nGroup"
   },
   {
-    "objectID": "template-folder/template-group.html",
-    "href": "template-folder/template-group.html",
-    "title": "Group",
-    "section": "",
-    "text": "Axioms"
-  },
-  {
-    "objectID": "template-folder/template-group.html#sec-Backlinks",
-    "href": "template-folder/template-group.html#sec-Backlinks",
-    "title": "Group",
-    "section": "",
-    "text": "Axioms"
-  },
-  {
-    "objectID": "template-folder/template-group.html#sec-Outlinks",
-    "href": "template-folder/template-group.html#sec-Outlinks",
-    "title": "Group",
+    "objectID": "template-folder/template-folner.html#sec-Outlinks",
+    "href": "template-folder/template-folner.html#sec-Outlinks",
+    "title": "Følner sequence",
     "section": "Outlinks",
-    "text": "Outlinks\n\nFølner sequence"
+    "text": "Outlinks\n\nPage with no linked terms"
+  },
+  {
+    "objectID": "template-folder/template-no-terms.html",
+    "href": "template-folder/template-no-terms.html",
+    "title": "Page with no linked terms",
+    "section": "",
+    "text": "1 Introduction\nThis mention of groups should not link to the group page.\nThis mention of Følner sequences should not link to the Følner sequences page.\nThis equation should render: \\[\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 \\]\n\n\n2 More Information\nYou can learn more about controlling the appearance of HTML output here: https://quarto.org/docs/output-formats/html-basics.html"
   }
 ]

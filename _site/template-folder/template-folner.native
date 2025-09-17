@@ -223,7 +223,7 @@ Pandoc
                      )
                    ])
             )
-          , ( "date" , MetaInlines [ Str "2025-08-19" ] )
+          , ( "date" , MetaInlines [ Str "2025-09-17" ] )
           , ( "macros"
             , MetaList
                 [ MetaMap
@@ -663,10 +663,11 @@ Pandoc
           , Math InlineMath "\\Gamma"
           , Space
           , Str "satisfying"
-          , Space
+          , SoftBreak
           , Math
               DisplayMath
               "\\lim_{N\\rightarrow\\infty}\\frac{|\\GroupOperation{(\\GroupOperation{\\Folner[N]}{\\Inverse{\\GroupElement}})}{\\Folner[N]}|}{|\\Folner[N]|}=1"
+          , SoftBreak
           , Str "for"
           , Space
           , Str "all"
@@ -721,10 +722,11 @@ Pandoc
           , Math InlineMath "\\Gamma"
           , Space
           , Str "satisfying"
-          , Space
+          , SoftBreak
           , Math
               DisplayMath
               "\\lim_{N\\rightarrow\\infty}\\frac{|(\\Inverse{\\GroupElement}\\cdot\\Folner[N])\\cap\\Folner[N]|}{|\\Folner[N]|}=1 "
+          , SoftBreak
           , Str "for"
           , Space
           , Str "all"

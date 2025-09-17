@@ -2,7 +2,7 @@
 title: Group
 terms:
   - term: group
-    regex: "[Gg]roup"
+    regex: "[Gg]roups?"
     id: def-group
     associatedMacros:
     - command: Group

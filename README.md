@@ -4,7 +4,7 @@
 
 Schema is a Quarto extension for building highly structured, math-rich, and knowledge-graph-enabled websites and documents. It provides:
 - Custom HTML, PDF, and LaTeX output formats
-- Automated math macro and terminology management
+- Automated math macro and terminology management [Improvements Needed]
 - Cross-referencing and knowledge graph generation [Work in Progress]
 - Support for custom code blocks (e.g., Rocq) [Planned]
 - Personalization and interactivity options for readers [Planned]
@@ -44,9 +44,11 @@ schema:
   backlinks: true
   outlinks: true
   force-https: true
+  disable_terms: false
   # backlinks-title: Related pages
   # outlinks-title: Referenced by
   # force-https: replace http:// with https:// in output html files
+  # disable_terms: disable the term shortcode and linking
 ```
 
 2) Define terms and macros in page YAML
@@ -132,6 +134,7 @@ The overall goal of this Extension is to maximise the accessibility of Research 
 1. Starting from the Maths perspective and then generalising, enable webpages to cover individual concepts with configuration, such as notation and abbreviations carrying over to the rest of the website and alternative formats.
     1. It is preferable that the terminology be defined rigorously to enhance knowledge graph building as well as allowing for more accurate automatic translations.
     1. It is preferable that there be an option for definitions to be provided using templates, that can be updated when embedded on other pages.
+    1. Allow terminology to be limited to categories or defined in a yaml file.
 1. Correct citations and their rendering when in callout block titles, as well as add error warnings in scripts and filters to assist with troubleshooting. Also implement change-tracking so that the freeze option can apply to renders.
 1. Allow Rocq to be used as an option for code blocks, with compilation options including raw code and/or pretty-printing, for the purpose of allowing website visitors to view and run Rocq code to verify proofs.
 1. Embed knowledge graph building within the compilation process to allow for hyperlinked cross-referencing of specific objects and terminology across the website, as well as making the knowledge easily accessible to AI models.

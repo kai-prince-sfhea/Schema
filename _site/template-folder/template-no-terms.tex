@@ -125,22 +125,6 @@
       BoldFont = XITSMath-Bold
 ]
 \makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
-\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
-\definecolor{quarto-callout-color}{HTML}{909090}
-\definecolor{quarto-callout-note-color}{HTML}{0758E5}
-\definecolor{quarto-callout-important-color}{HTML}{CC1914}
-\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
-\definecolor{quarto-callout-tip-color}{HTML}{00A047}
-\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
-\definecolor{quarto-callout-color-frame}{HTML}{acacac}
-\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
-\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
-\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
-\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
-\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
-\makeatother
-\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
@@ -174,17 +158,6 @@
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
-\usepackage{amsthm}
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\theoremstyle{remark}
-\AtBeginDocument{\renewcommand*{\proofname}{Proof}}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
-\newtheorem{refremark}{Remark}[section]
-\newtheorem{refsolution}{Solution}[section]
 \makeatother
 \makeatletter
 \makeatother
@@ -196,18 +169,13 @@
 \newcommand{\Folner}[1][\vphantom{}]{{\Phi}_{#1}}
 \newcommand{\Group}{{\Gamma}}
 \newcommand{\GroupElement}{{\gamma}}
-\newcommand{\GroupOperation}[2]{{#1}\cdot{#2}}
-\newcommand{\Identity}{{e}}
 \newcommand{\Inverse}[1]{{#1}^{-1}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Density}[1][\Folner]{{d}_{#1}}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Følner sequence},
-  pdfauthor={Kai Prince SFHEA},
+  pdftitle={Page with no linked terms},
   pdflang={en-GB},
   colorlinks=true,
   linkcolor={blue},
@@ -217,105 +185,23 @@
   pdfcreator={LaTeX via pandoc}}
 
 
-\title{Følner sequence}
-\author{Kai Prince SFHEA}
-\date{2025-09-17}
+\title{Page with no linked terms}
+\author{}
+\date{}
 \begin{document}
 \maketitle
 
 
 \section{Introduction}\label{introduction}
 
-Recall the definition of a group:
+This mention of groups should not link to the
+\href{template-group.qmd}{group page}.
 
-\begin{definition}[Group]\protect\hypertarget{def-group-recall}{}\label{def-group-recall}
+This mention of Følner sequences should not link to the
+\href{template-folner.qmd}{Følner sequences page}.
 
-A \emph{group} is a non-empty set \(\Group\) together with a binary
-operation on \(\Group\), denoted ``\(\GroupOperation{}{}\)'', that
-combines any two elements \(\GroupElement\) and \(\GroupElement'\) of
-\(\Group\) to form an element of \(\Group\), denoted
-\(\GroupOperation{\GroupElement}{\GroupElement'}\), such that the
-following three requirements, known as \emph{group axioms}, are
-satisfied:
-
-\begin{itemize}
-\tightlist
-\item
-  \emph{Associativity:} For all \({g},{h},{j}\) in \(\Group\), one has
-  \(\GroupOperation{(\GroupOperation{g}{h})}{j}=\GroupOperation{g}{(\GroupOperation{h}{j})}\).
-\item
-  \emph{Identity:} There exists an element \(\Identity\) in \(\Group\)
-  such that, for every \({g}\) in \(\Group\), one has
-  \(\GroupOperation{\Identity}{g}={g}\) and
-  \(\GroupOperation{g}{\Identity}={g}\). Such an element is unique and
-  is called the \emph{identity element}.
-\item
-  \emph{Unique Inverse:} For each \({g}\) in \(\Group\), there exists an
-  element \({h}\) in \(\Group\) such that
-  \(\GroupOperation{g}{h}=\Identity\) and
-  \(\GroupOperation{h}{g}=\Identity\), where \(\Identity\) is the
-  identity element. For each \({g}\), the element \({h}\) is unique and
-  is called the \emph{inverse} of \({h}\) and is denoted
-  \(\Inverse{g}\).
-\end{itemize}
-
-\end{definition}
-
-\begin{definition}[]\protect\hypertarget{def-rightFolner}{}\label{def-rightFolner}
-
-We define a \emph{right-Følner sequence} in a group, \(\Group\), as a
-sequence \(\Folner =(\Folner[N])_{N\in\mathbb{N}}\) of finite subsets of
-\(\Gamma\) satisfying
-\[\lim_{N\rightarrow\infty}\frac{|\GroupOperation{(\GroupOperation{\Folner[N]}{\Inverse{\GroupElement}})}{\Folner[N]}|}{|\Folner[N]|}=1\]
-for all \(\GroupElement\in\Group\).
-
-\end{definition}
-
-\begin{definition}[]\protect\hypertarget{def-leftFolner}{}\label{def-leftFolner}
-
-Similarly, we define a \emph{left-Følner sequence} in a group,
-\(\Group\), as a sequence \(\Folner =(\Folner[N])_{N\in\mathbb{N}}\) of
-finite subsets of \(\Gamma\) satisfying
+This equation should render:
 \[\lim_{N\rightarrow\infty}\frac{|(\Inverse{\GroupElement}\cdot\Folner[N])\cap\Folner[N]|}{|\Folner[N]|}=1 \]
-for all \(\GroupElement\in\Group\).
-
-\end{definition}
-
-\begin{definition}[]\protect\hypertarget{def-Folner}{}\label{def-Folner}
-
-We call a sequence a \emph{Følner sequence} if it is both a left and
-right Følner sequence.
-
-\end{definition}
-
-A related definition is the following:
-
-\begin{definition}[]\protect\hypertarget{def-Density}{}\label{def-Density}
-
-We call define \emph{density of a subset \(A\subseteq\Group\) with
-respect to a Følner sequence, \(\Folner\),} as
-\[\Density(A)=\lim_{N\rightarrow\infty}\frac{|\Folner[N]\cap A|}{|\Folner[N]|},\]
-if it exists.
-
-\end{definition}
-
-For \(\N\), the \emph{natural density}, \(\Density[]\), is defined when
-the Følner sequence is constructed with \(\Folner[N]=[1,...,N]\).
-
-\section{Results}\label{results}
-
-\begin{theorem}[The Test
-Theorem]\protect\hypertarget{thm-Test}{}\label{thm-Test}
-
-This is a Theorem.
-
-\end{theorem}
-
-\begin{tcolorbox}[enhanced jigsaw, toptitle=1mm, titlerule=0mm, breakable, colbacktitle=quarto-callout-tip-color!10!white, opacitybacktitle=0.6, opacityback=0, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, coltitle=black, arc=.35mm, colframe=quarto-callout-tip-color-frame, left=2mm, colback=white, bottomtitle=1mm, rightrule=.15mm, bottomrule=.15mm, toprule=.15mm, leftrule=.75mm]
-
-This is a test tip.
-
-\end{tcolorbox}
 
 \section{More Information}\label{more-information}
 
